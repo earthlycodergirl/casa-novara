@@ -1,0 +1,145 @@
+RewriteEngine On
+Options -Indexes -MultiViews
+
+#RewriteCond %{HTTPS} !on
+#RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+#RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteBase /
+
+RewriteRule ^images/(.*)$   adm/uploads/$1 [NC,L]
+
+ErrorDocument 404 /404.php
+
+
+<ifmodule mod_deflate.c>
+  # Compress HTML, CSS, JavaScript, Text, XML and fonts
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+  AddOutputFilterByType DEFLATE application/x-font
+  AddOutputFilterByType DEFLATE application/x-font-opentype
+  AddOutputFilterByType DEFLATE application/x-font-otf
+  AddOutputFilterByType DEFLATE application/x-font-truetype
+  AddOutputFilterByType DEFLATE application/x-font-ttf
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE font/opentype
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE image/x-icon
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  # Remove browser bugs (only needed for really old browsers)
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+  Header append Vary User-Agent
+</ifmodule>
+
+# BEGIN Expire headers
+<IfModule mod_expires.c>
+  # Turn on the module.
+  ExpiresActive on
+  # Set the default expiry times.
+  ExpiresDefault "access plus 2 days"
+  ExpiresByType image/jpg "access plus 1 month"
+  ExpiresByType image/svg+xml "access 1 month"
+  ExpiresByType image/gif "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/x-shockwave-flash "access plus 1 month"
+  ExpiresByType image/ico "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 month"
+  ExpiresByType text/html "access plus 600 seconds"
+</IfModule>
+# END Expire headers
+
+
+
+
+RewriteRule    ^ss/bb/ei/send?$    dist/inc/emails/contact_submit_admin.php  [NC,L]
+
+RewriteRule    ^listing/([A-Za-z0-9-]+)/?$    listing.php?prop_id=$1&type=budd    [QSA,L]
+RewriteRule    ^listing-map/([A-Za-z0-9-]+)/?$    listing.php?prop_id=$1&type=budd    [QSA,L]
+RewriteRule    ^listingup/([A-Za-z0-9-]+)/?$    listing.php?prop_id=$1&type=up    [NC,L]
+RewriteRule    ^blog/([A-Za-z0-9-]+)/?$    blog-page.php?blog_id=$1   [NC,L]
+RewriteRule    ^mexico-real-estate/?$    blog.php   [NC,L]
+RewriteRule    ^contact-us?$    contact.php  [NC,L]
+RewriteRule    ^real-estate-faq?$    faq.php  [NC,L]
+RewriteRule    ^privacy-policy?$    secure-privacy.php  [NC,L]
+RewriteRule    ^terms-and-conditions?$    secure-terms.php  [NC,L]
+
+RewriteRule    ^listings/all?$    listings.php?location=0&dsearch=all    [L,QSA]
+RewriteRule    ^listings/cities/([A-Za-z0-9-+]+)/([A-Za-z0-9-]+)?$    listings.php?location=$2&dsearch=all    [L,QSA]
+RewriteRule    ^listings/towns/([A-Za-z0-9-+]+)/([A-Za-z0-9-]+)?$    listings.php?location=0&adv_property_types[]=0&counties[]=$2&max_beds=0&max_baths=0&min_beds=0&min_baths=0&price_min=0&price_max=18000000&dsearch=all    [L,QSA]
+RewriteRule    ^listings/areas/([A-Za-z0-9-+]+)/([A-Za-z0-9-]+)?$    listings.php?location=0&adv_property_types[]=0&counties[]=0&areas[]=$2&search_type=advanced&search_by=areas&max_beds=0&max_baths=0&min_beds=0&min_baths=0&price_min=0&price_max=18000000&dsearch=all    [L,QSA]
+RewriteRule    ^listings/cancun/([A-Za-z0-9-]+)?$    listings.php?location=2448&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/cozumel/([A-Za-z0-9-]+)?$    listings.php?location=1809&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/playa-del-carmen/([A-Za-z0-9-]+)?$    listings.php?location=1810&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/tulum/([A-Za-z0-9-]+)?$    listings.php?location=1811&dsearch=$1    [L,QSA]
+#RewriteRule    ^listings/puerto-morelos/([A-Za-z0-9-]+)?$    listings.php?location=2440&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/isla-mujeres/([A-Za-z0-9-]+)?$    listings.php?location=1807&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/puerto-morelos/([A-Za-z0-9-]+)?$    listings.php?location=2440&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/puerto-aventuras/([A-Za-z0-9-]+)?$    listings.php?location=1810&adv_property_types[]=0&counties[]=26&max_beds=0&max_baths=0&min_beds=0&min_baths=0&price_min=0&price_max=18000000&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/akumal/([A-Za-z0-9-]+)?$    listings.php?location=2444&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/bacalar/([A-Za-z0-9-]+)?$    listings.php?location=2449&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/lots-land/all?$    listings.php?search_type=basic&page=1&beds=0&baths=0&list_type=0&location=0&property_type=21&update_form=   [L,QSA]
+
+RewriteRule    ^listings/property_type/([A-Za-z0-9-]+)?$  listings.php?search_type=basic&page=1&beds=0&baths=0&list_type=0&location=0&property_type=$1&update_form=   [L,QSA]
+
+RewriteRule    ^listings/commercial?$   listings.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=3&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000  [L,QSA]
+RewriteRule    ^listings/residential?$   listings.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=20&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000  [L,QSA]
+RewriteRule    ^listings/lots-land?$   listings.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=21&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000  [L,QSA]
+
+
+
+#SPANISH VERSION
+RewriteRule    ^es/?$    index.php?lang=es  [NC,L]
+RewriteRule    ^es/propiedad/([A-Za-z0-9-]+)/?$    listing.php?prop_id=$1&type=budd&lang=es    [QSA,L]
+RewriteRule    ^es/mapa?$    listings-map.php?lang=es    [QSA,L]
+RewriteRule    ^es/propiedades?$    listings.php?lang=es    [QSA,L]
+RewriteRule    ^es/blog/([A-Za-z0-9-]+)/?$    blog-single.php?blog_id=$1&lang=es   [NC,L]
+RewriteRule    ^es/bienes-raices-mexico/?$    blog.php?lang=es   [NC,L]
+RewriteRule    ^es/contacto?$    contact.php?lang=es  [NC,L]
+RewriteRule    ^es/vende-tu-propiedad?$    list-property.php?lang=es  [NC,L]
+RewriteRule    ^es/quienes-somos?$    about.php?lang=es  [NC,L]
+RewriteRule    ^es/privacidad?$    secure-privacy-es.php?lang=es  [NC,L]
+RewriteRule    ^es/terminos?$    secure-terms-es.php?lang=es  [NC,L]
+
+RewriteRule    ^es/propiedades/all?$    listings.php?location=0&dsearch=all&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/cancun/([A-Za-z0-9-]+)?$    listings.php?location=2448&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/playa-del-carmen/([A-Za-z0-9-]+)?$    listings.php?location=1810&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/tulum/([A-Za-z0-9-]+)?$    listings.php?location=1811&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/isla-mujeres/([A-Za-z0-9-]+)?$    listings.php?location=1807&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/puerto-morelos/([A-Za-z0-9-]+)?$    listings.php?location=2440&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/puerto-aventuras/([A-Za-z0-9-]+)?$    listings.php?location=1810&adv_property_types[]=0&counties[]=26&max_beds=0&max_baths=0&min_beds=0&min_baths=0&price_min=0&price_max=18000000&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/akumal/([A-Za-z0-9-]+)?$    listings.php?location=2444&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/bacalar/([A-Za-z0-9-]+)?$    listings.php?location=2449&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/lots-land/all?$    listings.php?search_type=basic&page=1&beds=0&baths=0&list_type=0&location=0&property_type=21&update_form=1&lang=es   [L,QSA]
+RewriteRule    ^es/propiedades/property_type/([A-Za-z0-9-]+)?$  listings.php?search_type=basic&page=1&beds=0&baths=0&list_type=0&location=0&property_type=$1&update_form=1&lang=es   [L,QSA]
+
+
+RewriteRule    ^es/propiedades/comercial?$   listings.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=3&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000&lang=es [L,QSA]
+RewriteRule    ^es/propiedades/residencial?$   listings.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=20&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000&lang=es [L,QSA]
+RewriteRule    ^es/propiedades/lotes?$   listings.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=21&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000&lang=es [L,QSA]
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php72” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php72 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

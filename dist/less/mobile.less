@@ -1,0 +1,272 @@
+// main: main.less
+@media @mobile{
+  .inner-head.bg-listing{
+    .breadcrumbs{
+      .breadcrumb-item a{
+        color: #666;
+      }
+      .breadcrumb-item.active{
+        color: #999;
+      }
+    }
+  }
+
+  #property_page{
+    padding: 23px 10px;
+    padding-top: 10px;
+
+    #call_form{
+      position: relative;
+      height: inherit;
+      &.show{
+        display: block;
+      }
+    }
+
+    .prop-det{
+      margin-bottom: 0;
+      margin-top: 3px;
+
+
+      .icon{
+        background: transparent;
+        width: auto;
+        color: #ccc;
+        i{
+          font-size: 11.5px;
+          vertical-align: top;
+        }
+        svg{
+          width: 17px;
+          vertical-align: baseline;
+        }
+      }
+      .val{
+        background: transparent;
+        font-size: 13px;
+        color: black;
+        font-weight: 300;
+        padding-left: 6px;
+      }
+    }
+
+
+    .desc{
+      max-height: 150px;
+      overflow: hidden;
+      position: relative;
+
+      &.show-desc{
+        max-height: inherit;
+      }
+    }
+
+    .desc:after{
+      content: '';
+      height: 60px;
+      position: absolute;
+      bottom: 0;
+      .background-image(linear-gradient(to bottom, transparent 0%,#fff 90%));
+      color: @blue;
+      width: 100%;
+      line-height: 170px;
+      text-align: center;
+      text-transform: uppercase;
+      .cond();
+      font-weight: 400;
+    }
+    .show-desc:after{
+      height: 0;
+    }
+
+    #property-d-1{
+      height: 230px;
+      background: #ddd;
+      overflow: hidden;
+      .item{
+        img{
+          height: 230px;
+          width: auto;
+        }
+      }
+      .owl-buttons{
+        display: none;
+      }
+    }
+    #property-d-1-2{
+      display: none !important;
+    }
+
+    #image_holder{
+      height: 230px;
+      background: #ccc;
+      margin-bottom: 20px;
+    }
+  }
+  .home-bg{
+    min-height: 100vh;
+    height: auto;
+  }
+  .min-max-price{
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .pl-0{
+    padding-left: 0 !important;
+  }
+  .pr-0{
+    padding-right: 0 !important;
+  }
+  .show-advanced{
+    padding-bottom: 20px;
+  }
+
+  .home-middle{
+    padding: 0 20px;
+    h2{
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 27px;
+      color: #dcdcdc;
+      &.sub{
+        text-transform: none;
+        color: #555;
+        font-size: 25px;
+        font-weight: 300;
+        margin-top: 30px;
+      }
+    }
+    p{
+      font-size: 15px;
+    }
+    p:first-child{
+      font-size: 17px;
+      font-weight: 500;
+    }
+  }
+  .yellow-li{
+    border: 2px solid @yellow;
+    padding: 5px 10px;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    margin-top: 20px;
+    display: inline-block;
+    font-weight: 400;
+  }
+
+  .mobile-price{
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .mobile-price-txt{
+    color: #92C01F;
+    text-align: right;
+    font-size: 21px;
+    .cond();
+    font-weight: 400;
+    small{
+      font-size: 15px;
+    }
+    .pname{
+      display: block;
+      text-align: right;
+      font-size: 12px;
+      .cursive();
+      color: #999;
+      margin-bottom: -5px;
+    }
+  }
+
+  .search-res{
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 14px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #434444;
+    color: #949494;
+  }
+
+  .prop-info{
+    h3{
+      font-size: 14px;
+    }
+  }
+
+  .toggle-desc{
+    color: @blue;
+    .cond();
+    font-weight: 300;
+    font-size: 17px;
+    margin-bottom: 34px;
+    .hide{
+      display: none;
+    }
+    &.shown{
+      .hide{
+        display: block;
+      }
+      .show{
+        display: none;
+      }
+    }
+  }
+  .property-content{
+    h1{
+      font-size: 16px;
+      letter-spacing: 1px;
+      margin-bottom: 0;
+    }
+    h4{
+      text-transform: capitalize;
+      letter-spacing: 1px;
+      font-size: 13px;
+      font-weight: 400;
+      margin-top: 10px;
+      position: relative;
+      .show,.hide{
+        display: inline-block;
+        position: absolute;
+        font-size: 17px;
+        right: 10px;
+        color: #888;
+        top: 5px;
+      }
+      .hide{
+        display: none;
+      }
+      &.shown{
+        .hide{
+          display: block;
+        }
+        .show{
+          display: none;
+        }
+      }
+    }
+    .desc{
+      p{
+        color: #888;
+        .head();
+        font-style: normal;
+        font-weight: 200;
+        margin-top: 10px;
+      }
+    }
+    .amentitiesTable.features{
+      td.wi{
+        width: 200px;
+      }
+      td{
+        border: none;
+      }
+    }
+  }
+
+  .table-tog{
+    display: none;
+  }
+  .param{
+    margin-bottom: 10px;
+  }
+}

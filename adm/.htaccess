@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteBase /adm/
+
+RewriteRule    ^listing/([A-Za-z0-9-]+)/?$    listing.php?prop_id=$1&type=budd    [L,QSA]
+RewriteRule    ^listingup/([A-Za-z0-9-]+)/?$    listing.php?prop_id=$1&type=up    [NC,L]
+RewriteRule    ^users/d/([A-Za-z0-9-]+)/?$    users.php?d=$1    [NC,L]
+RewriteRule    ^users/dd/([A-Za-z0-9-]+)/?$    users.php?dd=$1    [NC,L]
+RewriteRule    ^users/deactivate/([A-Za-z0-9-]+)/?$    users.php?deactivate=$1    [NC,L]
+RewriteRule    ^users/activate/([A-Za-z0-9-]+)/?$    users.php?activate=$1    [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]

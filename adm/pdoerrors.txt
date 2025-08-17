@@ -1,0 +1,1807 @@
+30/Nov/20 4:38 am 
+ SQLSTATE[HY000]: General error: 1364 Field 'is_featured' doesn't have a default value 
+INSERT INTO property_list (
+                pr_status,
+                pr_list_type_id,
+                pr_display_status,
+                pr_type_id,
+                mls_num,
+                size_sq_ft,
+                size_lot,
+                size_units,
+                address,
+                unit_num,
+                city,
+                state,
+                zip,
+                county,
+                area,
+                bedrooms,
+                bathrooms,
+                half_baths,
+                third_baths,
+                fourth_baths,
+                year_built,
+                zoning_id,
+                property_title,
+                property_desc,
+                is_visible,
+                virtual_tour,
+                is_foreclosure,
+                pr_sub_type_id,
+                longitude,
+                latitude)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+01/Dec/20 8:28 pm 
+ SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO) 
+SELECT user_id FROM control_users WHERE username = ? AND user_pass = MD5('Free4everbigan')
+
+04/Dec/20 6:07 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+04/Dec/20 6:15 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 6:44 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 6:46 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 6:58 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 7:01 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 7:02 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 7:02 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 7:05 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:25 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:26 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:26 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:26 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:26 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:26 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:27 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:27 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:49 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:49 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:50 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:50 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:51 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:51 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:52 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:52 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:52 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:52 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 8:53 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:10 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:10 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:11 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:11 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:12 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:12 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:17 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:31 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:31 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:31 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:37 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:38 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:38 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:39 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:39 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:39 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:39 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:39 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:40 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:40 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:40 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:40 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:40 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:40 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:40 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:40 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:40 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:41 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:41 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:41 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:41 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:41 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:41 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:41 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:41 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:42 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:42 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:42 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:43 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:43 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:43 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:44 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+14/Dec/20 9:44 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+15/Dec/20 1:40 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+15/Dec/20 1:40 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+15/Dec/20 1:40 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+15/Dec/20 1:40 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+15/Dec/20 1:41 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+15/Dec/20 1:41 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+16/Dec/20 2:03 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+16/Dec/20 3:57 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+16/Dec/20 3:57 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+16/Dec/20 4:03 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+21/Dec/20 4:55 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+24/Dec/20 7:55 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+24/Dec/20 7:55 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+24/Dec/20 7:57 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+24/Dec/20 8:27 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+24/Dec/20 9:27 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+24/Dec/20 9:28 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+24/Dec/20 9:29 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+24/Dec/20 9:36 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+26/Dec/20 6:23 am 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.sys_users' doesn't exist 
+SELECT * FROM sys_users WHERE user_id = ?
+
+26/Dec/20 6:47 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 6:49 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 6:49 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 6:49 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 6:49 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 7:04 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 7:06 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 7:42 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 7:51 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:10 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:13 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:14 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:17 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:18 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:18 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:19 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:19 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:21 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:22 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:24 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:24 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:27 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:27 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:51 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:52 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 8:58 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 9:03 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+26/Dec/20 9:06 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+29/Dec/20 4:22 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+29/Dec/20 4:29 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+30/Dec/20 1:15 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+30/Dec/20 1:15 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 4:17 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 4:17 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 5:15 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 5:15 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 5:59 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 5:59 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 5:59 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:01 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:01 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:02 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:02 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:05 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:07 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:16 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:16 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:18 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:25 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:26 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:37 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:38 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:38 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:38 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:38 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:38 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:38 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+04/Jan/21 6:42 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+05/Jan/21 6:02 am 
+ SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens 
+INSERT INTO property_list (
+                pr_status,
+                pr_list_type_id,
+                pr_display_status,
+                pr_type_id,
+                mls_num,
+                size_sq_ft,
+                size_sq_mt,
+                size_lot,
+                size_units,
+                address,
+                unit_num,
+                city,
+                state,
+                zip,
+                county,
+                area,
+                bedrooms,
+                bathrooms,
+                half_baths,
+                third_baths,
+                fourth_baths,
+                year_built,
+                month_built,
+                zoning_id,
+                property_title,
+                property_desc,
+                is_visible,
+                virtual_tour,
+                is_foreclosure,
+                is_construction,
+                pr_sub_type_id,
+                longitude,
+                latitude)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+05/Jan/21 6:03 am 
+ SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens 
+INSERT INTO property_list (
+                pr_status,
+                pr_list_type_id,
+                pr_display_status,
+                pr_type_id,
+                mls_num,
+                size_sq_ft,
+                size_sq_mt,
+                size_lot,
+                size_units,
+                address,
+                unit_num,
+                city,
+                state,
+                zip,
+                county,
+                area,
+                bedrooms,
+                bathrooms,
+                half_baths,
+                third_baths,
+                fourth_baths,
+                year_built,
+                month_built,
+                zoning_id,
+                property_title,
+                property_desc,
+                is_visible,
+                virtual_tour,
+                is_foreclosure,
+                is_construction,
+                pr_sub_type_id,
+                longitude,
+                latitude)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+05/Jan/21 6:11 am 
+ SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens 
+INSERT INTO property_list (
+                pr_status,
+                pr_list_type_id,
+                pr_display_status,
+                pr_type_id,
+                mls_num,
+                size_sq_ft,
+                size_sq_mt,
+                size_lot,
+                size_units,
+                address,
+                unit_num,
+                city,
+                state,
+                zip,
+                county,
+                area,
+                bedrooms,
+                bathrooms,
+                half_baths,
+                third_baths,
+                fourth_baths,
+                year_built,
+                month_built,
+                zoning_id,
+                property_title,
+                property_desc,
+                is_visible,
+                virtual_tour,
+                is_foreclosure,
+                is_construction,
+                pr_sub_type_id,
+                longitude,
+                latitude)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+05/Jan/21 6:17 am 
+ SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens 
+INSERT INTO property_list (
+                pr_status,
+                pr_list_type_id,
+                pr_display_status,
+                pr_type_id,
+                mls_num,
+                size_sq_ft,
+                size_sq_mt,
+                size_lot,
+                size_units,
+                address,
+                unit_num,
+                city,
+                state,
+                zip,
+                county,
+                area,
+                bedrooms,
+                bathrooms,
+                half_baths,
+                third_baths,
+                fourth_baths,
+                year_built,
+                month_built,
+                zoning_id,
+                property_title,
+                property_desc,
+                is_visible,
+                virtual_tour,
+                is_foreclosure,
+                is_construction,
+                pr_sub_type_id,
+                longitude,
+                latitude)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+05/Jan/21 6:17 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                            INSERT INTO property_pricing (
+                                price_name,
+                                price_desc,
+                                price_amt,
+                                price_type,
+                                property_id)
+                            VALUES (?,?,?,?,?)
+
+05/Jan/21 6:17 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+05/Jan/21 6:17 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+05/Jan/21 6:17 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+05/Jan/21 6:19 am 
+ SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens 
+INSERT INTO property_list (
+                pr_status,
+                pr_list_type_id,
+                pr_display_status,
+                pr_type_id,
+                mls_num,
+                size_sq_ft,
+                size_sq_mt,
+                size_lot,
+                size_units,
+                address,
+                unit_num,
+                city,
+                state,
+                zip,
+                county,
+                area,
+                bedrooms,
+                bathrooms,
+                half_baths,
+                third_baths,
+                fourth_baths,
+                year_built,
+                month_built,
+                zoning_id,
+                property_title,
+                property_desc,
+                is_visible,
+                virtual_tour,
+                is_foreclosure,
+                is_construction,
+                pr_sub_type_id,
+                longitude,
+                latitude)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+05/Jan/21 6:19 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                            INSERT INTO property_pricing (
+                                price_name,
+                                price_desc,
+                                price_amt,
+                                price_type,
+                                property_id)
+                            VALUES (?,?,?,?,?)
+
+05/Jan/21 6:19 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+05/Jan/21 6:19 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+05/Jan/21 6:19 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+05/Jan/21 7:17 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'image_name' in 'where clause' 
+UPDATE property_photos SET img_order = ? WHERE image_name = ?
+
+05/Jan/21 7:17 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'image_name' in 'where clause' 
+UPDATE property_photos SET img_order = ? WHERE image_name = ?
+
+05/Jan/21 7:17 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'image_name' in 'where clause' 
+UPDATE property_photos SET img_order = ? WHERE image_name = ?
+
+05/Jan/21 7:17 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'image_name' in 'where clause' 
+UPDATE property_photos SET img_order = ? WHERE image_name = ?
+
+05/Jan/21 7:45 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'city_name' in 'field list' 
+INSERT INTO locations_areas (town_id,city_name) VALUES (?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'area' cannot be null 
+INSERT INTO property_list (
+                pr_status,
+                pr_list_type_id,
+                pr_display_status,
+                pr_type_id,
+                mls_num,
+                size_sq_ft,
+                size_sq_mt,
+                size_lot,
+                size_units,
+                address,
+                unit_num,
+                city,
+                state,
+                zip,
+                county,
+                area,
+                bedrooms,
+                bathrooms,
+                half_baths,
+                third_baths,
+                fourth_baths,
+                year_built,
+                month_built,
+                zoning_id,
+                property_title,
+                property_desc,
+                is_visible,
+                virtual_tour,
+                is_foreclosure,
+                is_construction,
+                pr_sub_type_id,
+                longitude,
+                latitude)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id)
+                                VALUES (?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id)
+                                VALUES (?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id)
+                                VALUES (?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id)
+                                VALUES (?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id)
+                                VALUES (?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id)
+                                VALUES (?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id)
+                                VALUES (?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id)
+                                VALUES (?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id)
+                                VALUES (?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id)
+                                VALUES (?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id)
+                                VALUES (?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+07/Jan/21 6:39 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+14/Jan/21 5:43 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+14/Jan/21 5:43 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+14/Jan/21 5:44 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+14/Jan/21 5:44 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+15/Jan/21 4:52 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+15/Jan/21 4:52 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+15/Jan/21 4:52 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+15/Jan/21 4:57 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+15/Jan/21 4:57 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+15/Jan/21 4:57 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+15/Jan/21 5:36 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`miarealty_web`.`locations_cities`, CONSTRAINT `state_key` FOREIGN KEY (`state_id`) REFERENCES `locations_states` (`state_id`) ON DELETE CASCADE ON UPDATE NO ACTION) 
+INSERT INTO locations_cities (location,state_id) VALUES (?,?)
+
+15/Jan/21 8:20 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+15/Jan/21 8:20 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+15/Jan/21 8:20 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price_currency' cannot be null 
+
+                        INSERT INTO property_pricing (
+                            price_name,
+                            price_desc,
+                            price_amt,
+                            price_type,
+                            price_currency,
+                            property_id)
+                        VALUES (?,?,?,?,?,?)
+
+15/Jan/21 8:19 pm 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'town' in 'where clause' 
+UPDATE property_list SET town = ? WHERE town = ?
+
+16/Jan/21 7:19 am 
+ SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'property_id' in where clause is ambiguous 
+SELECT p.*, a.area_name, c.location, s.state as state_name, t.town_name, e.*
+                  FROM property_list as p
+                  LEFT JOIN property_list_es AS e ON p.property_id = e.property_id
+                  LEFT JOIN locations_areas as a ON a.area_id = p.area
+                  LEFT JOIN locations_cities as c ON c.city_id = p.city
+                  LEFT JOIN locations_states as s ON s.state_id = p.state
+                  LEFT JOIN locations_towns as t ON t.town_id = p.county
+                  WHERE property_id = ?
+
+16/Jan/21 7:23 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(prop_display)' at line 8 
+
+                    INSERT INTO property_list_es
+                      (property_id,prop_title,prop_desc,prop_display,lang)
+                    VALUES
+                      (?,?,?,?,?)
+                    ON DUPLICATE KEY UPDATE
+                      prop_title = VALUES(prop_title),
+                      prop_desc  = VALUES(prop_desc),
+                      prop_display = VALUE(prop_display)
+
+22/Jan/21 7:38 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+22/Jan/21 7:41 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+22/Jan/21 7:41 am 
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'where clause' 
+SELECT * FROM users WHERE user_id = ?
+
+22/Jan/21 6:03 pm 
+ SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens 
+UPDATE property_types SET type_desc=?, type_desc_es WHERE pr_type_id = ?
+
+22/Jan/21 6:18 pm 
+ SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens 
+INSERT INTO property_types_sub (sub_desc,sub_desc_es,pr_type_id) VALUES (?,?)
+
+27/Jan/21 5:37 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`miarealty_web`.`locations_areas`, CONSTRAINT `town_key` FOREIGN KEY (`town_id`) REFERENCES `locations_towns` (`town_id`) ON DELETE CASCADE ON UPDATE NO ACTION) 
+INSERT INTO locations_areas (town_id,area_name) VALUES (?,?)
+
+27/Jan/21 5:38 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`miarealty_web`.`locations_areas`, CONSTRAINT `town_key` FOREIGN KEY (`town_id`) REFERENCES `locations_towns` (`town_id`) ON DELETE CASCADE ON UPDATE NO ACTION) 
+INSERT INTO locations_areas (town_id,area_name) VALUES (?,?)
+
+27/Jan/21 5:38 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`miarealty_web`.`locations_areas`, CONSTRAINT `town_key` FOREIGN KEY (`town_id`) REFERENCES `locations_towns` (`town_id`) ON DELETE CASCADE ON UPDATE NO ACTION) 
+INSERT INTO locations_areas (town_id,area_name) VALUES (?,?)
+
+26/Feb/21 8:07 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'area' cannot be null 
+INSERT INTO property_list (
+                pr_status,
+                pr_list_type_id,
+                pr_display_status,
+                pr_type_id,
+                mls_num,
+                size_sq_ft,
+                size_sq_mt,
+                size_lot,
+                size_units,
+                address,
+                unit_num,
+                city,
+                state,
+                zip,
+                county,
+                area,
+                bedrooms,
+                bathrooms,
+                half_baths,
+                third_baths,
+                fourth_baths,
+                year_built,
+                month_built,
+                release_notes,
+                zoning_id,
+                property_title,
+                property_desc,
+                is_visible,
+                virtual_tour,
+                is_foreclosure,
+                is_construction,
+                pr_sub_type_id,
+                longitude,
+                latitude,
+                room_type
+              )
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+26/Feb/21 8:07 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                            INSERT INTO property_pricing (
+                                price_name,
+                                price_desc,
+                                price_amt,
+                                price_type,
+                                price_currency,
+                                property_id)
+                            VALUES (?,?,?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'area' cannot be null 
+INSERT INTO property_list (
+                pr_status,
+                pr_list_type_id,
+                pr_display_status,
+                pr_type_id,
+                mls_num,
+                size_sq_ft,
+                size_sq_mt,
+                size_lot,
+                size_units,
+                address,
+                unit_num,
+                city,
+                state,
+                zip,
+                county,
+                area,
+                bedrooms,
+                bathrooms,
+                half_baths,
+                third_baths,
+                fourth_baths,
+                year_built,
+                month_built,
+                release_notes,
+                zoning_id,
+                property_title,
+                property_desc,
+                is_visible,
+                virtual_tour,
+                is_foreclosure,
+                is_construction,
+                pr_sub_type_id,
+                longitude,
+                latitude,
+                room_type
+              )
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                    INSERT INTO property_list_es
+                      (property_id,prop_title,prop_desc,prop_display,lang)
+                    VALUES
+                      (?,?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                            INSERT INTO property_pricing (
+                                price_name,
+                                price_desc,
+                                price_amt,
+                                price_type,
+                                price_currency,
+                                property_id)
+                            VALUES (?,?,?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id,
+                                    lang)
+                                VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id,
+                                    lang)
+                                VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id,
+                                    lang)
+                                VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id,
+                                    lang)
+                                VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id,
+                                    lang)
+                                VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id,
+                                    lang)
+                                VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id,
+                                    lang)
+                                VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+
+                                INSERT INTO property_features (
+                                    feature_name,
+                                    feature_val,
+                                    property_id,
+                                    lang)
+                                VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+30/Mar/21 3:08 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'property_id' cannot be null 
+INSERT INTO property_photos (
+                          img_name,
+                          property_id,
+                          img_folder,
+                          img_order
+                        ) VALUES (?,?,?,?)
+
+19/Jan/23 3:40 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'limit 1-- -+')' at line 1 
+SELECT uid FROM users WHERE username = ? AND password = MD5(''or 1=1 limit 1-- -+')
+
+19/Jan/23 3:40 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 
+SELECT uid FROM users WHERE username = ? AND password = MD5('admin') or ('1'='1'#')
+
+19/Jan/23 3:40 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 
+SELECT uid FROM users WHERE username = ? AND password = MD5('admin') or ('1'='1'#')
+
+19/Jan/23 3:40 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'limit 1-- -+')' at line 1 
+SELECT uid FROM users WHERE username = ? AND password = MD5(''or 1=1 limit 1-- -+')
+
+19/Jan/23 3:41 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 
+SELECT uid FROM users WHERE username = ? AND password = MD5('admin') or ('1'='1'#')
+
+19/Jan/23 3:41 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 
+SELECT uid FROM users WHERE username = ? AND password = MD5('admin') or ('1'='1'#')
+
+19/Jan/23 3:41 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'limit 1-- -+')' at line 1 
+SELECT uid FROM users WHERE username = ? AND password = MD5(''or 1=1 limit 1-- -+')
+
+19/Jan/23 3:41 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 
+SELECT uid FROM users WHERE username = ? AND password = MD5('admin') or ('1'='1'#')
+
+19/Jan/23 3:41 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 
+SELECT uid FROM users WHERE username = ? AND password = MD5('admin') or ('1'='1'#')
+
+19/Jan/23 3:41 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'limit 1-- -+')' at line 1 
+SELECT uid FROM users WHERE username = ? AND password = MD5(''or 1=1 limit 1-- -+')
+
+19/Jan/23 3:41 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 
+SELECT uid FROM users WHERE username = ? AND password = MD5('admin') or ('1'='1'#')
+
+19/Jan/23 3:41 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 
+SELECT uid FROM users WHERE username = ? AND password = MD5('admin') or ('1'='1'#')
+

@@ -1,0 +1,20 @@
+15/Jan/21 4:24 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SET  = 'Othón P. Blanca' WHERE  = '1804'' at line 1 
+UPDATE  SET  = ? WHERE  = ?
+
+15/Jan/21 4:26 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SET  = 'Othón P. Blanca' WHERE  = '1804'' at line 1 
+UPDATE  SET  = ? WHERE  = ?
+
+16/Jan/21 10:07 pm 
+ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'miarealty_web.contact_info' doesn't exist 
+DELETE FROM contact_info WHERE contact_id = ?
+
+16/Jan/21 11:15 pm 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 'info@kiinrealty.com' WHERE contact_id = '1'' at line 1 
+UPDATE site_contact contact_value = ? WHERE contact_id = ?
+
+04/Mar/21 9:48 am 
+ SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty 
+
+
