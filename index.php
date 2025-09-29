@@ -32,7 +32,7 @@ $adv_search->getMinMax();
     <meta property="og:url" content="<?= $link_home[$lang] ?>">
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta property="og:site_name" content="MIA Realty">
+  <meta property="og:site_name" content="Casa Novara">
     <meta name="twitter:image:alt" content="<?= $meta['home']['title'] ?>">
 
     <!-- Bootstrap CSS -->
@@ -63,7 +63,7 @@ $adv_search->getMinMax();
     <div class="container home-middle">
       <div class="row">
         <div class="col-md-6 col-lg-5">
-          <img src="dist/img/side-home-2.jpg" class="img-fluid check-left" alt="MIA Realty" />
+          <img src="dist/img/side-home-2.jpg" class="img-fluid check-left" alt="Casa Novara" />
         </div>
         <div class="col-md-6 col-lg-7 text-left text-md-end">
           <h2><?= $lan['ho']['h2'] ?></h2>

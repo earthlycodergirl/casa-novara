@@ -1,16 +1,16 @@
 <?php
 if($lang == 'en'){
   // ABOUT US
-  $meta['about']['desc'] = 'We are Kiin Realty and we can help you find your home in paradise. We offer real estate services in Playa del Carmen, Tulum, Puerto Morelos and many more.';
-  $meta['about']['title'] = 'About us - Kiin Realty';
+  $meta['about']['desc'] = 'We are Casa Novara and we can help you find your home in paradise. We offer real estate services in Playa del Carmen, Tulum, Puerto Morelos and many more.';
+  $meta['about']['title'] = 'About us - Casa Novara';
 
   // CONTACT US
   $meta['contact']['desc'] = 'Looking for a home in the Mayan Riviera? Or maybe just have some questions regarding real estate in Mexico? Give us a shout out here or call us!';
-  $meta['contact']['title'] = 'Contact us - Kiin Realty';
+  $meta['contact']['title'] = 'Contact us - Casa Novara';
 
   // HOME
   $meta['home']['desc'] = 'Find exclusive homes in the Rivera Maya, Playa del Carmen and Tulum. We set out to find exactly what you need. We specialize in foreign purchases. Lots and land in Mexico.';
-  $meta['home']['title'] = 'Playa del Carmen Real Estate - Kiin Realty';
+  $meta['home']['title'] = 'Playa del Carmen Real Estate - Casa Novara';
 
   // LIST YOUR PROPERTY
   $meta['list']['desc'] = 'Need to sell your property in Mexico? We’ll help you put your home on the market to maximize your sale price. Local expertise and connections makes for a quick sale of your home!';
@@ -25,22 +25,22 @@ if($lang == 'en'){
   $meta['props']['desc'] = 'See a list of all the homes and land available in [CITY], Mexico. Best price guarantee for [CITY] real estate. Properties, lots and land for sale in [CITY], Mexico';
 
   // BLOG LIST
-  $meta['blog']['title'] = 'Riviera Maya Real Estate Info - Kiin Realty';
+  $meta['blog']['title'] = 'Riviera Maya Real Estate Info - Casa Novara';
   $meta['blog']['desc'] = 'Perfect place to find everything you need to know about buying real estate in the Riviera Maya, Mexico. Playa del Carmen Real Estate 101. Local real estate advice.';
 }
 
 if($lang == 'es'){
   // ABOUT US
-  $meta['about']['desc'] = 'Somos Kiin Realty y podemos ayudarlo a encontrar su hogar en el paraíso. Ofrecemos servicios inmobiliarios en Playa del Carmen, Tulum, Puerto Morelos y muchos más.';
-  $meta['about']['title'] = 'Quienes Somos - Kiin Realty';
+  $meta['about']['desc'] = 'Somos Casa Novara y podemos ayudarlo a encontrar su hogar en el paraíso. Ofrecemos servicios inmobiliarios en Playa del Carmen, Tulum, Puerto Morelos y muchos más.';
+  $meta['about']['title'] = 'Quienes Somos - Casa Novara';
 
   // CONTACT US
   $meta['contact']['desc'] = '¿Busca una casa en la Riviera Maya? ¿O tal vez solo tiene algunas preguntas sobre bienes raíces en México? ¡Danos un grito aquí o llámanos!';
-  $meta['contact']['title'] = 'Contacto - Kiin Realty';
+  $meta['contact']['title'] = 'Contacto - Casa Novara';
 
   // HOME
   $meta['home']['desc'] = 'Encuentre casas exclusivas en la Rivera Maya, Playa del Carmen y Tulum. Nos propusimos encontrar exactamente lo que necesita. Nos especializamos en compras al exterior. Lotes y terrenos en México.';
-  $meta['home']['title'] = 'Playa del Carmen Bien Raices - Kiin Realty';
+  $meta['home']['title'] = 'Playa del Carmen Bien Raices - Casa Novara';
 
   // LIST YOUR PROPERTY
   $meta['list']['desc'] = '¿Necesita vender su propiedad en México? Le ayudaremos a poner su casa en el mercado para maximizar su precio de venta. ¡La experiencia y las conexiones locales hacen que la venta de su casa sea rápida!';

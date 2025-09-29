@@ -14,14 +14,14 @@ if(!isset($_SESSION['logged'])){
     header('location: index.php');
 }*/
 // Basic definitions for all pages
-$site_title = 'Kiin Realty - Admin';
+$site_title = 'Casa Novara - Admin';
 $homepage_url = 'dashboard.php';
 $lang = 'en';
 $apage = 0;
 $uploads_folder = 'uploads/';
 $base_href = '/adm/';
 $message = '';
-$listings_url = 'https://kiinrealty.com/listing/';
+$listings_url = 'https://casanovaragroup.com/listing/';
 // Classes to include accross all files
 include 'classes/sql.class.php';
 include 'classes/users.class.php';

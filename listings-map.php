@@ -103,16 +103,16 @@ if(!empty($listings->List[0])){
 
     <title><?= $meta['map']['title'].utf8_encode($listings->SearchParams->CityName) ?>, Mexico</title>
     <meta name="robots" content="index" />
-    <link rel="canonical" href="https://kiinrealty.com/<?= $link_map[$lang].$listings->SearchParams->City ?>">
+  <link rel="canonical" href="https://casanovaragroup.com/<?= $link_map[$lang].$listings->SearchParams->City ?>">
 
 
     <meta property="og:title" content="<?= $meta['map']['title'].utf8_encode($listings->SearchParams->CityName) ?>, Mexico">
     <meta property="og:description" content="<?php echo str_replace('[CITY]',utf8_encode($listings->SearchParams->CityName),$meta['map']['title']) ?>, Mexico">
-    <meta property="og:image" content="https://kiinrealty.com/dist/img/social.jpg">
-    <meta property="og:url" content="https://kiinrealty.com/<?= $link_map[$lang].$listings->SearchParams->City ?>">
+  <meta property="og:image" content="https://casanovaragroup.com/dist/img/social.jpg">
+  <meta property="og:url" content="https://casanovaragroup.com/<?= $link_map[$lang].$listings->SearchParams->City ?>">
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta property="og:site_name" content="Kiin Realty">
+  <meta property="og:site_name" content="Casa Novara">
     <meta name="twitter:image:alt" content="<?= $meta['map']['title'].utf8_encode($listings->SearchParams->CityName) ?>, Mexico">
 
     <!-- Bootstrap CSS -->

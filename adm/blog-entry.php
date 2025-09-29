@@ -1,7 +1,5 @@
 <?php
-include 'base.php';
-
-
+require 'base.php';
 
 $page_type = 4;
 

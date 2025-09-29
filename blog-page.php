@@ -32,16 +32,16 @@ if($lang == 'en'){
     <title><?= $site->Art['title'] ?></title>
     <meta name="description" content="<?= substr(strip_tags($site->Art['content']),0,200) ?>" />
     <meta name="robots" content="index" />
-    <link rel="canonical" href="https://miarealty.com.mx/<?= $link_blog[$lang].'/'.$site->Art['id'] ?>">
+  <link rel="canonical" href="https://casanovaragroup.com/<?= $link_blog[$lang].'/'.$site->Art['id'] ?>">
 
 
     <meta property="og:title" content="<?= $site->Art['title'] ?>">
     <meta property="og:description" content="<?= substr(strip_tags($site->Art['content']),0,200) ?>">
-    <meta property="og:image" content="https://miarealty.com.mx/dist/img/social.jpg">
-    <meta property="og:url" content="https://miarealty.com.mx/<?= $link_blog[$lang].'/'.$site->Art['id'] ?>">
+  <meta property="og:image" content="https://casanovaragroup.com/dist/img/social.jpg">
+  <meta property="og:url" content="https://casanovaragroup.com/<?= $link_blog[$lang].'/'.$site->Art['id'] ?>">
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta property="og:site_name" content="MIA Realty">
+  <meta property="og:site_name" content="Casa Novara">
     <meta name="twitter:image:alt" content="<?= $site->Art['title'] ?>">
 
     <!-- Bootstrap CSS -->
@@ -70,7 +70,7 @@ if($lang == 'en'){
             <ul class="social-buttons">
               <li class="button__share button__share--facebook"><a href="javascript:void(window.open('https://www.facebook.com/sharer.php?u=' + encodeURIComponent(document.location) + '?t=' + encodeURIComponent(document.title),'_blank'))"><i class="bi bi-facebook"></i></a></li>
               <li class="button__share button__share--googleplus"><a href="javascript:void(window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.location),'_blank'))"><i class="bi bi-google"></i></a></li>
-              <li class="button__share button__share--twitter"><a href="javascript:void(window.open('https://twitter.com/share?url=' + encodeURIComponent(document.location) + '&amp;text=' + encodeURIComponent(document.title) + '&amp;via=miarealty.com.mx&amp;hashtags=miarealty','_blank'))"><i class="bi bi-twitter"></i></a></li>
+              <li class="button__share button__share--twitter"><a href="javascript:void(window.open('https://twitter.com/share?url=' + encodeURIComponent(document.location) + '&amp;text=' + encodeURIComponent(document.title) + '&amp;via=casanovaragroup&amp;hashtags=casanovaragroup','_blank'))"><i class="bi bi-twitter"></i></a></li>
               <!-- optional Twitter username of content author (don’t include “@”)
               optional Hashtags appended onto the tweet (comma separated. don’t include “#”) -->
               <li class="button__share button__share--linkedin"><a href="javascript:void(window.open('https://www.linkedin.com/shareArticle?url=' + encodeURIComponent(document.location) + '&amp;title=' + encodeURIComponent(document.title),'_blank'))"><i class="bi bi-linkedin"></i></a></li>

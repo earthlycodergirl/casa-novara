@@ -48,9 +48,9 @@ if($getCon->NumResults > 0){
 	    return preg_replace('/\s+/', ' ', $buffer);
 	}
 
-	//$to = 'info@kiinrealty.com';
-	$subject = 'Contact Received - MIA Realty';
-	$from = 'MIA Realty <no-reply@kiinrealty.com>';
+	//$to = 'info@casanovaragroup.com';
+	$subject = 'Contact Received - Casa Novara';
+	$from = 'Casa Novara <no-reply@casanovaragroup.com>';
 
 	// To send HTML mail, the Content-type header must be set
 	$headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -86,7 +86,7 @@ if($getCon->NumResults > 0){
 		<!--[if !mso]><!-->
 		<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&display=swap" rel="stylesheet" />
 		<!--<![endif]-->
-		<title>Contact form submission from MIA Realty website.</title>
+		<title>Contact form submission from Casa Novara website.</title>
 		<!--[if gte mso 9]>
 		<style type="text/css" media="all">
 			sup { font-size: 100% !important; }
@@ -186,7 +186,7 @@ if($getCon->NumResults > 0){
 																		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																			<tr>
 																				<td class="img-center p-30 px-15" style="font-size:0pt; line-height:0pt; text-align:center; padding: 30px; padding-left: 15px; padding-right: 15px;">
-																					<a href="#" target="_blank"><img src="https://kiinrealty.com/dist/inc/emails/images/logo.png" width="112" height="25" border="0" alt="" /></a>
+																					<a href="#" target="_blank"><img src="https://casanovaragroup.com/dist/inc/emails/images/logo.png" width="112" height="25" border="0" alt="" /></a>
 																				</td>
 																			</tr>
 																		</table>
@@ -276,11 +276,11 @@ if($getCon->NumResults > 0){
 																			<table border="0" cellspacing="0" cellpadding="0">
 																				<tr>
 																					<td class="img" width="34" style="font-size:0pt; line-height:0pt; text-align:left;">
-																						<a href="https://facebook.com/kiinrealty.com" target="_blank"><img src="https://kiinrealty.com/dist/inc/emails/images/ico_facebook.png" width="34" height="34" border="0" alt="" /></a>
+																						<a href="https://facebook.com/casanovaragroup.com" target="_blank"><img src="https://casanovaragroup.com/dist/inc/emails/images/ico_facebook.png" width="34" height="34" border="0" alt="" /></a>
 																					</td>
 																					<td class="img" width="15" style="font-size:0pt; line-height:0pt; text-align:left;"></td>
 																					<td class="img" width="34" style="font-size:0pt; line-height:0pt; text-align:left;">
-																						<a href="https://instagram.com/kiinrealty.com" target="_blank"><img src="https://kiinrealty.com/dist/inc/emails/images/ico_instagram.png" width="34" height="34" border="0" alt="" /></a>
+																						<a href="https://instagram.com/casanovaragroup.com" target="_blank"><img src="https://casanovaragroup.com/dist/inc/emails/images/ico_instagram.png" width="34" height="34" border="0" alt="" /></a>
 																					</td>
 																				</tr>
 																			</table>
@@ -289,11 +289,11 @@ if($getCon->NumResults > 0){
 																	</tr>
 																	<tr>
 																		<td class="text-14 lh-24 a-center c-white l-white pb-20" style="font-size:14px; font-family:\'PT Sans\', Arial, sans-serif; min-width:auto !important; line-height: 24px; text-align:center; color:#ffffff; padding-bottom: 20px;">
-																			MIA REALTY - MEXICO
+																			Casa Novara - MEXICO
 																			<br />
 																			<a href="tel:+529841310957" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">+52 984 131 0957</span></a>
 																			<br />
-																			<a href="mailto:info@kiinrealty.com" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">info@kiinrealty.com</span></a> - <a href="https://kiinrealty.com" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">kiinrealty.com</span></a>
+																			<a href="mailto:info@casanovaragroup.com" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">info@casanovaragroup.com</span></a> - <a href="https://casanovaragroup.com" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">casanovaragroup.com</span></a>
 																		</td>
 																	</tr>
 

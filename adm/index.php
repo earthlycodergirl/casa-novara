@@ -15,7 +15,7 @@ if(isset($_GET['nosess'])){
     <base href="<?= $base_href ?>">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
-    <title>KIIN Realty - ADM</title>
+    <title>Casa Novara - ADM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,300i" rel="stylesheet">
@@ -58,12 +58,12 @@ if(isset($_GET['nosess'])){
           <!-- START Login Background Pic Wrapper-->
           <div class="bg-pic">
              <!-- START Background Pic-->
-             <img src="assets/img/login-bg.jpg" alt="kiin realty" class="lazy">
+             <img src="assets/img/login-bg.jpg" alt="Casa Novara" class="lazy">
              <!-- END Background Pic-->
              <!-- START Background Caption-->
              <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
-                  <h2 class="semi-bold text-white">KIIN REAL ESTATE CMS.</h2>
-                  <p>You have reached a restricted area of KIIN REALTY © <?= date('Y') ?>.<br /> Please return to the main website <a href="https://kiinrealty.com">by clicking here</a>.
+                  <h2 class="semi-bold text-white">Casa Novara Real Estate CMS.</h2>
+                  <p>You have reached a restricted area of Casa Novara © <?= date('Y') ?>.<br /> Please return to the main website <a href="https://casanovaragroup.com">by clicking here</a>.
                   </p>
              </div>
              <!-- END Background Caption-->
@@ -73,7 +73,7 @@ if(isset($_GET['nosess'])){
           <div class="login-container bg-white smaller">
              <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
                      <img src="assets/img/logo-black.png" alt="logo" data-src="assets/img/logo-black.png" data-src-retina="assets/img/logo_2x.png" width="150" height="21">
-                     <p class="p-t-35">Login to access KIIN listing administration</p>
+                     <p class="p-t-35">Login to access Casa Novara listing administration</p>
                      <?= $message ?>
                      <!-- START Login Form -->
                      <form id="form-login" class="p-t-5" role="form" action="" method="post">

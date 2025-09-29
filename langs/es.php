@@ -15,13 +15,13 @@ $lan['nav']['all'] = 'Ver todos';
 
 // Footer
 $lan['foot']['list'] = 'Venda tu propiedad';
-$lan['foot']['about'] = 'Historia de Kiin Realty';
+$lan['foot']['about'] = 'Historia de Casa Novara';
 $lan['foot']['cont'] = 'Contactanos';
 $lan['foot']['blog'] = 'Nuestro Blog';
 $lan['foot']['terms'] = 'Terminos';
 $lan['foot']['privacy'] = 'Politica de Privacidad';
 $lan['foot']['h6'] = array('Destinos Populares','Enlaces Populares');
-$lan['foot']['copy'] = '&copy; '.date('Y').'. Derechos reservados por Kiin Realty. Desarrollado con <i class="bi bi-heart"></i> de GR Freedom';
+$lan['foot']['copy'] = '&copy; '.date('Y').'. Derechos reservados por Casa Novara. Desarrollado con <i class="bi bi-heart"></i> de GR Freedom';
 
 
 // 404 page
@@ -34,12 +34,12 @@ $lan['404']['a'] = array('Contáctanos ahora','Visitar pagina principal');
 // Homepage
 $lan['ho']['h1'] = 'Encuentre propiedades exclusivas en la Riviera Maya';
 $lan['ho']['h3'] = 'Encuentra tu próxima casa,<br /> haz realidad sus sueños.';
-$lan['ho']['h2'] = 'Somos Kiin Realty';
+$lan['ho']['h2'] = 'Somos Casa Novara';
 $lan['ho']['p'] = 'Eliminamos las conjeturas de la inversión extranjera.';
 $lan['ho']['p1'] = 'Abarcando la mayoría de las áreas del Caribe Mexicano. Nos propusimos encontrar exactamente lo que estás buscando. Por eso trabajamos con todos los corredores y agentes locales. Ya sea una casa de vacaciones, una propiedad de alquiler para agregar a su cartera o encontrar la casa de sus sueños para siempre.';
 $lan['ho']['p2'] = 'Nos aseguraremos de que esté informado en cada paso del proceso mientras tengas expectativas realistas al invertir aquí en la Riviera Maya.';
-$lan['ho']['p3'] = 'Bienvenidos a Kiin Realty';
-$lan['ho']['a'] = 'Saber mas acerca de Kiin Realty';
+$lan['ho']['p3'] = 'Bienvenidos a Casa Novara';
+$lan['ho']['a'] = 'Saber mas acerca de Casa Novara';
 $lan['ho']['h22'] = 'Propiedades a la venta en la Riviera Maya';
 $lan['ho']['h5'] = 'Estas son algunas de las mejores propiedades disponibles en el Caribe mexicano';
 $lan['ho']['real'] = 'Bienes Raices';
@@ -51,9 +51,9 @@ $lan['ab']['h1'] = 'Agencia de Bienes Raices - Mexico';
 $lan['ab']['h2'] = 'Le ayudamos a encontrar su casa perfecta en el paraíso.';
 $lan['ab']['p'] = 'Combinando nuestro saber hacer local con nuestras más de dos décadas de experiencia. Sabemos exactamente lo que significa trabajar con personas buenas y honestas en las que puede confiar para ayudarlo en sus esfuerzos aquí en Paradise.';
 $lan['ab']['btn'] = 'Buscar Propiedades';
-$lan['ab']['h3'] = 'Un poco acerca de Kiin Realty';
+$lan['ab']['h3'] = 'Un poco acerca de Casa Novara';
 $lan['ab']['h4'] = 'No solo le dedicamos tiempo, le dedicamos trabajo.';
-$lan['ab']['p2'] = 'Somos Kiin Realty. Eliminamos las conjeturas de la inversión extranjera. Abarcando la mayoría de las áreas del Caribe Mexicano. Nos propusimos encontrar exactamente lo que estás buscando. Por eso trabajamos con todos los corredores y agentes locales. Ya sea una casa de vacaciones, una propiedad de alquiler para agregar a su cartera o encontrar la casa de sus sueños para siempre. Nos aseguraremos de que esté informado en cada paso del camino mientras tenga expectativas realistas al invertir aquí en la Riviera Maya.';
+$lan['ab']['p2'] = 'Somos Casa Novara. Eliminamos las conjeturas de la inversión extranjera. Abarcando la mayoría de las áreas del Caribe Mexicano. Nos propusimos encontrar exactamente lo que estás buscando. Por eso trabajamos con todos los corredores y agentes locales. Ya sea una casa de vacaciones, una propiedad de alquiler para agregar a su cartera o encontrar la casa de sus sueños para siempre. Nos aseguraremos de que esté informado en cada paso del camino mientras tenga expectativas realistas al invertir aquí en la Riviera Maya.';
 $lan['ab']['p3'] = 'Y, por supuesto, solo tiene que preguntarnos y le contaremos todo sobre nuestros mejores lugares de tacos, hermosas playas y cenotes apartados para sumergir los dedos de los pies y obtener la verdadera experiencia local.';
 $lan['ab']['h5'] = 'Contáctanos';
 $lan['ab']['p4'] = '¿Tiene alguna pregunta? ¡Nos encantaría saber de ti!';
@@ -88,7 +88,7 @@ $lan['li']['eval'] = 'Solicitar evaluación gratuita';
 $lan['li']['proc_head'] = 'Nuestro proceso de venta';
 $lan['li']['proc1'] = array('Vamos a conocernos','Contacto Inicial','Recibiremos la información de su propiedad y obtendremos todos los detalles para la próxima venta de su casa. Lo representaremos con la responsabilidad fiduciaria de velar por sus mejores intereses. Discutiremos su acuerdo de cotización, incluido el tiempo que la casa estará listada y la comisión que pagará por la venta de su propiedad.');
 $lan['li']['proc2'] = array('¿Qué vale?','Comercializa tu propiedad','Te ayudaremos a encontrar el mejor número para vender tu propiedad. Mantenga su precio en línea con las casas vendidas que se han identificado en un informe de análisis de mercado comparativo. Lo ayudaremos a evaluar si su mercado es cálido, frío o neutral y le daremos un precio a la casa de acuerdo con usted.');
-$lan['li']['proc3'] = array('Paso final, asi de facil','Cierra la venta','Kiin Realty es su representante. Nos preocupamos por lo que le preocupa y nos aseguramos de que obtenga la mejor oferta posible para su propiedad. Estamos ahí de principio a fin. Si usted es un extranjero que desea publicar su propiedad por favor contáctenos para conocer más sobre su proceso específico.');
+$lan['li']['proc3'] = array('Paso final, asi de facil','Cierra la venta','Casa Novara es su representante. Nos preocupamos por lo que le preocupa y nos aseguramos de que obtenga la mejor oferta posible para su propiedad. Estamos ahí de principio a fin. Si usted es un extranjero que desea publicar su propiedad por favor contáctenos para conocer más sobre su proceso específico.');
 
 
 

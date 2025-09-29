@@ -132,7 +132,7 @@ $properties->getListings();
                             <!-- <td><?= $kk ?></td> -->
                             <td><?= $kk ?></td>
                             <td><a href="listing.php?lid=<?= $kk ?>"><?= $li->property_title ?> <?php if($li->room_type != 'bed'){ echo '<span class="badge badge-pill bg-secondary">'.$li->room_type.'</span>'; } ?></a><small><?= $li->address ?></small><small style="color: #262626"><?= $li->mls ?></small>
-                              <span class="ext-link"><a href="https://kiinrealty.com/listing/<?= $kk ?>" class="link-me" target="_blank" title="see listing on website"><i class="ti-export"></i></a></span>
+                              <span class="ext-link"><a href="https://casanovaragroup.com/listing/<?= $kk ?>" class="link-me" target="_blank" title="see listing on website"><i class="ti-export"></i></a></span>
                             </td>
                             <td><small><?= $li->location ?></small></td>
                             <td><small><?= $li->ptype ?></small></td>
@@ -156,7 +156,7 @@ $properties->getListings();
                                   <div class="dropdown-menu dropdown-menu-right">
                                   <a class="dropdown-item link-me" href="listing.php?lid=<?= $kk ?>"><i class="ti-pencil" data-toggle="tooltip" title="Edit listing details"></i> Edit Listing</a>
                                   <a class="dropdown-item hover-danger delete-listing" data-toggle="tooltip" title="Delete listing" href="#" data-id="<?= $kk ?>"><i class="ti-trash"></i> Delete Listing</a>
-                                    <a href="https://kiinrealty.com/listing/<?= $kk ?>" class="dropdown-item link-me" target="_blank" title="see listing on website"><i class="ti-link text-info"></i> View Listing</a>
+                                    <a href="https://casanovaragroup.com/listing/<?= $kk ?>" class="dropdown-item link-me" target="_blank" title="see listing on website"><i class="ti-link text-info"></i> View Listing</a>
                                     <!-- update featured listing -->
                                     <a class="dropdown-item update-featured show-me" id="btn_feat_<?= $kk ?>" href="#" data-id="<?= $kk ?>" data-rel="<?= $li->featured ?>"><?= $li->feat_txt ?></a>
 

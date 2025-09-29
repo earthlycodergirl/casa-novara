@@ -2,7 +2,7 @@
       <footer class="site-footer">
         <div class="row">
           <div class="col-md-6">
-            <p class="text-center text-md-left">Copyright © <?= date('Y') ?> <a href="http://graphic-freedom.com" target="_blank">GR Freedom</a>. Kiin Realty - All rights reserved.</p>
+            <p class="text-center text-md-left">Copyright © <?= date('Y') ?> <a href="http://graphic-freedom.com" target="_blank">GR Freedom</a>. Casa Novara - All rights reserved.</p>
           </div>
 
 

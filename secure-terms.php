@@ -16,7 +16,7 @@ $nav_class = $logo_type = 'dark';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="dist/css/main.css" type="text/css" />
 
-    <title>Terms and Conditions - MIA Realty</title>
+  <title>Terms and Conditions - Casa Novara</title>
     <?php include 'dist/inc/favicon.php'; ?>
   </head>
   <body class="<?= $mobile_class ?> about-page">
@@ -49,7 +49,7 @@ $nav_class = $logo_type = 'dark';
               <p><strong>Country</strong> refers to:  Mexico</p>
               </li>
               <li>
-              <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to MIA Realty Group.</p>
+              <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to Casa Novara Group.</p>
               </li>
               <li>
               <p><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</p>
@@ -64,7 +64,7 @@ $nav_class = $logo_type = 'dark';
               <p><strong>Third-party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</p>
               </li>
               <li>
-              <p><strong>Website</strong> refers to MIA Realty Group, accessible from <a href="https://miarealty.com.mx" rel="external nofollow noopener" target="_blank">https://miarealty.com.mx</a></p>
+              <p><strong>Website</strong> refers to Casa Novara Group, accessible from <a href="https://casanovaragroup.com" rel="external nofollow noopener" target="_blank">https://casanovaragroup.com</a></p>
               </li>
               <li>
               <p><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
@@ -113,7 +113,7 @@ $nav_class = $logo_type = 'dark';
               <h1>Contact Us</h1>
               <p>If you have any questions about these Terms and Conditions, You can contact us:</p>
               <ul>
-              <li>By visiting this page on our website: <a href="https://miarealty.com.mx/contact-us" rel="external nofollow noopener" target="_blank">https://miarealty.com.mx/contact-us</a></li>
+              <li>By visiting this page on our website: <a href="https://casanovaragroup.com/contact-us" rel="external nofollow noopener" target="_blank">https://casanovaragroup.com/contact-us</a></li>
               </ul>
           </div>
         </div>

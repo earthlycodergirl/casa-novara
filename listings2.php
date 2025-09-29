@@ -123,7 +123,7 @@ print_me($listings->SearchParams);
     <link href="dist/plugins/nuslider/jquery.nouislider.min.css" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" href="dist/css/main.css" type="text/css" />
 
-    <title>MIA Realty</title>
+  <title>Casa Novara</title>
 
     <?php include 'dist/inc/favicon.php'; ?>
 

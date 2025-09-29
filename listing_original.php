@@ -81,10 +81,11 @@ if(isset($_SESSION['currency']) && $_SESSION['currency'] != 'usd'){
     <meta property="og:title" content="<?= ($lang == 'es') ? $prop->PropertyTitleEs : $prop->PropertyTitle ?>">
     <meta property="og:description" content="<?= ($lang == 'es') ? substr($prop->PropertyDescEs,0,155).'...' : substr($prop->PropertyDesc,0,155).'...' ?>">
     <meta property="og:image" content="<?= $prop_img_url.reset($prop->PhotosDisplay) ?>">
-    <meta property="og:url" content="https://miarealty.com.mx/<?= $link_property[$lang].$prop->PropertyId ?>">
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta property="og:site_name" content="MIA Realty">
+    <meta property="og:url" content="https://casanovaragroup.com/<?= $link_property[$lang].$prop->PropertyId ?>">
+
+  <meta property="og:site_name" content="Casa Novara">
     <meta name="twitter:image:alt" content="<?= ($lang == 'es') ? $prop->PropertyTitleEs : $prop->PropertyTitle ?>">
 
     <!-- Bootstrap CSS -->

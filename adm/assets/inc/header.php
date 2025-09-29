@@ -21,7 +21,7 @@
       <nav class="sidebar-navigation">
         <ul class="menu">
 
-          <li class="menu-category">KIIN Website</li>
+          <li class="menu-category">Casa Novara Website</li>
 
           <li class="menu-item <?php if($page_type == 1){ echo 'active'; } ?>">
             <a class="menu-link" href="listings.php">

@@ -16,16 +16,16 @@ $current_link = $link_about;
     <title><?= $meta['about']['title'] ?></title>
     <meta name="description" content="<?= $meta['about']['desc'] ?>" />
     <meta name="robots" content="index" />
-    <link rel="canonical" href="https://miarealty.com.mx/<?= $link_about[$lang] ?>">
+  <link rel="canonical" href="https://casanovaragroup.com/<?= $link_about[$lang] ?>">
 
 
     <meta property="og:title" content="<?= $meta['about']['title'] ?>">
     <meta property="og:description" content="<?= $meta['about']['desc'] ?>">
-    <meta property="og:image" content="https://miarealty.com.mx/dist/img/social.jpg">
-    <meta property="og:url" content="https://miarealty.com.mx/<?= $link_about[$lang] ?>">
+  <meta property="og:image" content="https://casanovaragroup.com/dist/img/social.jpg">
+  <meta property="og:url" content="https://casanovaragroup.com/<?= $link_about[$lang] ?>">
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta property="og:site_name" content="MIA Realty">
+  <meta property="og:site_name" content="Casa Novara">
     <meta name="twitter:image:alt" content="<?= $meta['about']['title'] ?>">
 
     <!-- Bootstrap CSS -->
@@ -52,7 +52,7 @@ $current_link = $link_about;
             <a href="<?= $link_home[$lang] ?>"><?= $lan['ab']['btn'] ?></a>
           </div>
           <div class="col-sm-7 ps-4">
-            <img src="dist/img/about-head.png" alt="Mia Realty" class="img-fluid" />
+            <img src="dist/img/about-head.png" alt="Casa Novara" class="img-fluid" />
           </div>
         </div>
 

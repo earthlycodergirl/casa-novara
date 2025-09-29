@@ -188,7 +188,7 @@ if($dtype == 'area'){
 
             <h1 class="header-title">
                 <strong>Property Locations</strong>
-                <small class="pt-0 mb-4">These are the property locations that are available on the listing section. These locations are also used to filter search results on the main Kiin Realty website. Please read the instructions below to modify a specific location type. </small>
+                <small class="pt-0 mb-4">These are the property locations that are available on the listing section. These locations are also used to filter search results on the main Casa Novara website. Please read the instructions below to modify a specific location type. </small>
             </h1>
 
             <div class="row">

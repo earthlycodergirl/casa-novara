@@ -19,11 +19,11 @@ require('base.php');
 
     <meta property="og:title" content="<?= $meta['list']['title'] ?>">
     <meta property="og:description" content="<?= $meta['list']['desc'] ?>">
-    <meta property="og:image" content="https://kiinrealty.com/dist/img/social.jpg">
+  <meta property="og:image" content="https://casanovaragroup.com/dist/img/social.jpg">
     <meta property="og:url" content="<?= $link_list[$lang] ?>">
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta property="og:site_name" content="Kiin Realty">
+  <meta property="og:site_name" content="Casa Novara">
     <meta name="twitter:image:alt" content="<?= $meta['list']['title'] ?>">
 
     <!-- Bootstrap CSS -->

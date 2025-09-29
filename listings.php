@@ -143,16 +143,16 @@ if(isset($listings->SearchParams->Cities[0])){
 
     <title><?= $meta['props']['title'].utf8_encode($listings->SearchParams->CityName) ?>, Mexico</title>
     <meta name="robots" content="index" />
-    <link rel="canonical" href="https://kiinrealty.com/<?= $city_url ?>">
+  <link rel="canonical" href="https://casanovaragroup.com/<?= $city_url ?>">
 
 
     <meta property="og:title" content="<?= $meta['props']['title'].utf8_encode($listings->SearchParams->CityName) ?>, Mexico">
     <meta property="og:description" content="<?php echo str_replace('[CITY]',utf8_encode($listings->SearchParams->CityName),$meta['props']['title']) ?>, Mexico">
-    <meta property="og:image" content="https://kiinrealty.com/dist/img/social.jpg">
-    <meta property="og:url" content="https://kiinrealty.com/<?= $city_url ?>">
+  <meta property="og:image" content="https://casanovaragroup.com/dist/img/social.jpg">
+  <meta property="og:url" content="https://casanovaragroup.com/<?= $city_url ?>">
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta property="og:site_name" content="Kiin Realty">
+  <meta property="og:site_name" content="Casa Novara">
     <meta name="twitter:image:alt" content="<?= $meta['props']['title'].utf8_encode($listings->SearchParams->CityName) ?>, Mexico">
 
     <!-- Bootstrap CSS -->

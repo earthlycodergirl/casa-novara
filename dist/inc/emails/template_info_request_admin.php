@@ -24,8 +24,8 @@ if(isset($_POST['name']) && strlen($_POST['name']) > 3){
 		}
 
 		$to = 'graphicfreedom@outlook.com';
-		$subject = 'Request Received - MIA Realty';
-		$from = 'info@kiinrealty.com';
+		$subject = 'Request Received - Casa Novara';
+		$from = 'info@casanovaragroup.com';
 
 		// To send HTML mail, the Content-type header must be set
 		$headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -169,7 +169,7 @@ if(isset($_POST['name']) && strlen($_POST['name']) > 3){
 																	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																		<tr>
 																			<td class="img-center p-30 px-15" style="font-size:0pt; line-height:0pt; text-align:center; padding: 30px; padding-left: 15px; padding-right: 15px;">
-																				<a href="#" target="_blank"><img src="http://kiinrealty.com/dist/inc/emails/images/logo.png" width="112" height="25" border="0" alt="" /></a>
+																				<a href="#" target="_blank"><img src="http://casanovaragroup.com/dist/inc/emails/images/logo.png" width="112" height="25" border="0" alt="" /></a>
 																			</td>
 																		</tr>
 																	</table>
@@ -186,7 +186,7 @@ if(isset($_POST['name']) && strlen($_POST['name']) > 3){
 																							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																								<tr>
 																									<td class="fluid-img img-center pb-50" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom: 50px;">
-																										<img src="http://kiinrealty.com/adm/uploads/<?= $prop->Property->image ?>" width="268" border="0" alt="" />
+																										<img src="http://casanovaragroup.com/adm/uploads/<?= $prop->Property->image ?>" width="268" border="0" alt="" />
 																									</td>
 																								</tr>
 																								<tr>
@@ -221,7 +221,7 @@ if(isset($_POST['name']) && strlen($_POST['name']) > 3){
 																						<td class="text-16 lh-26 a-center" style="font-size:16px; color:#6e6e6e; font-family:\'PT Sans\', Arial, sans-serif; min-width: 140px; !important; line-height: 26px; text-align:center;">
 																							Property
 																						</td>
-																						<td class="text-16 lh-26 a-center" style="font-size:16px; color:#333333; font-family:\'PT Sans\', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:left;"><a href="http://mialisting.com.mx/listing/<?= $prop->Property->property_id ?>">View property</a></td>
+											<td class="text-16 lh-26 a-center" style="font-size:16px; color:#333333; font-family:\'PT Sans\', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:left;"><a href="https://casanovaragroup.com/listing/<?= $prop->Property->property_id ?>">View property</a></td>
 																					</tr>
 																					<tr>
 																						<td class="img" height="1" bgcolor="#ebebeb" style="font-size:0pt; line-height:10pt; text-align:left;" colspan="2">&nbsp;</td>
@@ -301,11 +301,11 @@ if(isset($_POST['name']) && strlen($_POST['name']) > 3){
 																		<table border="0" cellspacing="0" cellpadding="0">
 																			<tr>
 																				<td class="img" width="34" style="font-size:0pt; line-height:0pt; text-align:left;">
-																					<a href="https://facebook.com/kiinrealty.com" target="_blank"><img src="http://kiinrealty.com/dist/inc/emails/images/ico_facebook.png" width="34" height="34" border="0" alt="" /></a>
+																					<a href="https://facebook.com/casanovaragroup.com" target="_blank"><img src="http://casanovaragroup.com/dist/inc/emails/images/ico_facebook.png" width="34" height="34" border="0" alt="" /></a>
 																				</td>
 																				<td class="img" width="15" style="font-size:0pt; line-height:0pt; text-align:left;"></td>
 																				<td class="img" width="34" style="font-size:0pt; line-height:0pt; text-align:left;">
-																					<a href="https://instagram.com/kiinrealty.com" target="_blank"><img src="http://kiinrealty.com/dist/inc/emails/images/ico_instagram.png" width="34" height="34" border="0" alt="" /></a>
+																					<a href="https://instagram.com/casanovaragroup.com" target="_blank"><img src="http://casanovaragroup.com/dist/inc/emails/images/ico_instagram.png" width="34" height="34" border="0" alt="" /></a>
 																				</td>
 																			</tr>
 																		</table>
@@ -314,11 +314,11 @@ if(isset($_POST['name']) && strlen($_POST['name']) > 3){
 																</tr>
 																<tr>
 																	<td class="text-14 lh-24 a-center c-white l-white pb-20" style="font-size:14px; font-family:\'PT Sans\', Arial, sans-serif; min-width:auto !important; line-height: 24px; text-align:center; color:#ffffff; padding-bottom: 20px;">
-																		MIA REALTY - MEXICO
+																		Casa Novara - MEXICO
 																		<br />
 																		<a href="tel:+529841310957" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">+52 984 131 0957</span></a> - <a href="tel:+529841161413" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">+52 984 116 1413</span></a>
 																		<br />
-																		<a href="mailto:info@kiinrealty.com" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">info@kiinrealty.com</span></a> - <a href="http://kiinrealty.com" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">kiinrealty.com</span></a>
+																		<a href="mailto:info@casanovaragroup.com" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">info@casanovaragroup.com</span></a> - <a href="http://casanovaragroup.com" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">casanovaragroup.com</span></a>
 																	</td>
 																</tr>
 
@@ -356,7 +356,7 @@ if(mail($to, $subject, $email, $headers)){
 }else{
 	?>
 	<script>
-	window.location.href="http://kiinrealty.com";
+						window.location.href="http://casanovaragroup.com";
 	</script>
 	<?php
 }

@@ -145,7 +145,7 @@ if(isset($_GET['prop']) && $_GET['prop'] > 0){
 																	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																		<tr>
 																			<td class="img-center p-30 px-15" style="font-size:0pt; line-height:0pt; text-align:center; padding: 30px; padding-left: 15px; padding-right: 15px;">
-																				<a href="#" target="_blank"><img src="http://kiinrealty.com/dist/inc/emails/images/logo.png" width="112" height="25" border="0" alt="" /></a>
+																				<a href="#" target="_blank"><img src="http://casanovaragroup.com/dist/inc/emails/images/logo.png" width="112" height="25" border="0" alt="" /></a>
 																			</td>
 																		</tr>
 																	</table>
@@ -162,7 +162,7 @@ if(isset($_GET['prop']) && $_GET['prop'] > 0){
 																							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																								<tr>
 																									<td class="fluid-img img-center pb-50" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom: 50px;">
-																										<img src="http://kiinrealty.com/adm/uploads/<?= $prop->Property->image ?>" width="268" border="0" alt="" />
+																										<img src="http://casanovaragroup.com/adm/uploads/<?= $prop->Property->image ?>" width="268" border="0" alt="" />
 																									</td>
 																								</tr>
 																								<tr>
@@ -206,7 +206,7 @@ if(isset($_GET['prop']) && $_GET['prop'] > 0){
 																																<table width="100%" border="0" cellspacing="0" cellpadding="0" style="position: relative; z-index: 1; margin-top: -90px;">
 																																	<tr>
 																																		<td class="img-center pb-20" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom: 20px;">
-																																			<img src="http://kiinrealty.com/adm/uploads/<?= $p1->image ?>" width="110" border="0" alt="" />
+																																			<img src="http://casanovaragroup.com/adm/uploads/<?= $p1->image ?>" width="110" border="0" alt="" />
 																																		</td>
 																																	</tr>
 																																</table>
@@ -233,7 +233,7 @@ if(isset($_GET['prop']) && $_GET['prop'] > 0){
 																																<table width="100%" border="0" cellspacing="0" cellpadding="0" style="position: relative; z-index: 1; margin-top: -90px;">
 																																	<tr>
 																																		<td class="img-center pb-20" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom: 20px;">
-																																			<img src="http://kiinrealty.com/adm/uploads/<?= $p2->image ?>" width="110" border="0" alt="" />
+																																			<img src="http://casanovaragroup.com/adm/uploads/<?= $p2->image ?>" width="110" border="0" alt="" />
 																																		</td>
 																																	</tr>
 																																</table>
@@ -293,11 +293,11 @@ if(isset($_GET['prop']) && $_GET['prop'] > 0){
 																		<table border="0" cellspacing="0" cellpadding="0">
 																			<tr>
 																				<td class="img" width="34" style="font-size:0pt; line-height:0pt; text-align:left;">
-																					<a href="https://facebook.com/kiinrealty.com" target="_blank"><img src="http://kiinrealty.com/dist/inc/emails/images/ico_facebook.png" width="34" height="34" border="0" alt="" /></a>
+																					<a href="https://facebook.com/casanovaragroup.com" target="_blank"><img src="http://casanovaragroup.com/dist/inc/emails/images/ico_facebook.png" width="34" height="34" border="0" alt="" /></a>
 																				</td>
 																				<td class="img" width="15" style="font-size:0pt; line-height:0pt; text-align:left;"></td>
 																				<td class="img" width="34" style="font-size:0pt; line-height:0pt; text-align:left;">
-																					<a href="https://instagram.com/kiinrealty.com" target="_blank"><img src="http://kiinrealty.com/dist/inc/emails/images/ico_instagram.png" width="34" height="34" border="0" alt="" /></a>
+																					<a href="https://instagram.com/casanovaragroup.com" target="_blank"><img src="http://casanovaragroup.com/dist/inc/emails/images/ico_instagram.png" width="34" height="34" border="0" alt="" /></a>
 																				</td>
 																			</tr>
 																		</table>
@@ -306,11 +306,11 @@ if(isset($_GET['prop']) && $_GET['prop'] > 0){
 																</tr>
 																<tr>
 																	<td class="text-14 lh-24 a-center c-white l-white pb-20" style="font-size:14px; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 24px; text-align:center; color:#ffffff; padding-bottom: 20px;">
-																		MIA REALTY - MEXICO
+																		Casa Novara - MEXICO
 																		<br />
 																		<a href="tel:+529841310957" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">+52 984 131 0957</span></a> - <a href="tel:+529841161413" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">+52 984 116 1413</span></a>
 																		<br />
-																		<a href="mailto:info@website.com" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">info@kiinrealty.com</span></a> - <a href="www.website.com" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">kiinrealty.com</span></a>
+																		<a href="mailto:info@casanovaragroup.com" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">info@casanovaragroup.com</span></a> - <a href="https://casanovaragroup.com" target="_blank" class="link c-white" style="text-decoration:none; color:#ffffff;"><span class="link c-white" style="text-decoration:none; color:#ffffff;">casanovaragroup.com</span></a>
 																	</td>
 																</tr>
 

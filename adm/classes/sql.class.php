@@ -90,11 +90,11 @@ class SqlIt{
 
 	private function db_connect(){
 
-		$this->User = 'dougierocks_connect';
+		$this->User = 'root';
 
-		$this->Pass = 'BBS;C0JR~Aye';
+		$this->Pass = '';
 
-    $DBH = new PDO("mysql:host=199.250.218.203;dbname=dougierocks_db", $this->User, $this->Pass);
+    $DBH = new PDO("mysql:host=localhost;dbname=casa_novara", $this->User, $this->Pass);
 
 		return $DBH;
 

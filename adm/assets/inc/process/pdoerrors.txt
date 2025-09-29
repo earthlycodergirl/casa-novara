@@ -11,7 +11,7 @@ UPDATE  SET  = ? WHERE  = ?
 DELETE FROM contact_info WHERE contact_id = ?
 
 16/Jan/21 11:15 pm 
- SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 'info@kiinrealty.com' WHERE contact_id = '1'' at line 1 
+ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 'info@casanovaragroup.com' WHERE contact_id = '1'' at line 1 
 UPDATE site_contact contact_value = ? WHERE contact_id = ?
 
 04/Mar/21 9:48 am 

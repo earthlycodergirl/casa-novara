@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md <?= $nav_class ?>" id="main_nav">
   <div class="container">
     <a class="navbar-brand" href="<?= $link_home[$lang] ?>">
-        <img src="dist/img/logo.webp" alt="Kiin Realty" width="170" height="127">
+  <img src="dist/img/logo.webp" alt="Casa Novara" width="170" height="127">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon">

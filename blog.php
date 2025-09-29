@@ -24,16 +24,16 @@ if($lang == 'en'){
     <title>Riviera Maya Real Estate Info - MIA Realty</title>
     <meta name="description" content="<?= $meta['blog']['desc'] ?>" />
     <meta name="robots" content="index" />
-    <link rel="canonical" href="https://kiinrealty.com/<?= $link_blog[$lang] ?>">
+  <link rel="canonical" href="https://casanovaragroup.com/<?= $link_blog[$lang] ?>">
 
 
     <meta property="og:title" content="<?= $site->Art['title'] ?>">
     <meta property="og:description" content="<?= substr(strip_tags($site->Art['content']),0,200) ?>">
-    <meta property="og:image" content="https://kiinrealty.com/dist/img/social.jpg">
-    <meta property="og:url" content="https://kiinrealty.com/<?= $link_blog[$lang] ?>">
+  <meta property="og:image" content="https://casanovaragroup.com/dist/img/social.jpg">
+  <meta property="og:url" content="https://casanovaragroup.com/<?= $link_blog[$lang] ?>">
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta property="og:site_name" content="Kiin Realty">
+  <meta property="og:site_name" content="Casa Novara">
     <meta name="twitter:image:alt" content="<?= $site->Art['title'] ?>">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">

@@ -23,7 +23,7 @@ var showAlert = function () {
 
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                   //window.location.replace("listings.php");
-                  window.open('https://kiinrealty.com/listing/'+dprop, '_blank');
+                  window.open('https://casanovaragroup.com/listing/'+dprop, '_blank');
                 }
               });
         }

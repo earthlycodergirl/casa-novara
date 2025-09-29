@@ -24,7 +24,7 @@ $getPerm = new SqlIt("SELECT * FROM permissions","select",array());
     <div class="form-group">
         <label class="" for="email">Position</label>
         <input type="text" class="form-control" id="position" name="position" placeholder="Recepción">
-        <p class="help-block">Position at Kiin Realty</p>
+    <p class="help-block">Position at Casa Novara</p>
     </div>
 
     <div class="form-group">

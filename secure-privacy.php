@@ -16,7 +16,7 @@ $nav_class = $logo_type = 'dark';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="dist/css/main.css" type="text/css" />
 
-    <title>Privacy Policy - MIA Realty</title>
+  <title>Privacy Policy - Casa Novara</title>
     <?php include 'dist/inc/favicon.php'; ?>
   </head>
   <body class="<?= $mobile_class ?> about-page">
@@ -30,9 +30,9 @@ $nav_class = $logo_type = 'dark';
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <h1>MIA Realty - Privacy Policy</h1>
+            <h1>Casa Novara - Privacy Policy</h1>
             <h2>Privacy Policy</h2>
-            <p>Your privacy is important to us. It is MIA Realty Group's policy to respect your privacy regarding any information we may collect from you across our website, <a href="https://miarealty.com.mx">https://miarealty.com.mx</a>, and other sites we own and operate.</p>
+            <p>Your privacy is important to us. It is Casa Novora Group's policy to respect your privacy regarding any information we may collect from you across our website, <a href="https://casanovaragroup.com">https://casanovaragroup.com</a>, and other sites we own and operate.</p>
             <p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</p>
             <p>We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.</p>
             <p>We don’t share any personally identifying information publicly or with third-parties, except when required to by law.</p>

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <img src="dist/img/logo-foot.png" alt="Mia Realty" class="img-fluid" />
+  <img src="dist/img/logo-foot.png" alt="Casa Novara" class="img-fluid" />
       </div>
 
       <div class="col-md-3">

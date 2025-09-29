@@ -19,7 +19,7 @@ if(isset($_GET['lid'])){
     $lid = $_GET['lid'];
     $page_title = 'Edit';
     $page_text = 'Here you can easily edit the current. Simply update the form below and do not forget to save the information. You can also easily add or remove images from the gallery. These images will update automatically.';
-    $preview_btn = '<a href="https://kiinrealty.com/listing/'.$_GET['lid'].'" target="_blank" class="btn btn-info text-end">Preview Listing <i class="ti-link"></i></a>';
+  $preview_btn = '<a href="https://casanovaragroup.com/listing/'.$_GET['lid'].'" target="_blank" class="btn btn-info text-end">Preview Listing <i class="ti-link"></i></a>';
 }
 
 
