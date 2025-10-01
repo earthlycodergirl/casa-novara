@@ -868,9 +868,63 @@ h4 {
     .property-card { height: 100%; }
   }
 
-  .properties-controls {
-    margin-top: 12px;
-    .results-count { color: #333; font-size: 0.95rem; }
-    .results-number { font-weight: 700; margin: 0 6px; }
+  /* toolbar placement: results count + view toggles */
+.properties-controls {
+  width: 100%;
+  margin-bottom: 12px;
+  .results-left { float: left; }
+  .results-actions {
+    float: right;
+    display: flex;
+    gap: 8px;
+    align-items: center;
   }
-  .no-results { font-size: 1rem; background: #fff; border: 1px solid rgba(0,0,0,0.04); border-radius: 8px; }
+
+  .results-count {
+    font-size: 14px;
+    color: #222;
+  }
+
+  .view-toggle .btn {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    color: #000;
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+  .view-toggle .btn.active {
+    background: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+  }
+}
+
+/* popup styling for leaflet popups */
+.cng-map-popup .popup-card {
+  color: #000;
+}
+.cng-map-popup .popup-card .card-price,
+.cng-map-popup .popup-card .prop-price {
+  font-weight: 700;
+}
+.cng-map-popup .popup-card a.view-details {
+  color: #000;
+  text-decoration: none;
+  display:block;
+  margin-top:8px;
+  font-weight:600;
+}
+
+/* hide underline for any links inside popup clones */
+.cng-map-popup a { text-decoration: none; color: #000; }
+
+/* ensure popup image sizing (in case clone doesn't inline style) */
+.cng-map-popup .card-image,
+.cng-map-popup .prop-image {
+  height: 200px !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+/* clear floats */
+.properties-controls::after { content: ""; display: table; clear: both; }

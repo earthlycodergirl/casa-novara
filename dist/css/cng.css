@@ -514,9 +514,7 @@ h4 {
   }
 }
 @media (hover: hover) and (pointer: fine) {
-  .properties-slider {
-    /* visually expand image (width a little, height more) without reflow */
-  }
+   /* visually expand image (width a little, height more) without reflow */
   .properties-slider .slides {
     align-items: flex-start;
   }
@@ -546,9 +544,7 @@ h4 {
   outline-offset: 4px;
 }
 /* Slider controls: arrows and pagination dots */
-.properties-slider {
-  /* pager removed - no dots */
-}
+
 .properties-slider .controls {
   position: absolute;
   top: 50%;
@@ -627,7 +623,6 @@ h4 {
   opacity: 0.2;
 }
 /* Listings filter ribbon */
-.listings-filter {
   /* Search input grows to fill available space on desktop */
   /* Filter dropdown button style */
   /* Types grid */
@@ -635,7 +630,6 @@ h4 {
   /* If :has is supported, highlight the whole tile */
   /* Pills panel for beds/baths */
   /* Responsive: on small screens stack vertically and make full width */
-}
 .listings-filter .filter-ribbon {
   background: #f6f7f8;
   /* light grey */

@@ -127,12 +127,12 @@
 </section>
 
 <div class="search-results">
-                <div class="properties-controls d-flex align-items-center justify-content-between" style="margin:12px 0 0 0">
-                    <div class="results-count">Showing <span class="results-number">0</span> results</div>
-                    <div class="results-actions">&nbsp;</div>
-                </div>
-                <div class="no-results" style="display:none; padding:24px; text-align:center; color:#666">No properties match your filters. Try adjusting your search.</div>
-            </div>
+    <div class="properties-controls d-flex align-items-center justify-content-between" style="margin:12px 0 0 0">
+        <div class="results-count">Showing <span class="results-number">0</span> results</div>
+        <div class="results-actions">&nbsp;</div>
+    </div>
+    <div class="no-results" style="display:none; padding:24px; text-align:center; color:#666">No properties match your filters. Try adjusting your search.</div>
+</div>
 
 <!-- Properties list -->
 <section class="properties-list container-fluid" aria-label="Property results">

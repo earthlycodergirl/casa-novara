@@ -215,3 +215,49 @@
 	object-fit: cover;
 	display: block;
 }
+
+/* Styles specific to the listings map page (scoped so other pages are unaffected) */
+.listings-map-page {
+	/* CSS variables that will be set at runtime by JS to match measured heights */
+	:root {
+		--cng-nav-height: 72px;
+		--cng-filter-height: 64px;
+		--cng-extra-padding: 18px;
+		--cng-top-stack: calc(var(--cng-nav-height) + var(--cng-filter-height) + var(--cng-extra-padding));
+	}
+
+	.split-wrap { padding: 18px 12px; left: 12px; right: 12px; }
+	.list-column { background: #fff; padding: 12px; border-radius: 6px; }
+	.properties-wrap .properties-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+	.map-column { padding: 12px; }
+	/* Make the map fill its column and stay visible while the left list scrolls */
+	#mapid { width: 100%; height: 80vh; border-radius: 6px; }
+	.view-toggle { gap:8px }
+	.filter-view { display:flex; align-items:center }
+
+	/* Popup card styles to resemble left-side results */
+	.leaflet-popup-content .map-popup-card { font-family: inherit; color: #000; text-decoration: none; }
+	.leaflet-popup-content .map-popup-card .prop-image { height: 200px; background-size: cover; background-position: center; border-radius:6px 6px 0 0; }
+	.leaflet-popup-content .map-popup-card .prop-body { padding: 8px 6px; }
+	.leaflet-popup-content .map-popup-card .prop-price { font-weight:700; color: #000; margin-bottom:6px; }
+	.leaflet-popup-content .map-popup-card a { text-decoration: none; color: inherit; }
+
+	@media (min-width: 992px){
+		/* Fix navbar and filter to top as full-width stacked bars (only for this page) */
+		.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1050; }
+		.listings-filter { position: fixed; top: var(--cng-nav-height); left: 0; right: 0; z-index: 1040; }
+
+		/* add top padding so content isn't hidden under fixed bars */
+		.split-wrap { padding-top: calc(var(--cng-top-stack)); }
+
+		/* sticky keeps the map visible while left column scrolls; account for fixed nav+filter height */
+		.map-column { position: -webkit-sticky; position: sticky; top: calc(var(--cng-top-stack)); align-self: start; height: calc(100vh - (var(--cng-top-stack))); z-index: 1030; }
+		#mapid { height: 100%; }
+	}
+
+	@media (max-width: 991px){
+		#mapid { height: 50vh; }
+		.properties-wrap .properties-grid { grid-template-columns: 1fr; }
+		.map-column { position: static; height: auto; }
+	}
+}
