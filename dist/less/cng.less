@@ -814,3 +814,63 @@ h4 {
     .types-panel { width: 100%; }
   }
 }
+
+  /* Properties grid */
+  .properties-list {
+    padding: 28px 0;
+    .properties-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .property-col { display: flex; }
+    .property-card {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background: #fff;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.18s ease, transform 0.12s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .property-card:hover { box-shadow: 0 14px 40px rgba(0,0,0,0.12); transform: translateY(-4px); }
+
+    .prop-image { position: relative; width: 100%; padding-top: 62%; background-size: cover; background-position:center; }
+    .prop-badge, .prop-action {
+      position: absolute; top: 10px; padding:6px 10px; border-radius:20px; font-size:13px; color:#fff;
+    }
+    .prop-badge { left: 10px; background: rgba(0,0,0,0.48); }
+    .prop-action { right: 10px; background: rgba(0,0,0,0.28); width:36px; height:36px; display:flex; align-items:center; justify-content:center; border-radius:50%; }
+
+    .prop-body { padding: 12px 14px 18px 14px; display:flex; flex-direction:column; gap:8px; flex:1 1 auto; }
+    .prop-price { font-weight:700; font-size:1.05rem; }
+    .prop-meta { color:#666; font-size:0.92rem; }
+    .prop-location { color:#222; font-size:0.95rem; font-weight:500; }
+    .prop-type { color:#666; font-size:0.9rem; }
+
+    /* Responsive columns: 4 on >=1400, 3 on 758-1399, stacked under 758 */
+    @media (min-width: 1400px) {
+      .properties-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (min-width: 758px) and (max-width: 1399px) {
+      .properties-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 757px) {
+      .properties-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Ensure equal height when side-by-side by making the card take full height of the column */
+    .property-col { align-items: stretch; }
+    .property-card { height: 100%; }
+  }
+
+  .properties-controls {
+    margin-top: 12px;
+    .results-count { color: #333; font-size: 0.95rem; }
+    .results-number { font-weight: 700; margin: 0 6px; }
+  }
+  .no-results { font-size: 1rem; background: #fff; border: 1px solid rgba(0,0,0,0.04); border-radius: 8px; }

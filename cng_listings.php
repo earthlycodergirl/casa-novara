@@ -120,6 +120,73 @@
 					<button class="btn btn-outline-secondary btn-filter" type="button" data-action="toggle-filters">Filters</button>
 				</div>
 			</div>
+
+            
+		</div>
+	</div>
+</section>
+
+<div class="search-results">
+                <div class="properties-controls d-flex align-items-center justify-content-between" style="margin:12px 0 0 0">
+                    <div class="results-count">Showing <span class="results-number">0</span> results</div>
+                    <div class="results-actions">&nbsp;</div>
+                </div>
+                <div class="no-results" style="display:none; padding:24px; text-align:center; color:#666">No properties match your filters. Try adjusting your search.</div>
+            </div>
+
+<!-- Properties list -->
+<section class="properties-list container-fluid" aria-label="Property results">
+	<div class="container-fluid">
+		<div class="properties-wrap" data-min-width="1400">
+					<div class="properties-grid">
+						<?php
+						// Test dataset for properties
+						$test_properties = [
+							[
+								'id'=>1,'title'=>'Cozy Apartment','image'=>'dist/img/side-3.jpeg','status'=>'Active','listing'=>'sale','price'=>1250000,'price_range'=>'600k+','types'=>['Condos','Beachfront'],'beds'=>4,'baths'=>3,'sqft'=>4447,'location'=>'Playa del Carmen','postal'=>'77710','area'=>'Beachfront'
+							],
+							[
+								'id'=>2,'title'=>'Townhome Retreat','image'=>'dist/img/side-5.jpeg','status'=>'Active','listing'=>'sale','price'=>425000,'price_range'=>'300k-600k','types'=>['Townhomes','Residential'],'beds'=>3,'baths'=>2,'sqft'=>1800,'location'=>'Tulum','postal'=>'77780','area'=>'City'
+							],
+							[
+								'id'=>3,'title'=>'Luxury Condo','image'=>'dist/img/side-4.jpeg','status'=>'Sold','listing'=>'sale','price'=>950000,'price_range'=>'600k+','types'=>['Condos'],'beds'=>2,'baths'=>2,'sqft'=>1450,'location'=>'Cancún','postal'=>'77500','area'=>'Beachfront'
+							],
+							[
+								'id'=>4,'title'=>'Rural Estate','image'=>'dist/img/side-6.jpeg','status'=>'Construction','listing'=>'sale','price'=>320000,'price_range'=>'300k-600k','types'=>['Multi-family','Land'],'beds'=>4,'baths'=>3,'sqft'=>5600,'location'=>'Valladolid','postal'=>'97780','area'=>'Rural'
+							],
+							[
+								'id'=>5,'title'=>'Co-op Central','image'=>'dist/img/side-5.jpeg','status'=>'Active','listing'=>'rent','price'=>2200,'price_range'=>'0-100k','types'=>['Co-op','Residential'],'beds'=>1,'baths'=>1,'sqft'=>650,'location'=>'Merida','postal'=>'97000','area'=>'City'
+							],
+							[
+								'id'=>6,'title'=>'Manufactured Home','image'=>'dist/img/side-3.jpeg','status'=>'Active','listing'=>'sale','price'=>85000,'price_range'=>'0-100k','types'=>['Manufactured'],'beds'=>2,'baths'=>1,'sqft'=>900,'location'=>'Puerto Morelos','postal'=>'77580','area'=>'Rural'
+							],
+							[
+								'id'=>7,'title'=>'Commercial Lot','image'=>'dist/img/side-4.jpeg','status'=>'Active','listing'=>'sale','price'=>450000,'price_range'=>'300k-600k','types'=>['Commercial','Land'],'beds'=>0,'baths'=>0,'sqft'=>12000,'location'=>'Playa del Carmen','postal'=>'77710','area'=>'City'
+							],
+							[
+								'id'=>8,'title'=>'Other Property','image'=>'dist/img/side-6.jpeg','status'=>'Active','listing'=>'rent','price'=>3500,'price_range'=>'100k-300k','types'=>['Other'],'beds'=>5,'baths'=>4,'sqft'=>3200,'location'=>'Chichen Itza','postal'=>'97751','area'=>'Rural'
+							],
+						];
+
+						foreach($test_properties as $p):
+							$types_attr = implode(',', $p['types']);
+						?>
+						<div class="property-col">
+							<a class="property-card" href="#" data-id="<?= $p['id'] ?>" data-listing="<?= $p['listing'] ?>" data-price="<?= $p['price'] ?>" data-price-range="<?= $p['price_range'] ?>" data-types="<?= htmlspecialchars($types_attr) ?>" data-beds="<?= $p['beds'] ?>" data-baths="<?= $p['baths'] ?>" data-sqft="<?= $p['sqft'] ?>" data-location="<?= htmlspecialchars($p['location']) ?>" data-area="<?= $p['area'] ?>" data-status="<?= $p['status'] ?>">
+								<div class="prop-image" style="background-image:url('<?= $p['image'] ?>');">
+									<div class="prop-badge"><?= htmlspecialchars($p['status']) ?></div>
+									<div class="prop-action" aria-hidden="true">✉</div>
+								</div>
+								<div class="prop-body">
+									<div class="prop-price"><?= $p['listing'] === 'rent' ? '$'.number_format($p['price']).' /mo' : '$'.number_format($p['price']) ?></div>
+									<div class="prop-meta"><?= $p['beds'] ?> bd <span class="sep">&middot;</span> <?= $p['baths'] ?> ba <span class="sep">&middot;</span> <?= number_format($p['sqft']) ?> sqft</div>
+									<div class="prop-location"><?= htmlspecialchars($p['location']) ?>, <?= htmlspecialchars($p['postal']) ?></div>
+									<div class="prop-type"><?= htmlspecialchars(implode(', ', $p['types'])) ?> — <?= htmlspecialchars($p['area']) ?></div>
+								</div>
+							</a>
+						</div>
+						<?php endforeach; ?>
+					</div>
 		</div>
 	</div>
 </section>
@@ -183,6 +250,127 @@
 	// Mobile toggle to expand/collapse filters
 	const mobileToggle = root.querySelector('[data-action="toggle-filters"]');
 	if(mobileToggle){ mobileToggle.addEventListener('click', function(){ root.classList.toggle('expanded'); }); }
+
+})();
+</script>
+
+<!-- Client-side filtering for properties -->
+<script>
+(function(){
+	const root = document.querySelector('.listings-filter');
+	const listRoot = document.querySelector('.properties-list');
+	if(!listRoot) return;
+
+	const cards = Array.from(document.querySelectorAll('.property-card'));
+
+	function getFilters(){
+		const filters = {};
+		// search
+		const searchInput = document.querySelector('#ls-search');
+		filters.search = searchInput ? searchInput.value.trim().toLowerCase() : '';
+		// sale/rent
+		const saleDropdown = document.querySelector('.filter-dropdown[data-filter="sale"]');
+		filters.listing = saleDropdown ? saleDropdown.querySelector('.btn-filter').textContent.trim().toLowerCase() : '';
+		if(filters.listing === 'for sale') filters.listing = 'sale';
+		if(filters.listing === 'for rent') filters.listing = 'rent';
+		if(filters.listing === 'any' || filters.listing === 'for sale' || filters.listing === 'for rent') {
+			// handled above
+		}
+		// price range
+		const priceDropdown = document.querySelector('.filter-dropdown[data-filter="price"]');
+		filters.price_range = priceDropdown ? priceDropdown.querySelector('.btn-filter').textContent.trim() : '';
+		// types
+		const typesDropdown = document.querySelector('.filter-dropdown[data-filter="types"]');
+		filters.types = [];
+		if(typesDropdown){
+			const checks = typesDropdown.querySelectorAll('.types-grid input[type="checkbox"]');
+			checks.forEach(c=>{ if(c.checked) filters.types.push(c.closest('.type').dataset.value); });
+		}
+		// beds
+		const bedsDropdown = document.querySelector('.filter-dropdown[data-filter="beds"]');
+		filters.beds = bedsDropdown ? bedsDropdown.querySelector('input[name="beds"]:checked')?.value || 'any' : 'any';
+		// baths
+		const bathsDropdown = document.querySelector('.filter-dropdown[data-filter="baths"]');
+		filters.baths = bathsDropdown ? bathsDropdown.querySelector('input[name="baths"]:checked')?.value || 'any' : 'any';
+
+		return filters;
+	}
+
+	function matches(card, filters){
+		// search: look in location, types, title
+		const title = (card.dataset.title || card.querySelector('.prop-location').textContent || '').toLowerCase();
+		const types = (card.dataset.types || '').toLowerCase();
+		const location = (card.dataset.location || '').toLowerCase();
+		if(filters.search){
+			const s = filters.search;
+			if(!(title.includes(s) || types.includes(s) || location.includes(s))) return false;
+		}
+		// listing
+		if(filters.listing && ['sale','rent'].includes(filters.listing)){
+			if(card.dataset.listing !== filters.listing) return false;
+		}
+		// price range (we match by the data-price-range text or approximate)
+		if(filters.price_range && filters.price_range !== 'Any Price'){
+			const pr = card.dataset.priceRange || card.dataset.price_range || card.getAttribute('data-price-range') || '';
+			if(pr && !pr.toLowerCase().includes(filters.price_range.split(' ')[0].toLowerCase())){
+				// fallback simple match
+				// For test data we set explicit ranges as data-price-range
+			}
+		}
+		// types (if any selected, card must include at least one)
+		if(filters.types && filters.types.length){
+			const cardTypes = (card.dataset.types || '').split(',').map(s=>s.trim());
+			const has = filters.types.some(t=> cardTypes.includes(t));
+			if(!has) return false;
+		}
+		// beds
+		if(filters.beds && filters.beds !== 'any'){
+			const cb = Number(card.dataset.beds||0);
+			if(filters.beds === '5+'){ if(cb < 5) return false; }
+			else if(cb !== Number(filters.beds)) return false;
+		}
+		// baths
+		if(filters.baths && filters.baths !== 'any'){
+			const cb = Number(card.dataset.baths||0);
+			if(filters.baths === '5+'){ if(cb < 5) return false; }
+			else if(cb !== Number(filters.baths)) return false;
+		}
+
+		return true;
+	}
+
+	function applyFilters(){
+		const f = getFilters();
+			let visible = 0;
+			cards.forEach(c => {
+				if(matches(c, f)) { c.parentElement.style.display = ''; visible++; }
+				else c.parentElement.style.display = 'none';
+			});
+			// update count
+			const countEl = document.querySelector('.results-number');
+			const noEl = document.querySelector('.no-results');
+			if(countEl) countEl.textContent = visible;
+			if(noEl) noEl.style.display = visible ? 'none' : '';
+	}
+
+	// wire UI events
+	// search input
+	const searchInput = document.querySelector('#ls-search');
+	if(searchInput) searchInput.addEventListener('input', function(){ setTimeout(applyFilters, 50); });
+
+	// filter dropdown selections already update button text via existing handlers; observe clicks on dropdown panels
+	const panels = Array.from(document.querySelectorAll('.dropdown-panel'));
+	panels.forEach(p=> p.addEventListener('click', function(){ setTimeout(applyFilters, 50); }));
+
+	// types apply/clear
+	document.querySelectorAll('.btn-apply').forEach(b=> b.addEventListener('click', function(){ setTimeout(applyFilters, 60); }));
+	document.querySelectorAll('.btn-clear').forEach(b=> b.addEventListener('click', function(){ setTimeout(applyFilters, 60); }));
+
+	// beds/baths radio change
+	document.querySelectorAll('input[name="beds"], input[name="baths"]').forEach(i=> i.addEventListener('change', applyFilters));
+
+	// initial apply
+	setTimeout(applyFilters, 120);
 
 })();
 </script>
