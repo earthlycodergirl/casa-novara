@@ -787,12 +787,12 @@ h4 {
 }
 .listings-filter .type input:checked + .type-icon,
 .listings-filter .type input:checked + .type-label {
-  color: #0d6efd;
+  color: #000000;
   font-weight: 600;
 }
 .listings-filter .type:has(input:checked) {
-  background: rgba(13, 110, 253, 0.96);
-  border-color: rgba(13, 110, 253, 0.8);
+  background: transparent;
+  border-color: black;
 }
 .listings-filter .types-actions {
   display: flex;
@@ -800,11 +800,17 @@ h4 {
   justify-content: flex-end;
   margin-top: 10px;
 }
+.listings-filter .filter-dropdown .pills-panel {
+  min-width: 400px;
+}
 .listings-filter .pills-panel ul {
   display: flex;
-  gap: 8px;
+  gap: 2px;
   flex-wrap: wrap;
   padding: 6px;
+}
+.listings-filter .pills-panel ul li {
+  padding: 3px;
 }
 .listings-filter .pill {
   display: inline-flex;
@@ -981,12 +987,12 @@ h4 {
   border: 1px solid rgba(0, 0, 0, 0.08);
   color: #000;
   padding: 6px 10px;
-  border-radius: 6px;
+  border-radius: 0;
 }
 .properties-controls .view-toggle .btn.active {
-  background: #0d6efd;
-  color: #fff;
-  border-color: #0d6efd;
+  background: transparent;
+  color: #000;
+  border-color: #000;
 }
 /* popup styling for leaflet popups */
 .cng-map-popup .popup-card {
@@ -1049,6 +1055,7 @@ h4 {
   z-index: 1200;
   min-width: 220px;
   max-width: calc(100vw - 48px);
+  /* cap to viewport */
   box-sizing: border-box;
   overflow: auto;
   padding: 12px;
@@ -1056,38 +1063,70 @@ h4 {
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 8px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  word-break: break-word;
 }
-/* Beds / Baths labels as pill buttons */
+/* Hide native radio inputs visually for beds/baths; keep them in DOM for accessibility */
+.filter-dropdown[data-filter="beds"] .pill input,
+.filter-dropdown[data-filter="baths"] .pill input {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+/* Beds / Baths labels as pill buttons (ensure selected state visible) */
 .filter-dropdown[data-filter="beds"] .dropdown-panel,
 .filter-dropdown[data-filter="baths"] .dropdown-panel {
-  display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
-.filter-dropdown[data-filter="beds"] label,
-.filter-dropdown[data-filter="baths"] label {
+.filter-dropdown[data-filter="beds"] .pill,
+.filter-dropdown[data-filter="baths"] .pill {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 999px;
+  padding: 8px 14px;
+  border-radius: 0;
   background: #f4f4f4;
   color: #222;
   font-size: 14px;
   transition: background 0.12s, color 0.12s, transform 0.06s;
   border: 1px solid transparent;
+  user-select: none;
 }
-.filter-dropdown[data-filter="beds"] label.selected,
-.filter-dropdown[data-filter="baths"] label.selected {
-  background: #0d6efd;
+.filter-dropdown[data-filter="beds"] .pill:hover,
+.filter-dropdown[data-filter="baths"] .pill:hover {
+  background: #6b7280;
+  transition: 0.1s ease-in-out;
+}
+.filter-dropdown[data-filter="beds"] .pill.selected,
+.filter-dropdown[data-filter="baths"] .pill.selected,
+.filter-dropdown[data-filter="beds"] .pill input:checked + *,
+.filter-dropdown[data-filter="baths"] .pill input:checked + * {
+  /* fallbacks */
+  background: #000;
+  /* dark */
   color: #fff;
-  border-color: rgba(13, 110, 253, 0.15);
+  border-color: rgba(0, 0, 0, 0.12);
   transform: translateY(-1px);
 }
-/* small safety: ensure types panel doesn't force horizontal overflow */
+/* Ensure types panel doesn't force horizontal overflow */
 .filter-dropdown[data-filter="types"] .dropdown-panel {
   max-width: calc(100vw - 48px);
   left: 0;
   right: auto;
   box-sizing: border-box;
+}
+/* Map all .btn-primary visuals to dark (override Bootstrap primary appearances) */
+.btn-primary {
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+  box-shadow: none !important;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background: #000000 !important;
+  border-color: #000000 !important;
 }

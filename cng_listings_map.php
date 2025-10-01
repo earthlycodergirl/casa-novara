@@ -130,10 +130,10 @@
             <div class="col-md-6 list-column" id="list-column">
                 <div class="search-results mb-2">
                     <!-- Replace the previous results-count + buttons block with this toolbar -->
-                    <div class="properties-controls d-flex align-items-center justify-content-between">
+                    <div class="properties-controls d-flex align-items-center justify-content-end">
                       <div class="results-left">
-                        <div class="results-count">
-                          Showing <span class="results-number">0</span> results
+                        <div class="results-count" style="margin-right: 20px;">
+                          Showing <span class="results-number text-bold">0</span> results
                         </div>
                       </div>
 
