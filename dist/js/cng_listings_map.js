@@ -65,8 +65,8 @@
             const img = clone.querySelector('.prop-image');
             if(img){
                 img.style.backgroundSize = 'cover';
-                img.style.height = '200px';
-                img.style.borderRadius = '6px 6px 0 0';
+                img.style.height = '120px';
+                img.style.borderRadius = '0 0 0 0';
             }
             // price bolding
             const price = clone.querySelector('.prop-price');
@@ -82,7 +82,7 @@
                     ctaWrap.style.textAlign = 'center';
                     const cta = document.createElement('a');
                     cta.href = originalHref;
-                    cta.className = 'btn btn-sm btn-primary map-popup-cta';
+                    cta.className = 'btn btn-sm map-popup-cta';
                     cta.textContent = 'View listing';
                     // small inline adjustments to keep popup compact
                     cta.style.display = 'inline-block';
@@ -280,3 +280,30 @@
 
     });
 })();
+
+// Replace or update your view toggle handler so a CSS class is applied to toggle list-mode.
+// This ensures CSS can react to the "List" view and show 4/3/1 columns per your request.
+document.addEventListener('click', function (e) {
+  const btn = e.target.closest('.view-toggle .btn');
+  if (!btn) return;
+  const view = btn.dataset.view;
+  // toggle active state (existing UI code may already do this)
+  document.querySelectorAll('.view-toggle .btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Add/remove global class for CSS to pick up
+  if (view === 'list') {
+    document.body.classList.add('list-mode');
+    // hide map column if you have that behavior:
+    document.querySelectorAll('.map-column').forEach(col => col.classList.remove('hidden'));
+    // optional: expand list column to full width if needed by layout JS
+    // your existing toggling code can remain; we only ensure the class is present.
+  } else if (view === 'map') {
+    document.body.classList.remove('list-mode');
+  }
+
+  // ensure map redraw if visible
+  if (window.map && typeof window.map.invalidateSize === 'function') {
+    setTimeout(() => window.map.invalidateSize(), 240);
+  }
+});

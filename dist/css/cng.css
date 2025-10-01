@@ -514,7 +514,9 @@ h4 {
   }
 }
 @media (hover: hover) and (pointer: fine) {
-   /* visually expand image (width a little, height more) without reflow */
+  .properties-slider {
+    /* visually expand image (width a little, height more) without reflow */
+  }
   .properties-slider .slides {
     align-items: flex-start;
   }
@@ -544,7 +546,9 @@ h4 {
   outline-offset: 4px;
 }
 /* Slider controls: arrows and pagination dots */
-
+.properties-slider {
+  /* pager removed - no dots */
+}
 .properties-slider .controls {
   position: absolute;
   top: 50%;
@@ -623,6 +627,7 @@ h4 {
   opacity: 0.2;
 }
 /* Listings filter ribbon */
+.listings-filter {
   /* Search input grows to fill available space on desktop */
   /* Filter dropdown button style */
   /* Types grid */
@@ -630,6 +635,7 @@ h4 {
   /* If :has is supported, highlight the whole tile */
   /* Pills panel for beds/baths */
   /* Responsive: on small screens stack vertically and make full width */
+}
 .listings-filter .filter-ribbon {
   background: #f6f7f8;
   /* light grey */
@@ -704,6 +710,7 @@ h4 {
   background: #fff;
   color: #111;
   border: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 13px;
 }
 .listings-filter .filter-dropdown {
   position: relative;
@@ -720,6 +727,7 @@ h4 {
   padding: 10px;
   z-index: 60;
   display: none;
+  font-size: 13px;
 }
 .listings-filter .filter-dropdown.open .dropdown-panel {
   display: block;
@@ -936,20 +944,150 @@ h4 {
 .properties-list .property-card {
   height: 100%;
 }
+/* Ensure "List" display forces the grid breakpoints you requested */
+.list-mode .properties-list .properties-grid {
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 758px) {
+  .list-mode .properties-list .properties-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1400px) {
+  .list-mode .properties-list .properties-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+/* toolbar placement: results count + view toggles */
 .properties-controls {
-  margin-top: 12px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+.properties-controls .results-left {
+  float: left;
+}
+.properties-controls .results-actions {
+  float: right;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 .properties-controls .results-count {
-  color: #333;
-  font-size: 0.95rem;
+  font-size: 14px;
+  color: #222;
 }
-.properties-controls .results-number {
-  font-weight: 700;
-  margin: 0 6px;
-}
-.no-results {
-  font-size: 1rem;
+.properties-controls .view-toggle .btn {
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #000;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+.properties-controls .view-toggle .btn.active {
+  background: #0d6efd;
+  color: #fff;
+  border-color: #0d6efd;
+}
+/* popup styling for leaflet popups */
+.cng-map-popup .popup-card {
+  color: #000;
+}
+.cng-map-popup .popup-card .card-price,
+.cng-map-popup .popup-card .prop-price {
+  font-weight: 700;
+}
+.cng-map-popup .popup-card a.view-details {
+  color: #000;
+  text-decoration: none;
+  display: block;
+  margin-top: 8px;
+  font-weight: 600;
+}
+.map-popup-card {
+  font-family: 'Inter', sans-serif !important;
+}
+.map-popup-card .prop-badge {
+  background: rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  padding: 5px 10px;
+  color: white;
+}
+.map-popup-card .prop-action {
+  display: none;
+}
+.map-popup-card .map-popup-cta {
+  background: black;
+  color: white;
+  margin-top: 0;
+}
+/* hide underline for any links inside popup clones */
+.cng-map-popup a {
+  text-decoration: none;
+  color: #000;
+}
+/* ensure popup image sizing (in case clone doesn't inline style) */
+.cng-map-popup .card-image,
+.cng-map-popup .prop-image {
+  height: 200px !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+/* clear floats */
+.properties-controls::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* Dropdown panels: never exceed viewport and stay boxed */
+.filter-dropdown {
+  position: relative;
+}
+.filter-dropdown .dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1200;
+  min-width: 220px;
+  max-width: calc(100vw - 48px);
+  box-sizing: border-box;
+  overflow: auto;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+/* Beds / Baths labels as pill buttons */
+.filter-dropdown[data-filter="beds"] .dropdown-panel,
+.filter-dropdown[data-filter="baths"] .dropdown-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.filter-dropdown[data-filter="beds"] label,
+.filter-dropdown[data-filter="baths"] label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #f4f4f4;
+  color: #222;
+  font-size: 14px;
+  transition: background 0.12s, color 0.12s, transform 0.06s;
+  border: 1px solid transparent;
+}
+.filter-dropdown[data-filter="beds"] label.selected,
+.filter-dropdown[data-filter="baths"] label.selected {
+  background: #0d6efd;
+  color: #fff;
+  border-color: rgba(13, 110, 253, 0.15);
+  transform: translateY(-1px);
+}
+/* small safety: ensure types panel doesn't force horizontal overflow */
+.filter-dropdown[data-filter="types"] .dropdown-panel {
+  max-width: calc(100vw - 48px);
+  left: 0;
+  right: auto;
+  box-sizing: border-box;
 }

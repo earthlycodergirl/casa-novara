@@ -119,13 +119,7 @@
                         <button class="btn btn-outline-secondary btn-filter" type="button" data-action="toggle-filters">Filters</button>
                     </div>
 
-                    <!-- View toggles (List / Map) -->
-                    <div class="filter-item filter-view ms-auto d-none d-md-flex">
-                        <div class="filter-view">
-                            <button class="btn btn-sm btn-outline-secondary me-1" data-view="list">List</button>
-                            <button class="btn btn-sm btn-primary" data-view="map">Map</button>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

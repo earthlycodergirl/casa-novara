@@ -756,6 +756,7 @@ h4 {
     background: #fff;
     color: #111;
     border: 1px solid rgba(0,0,0,0.06);
+    font-size: 13px;
   }
 
   .filter-dropdown { position: relative; }
@@ -771,6 +772,7 @@ h4 {
     padding: 10px;
     z-index: 60;
     display: none;
+    font-size: 13px;
   }
   .filter-dropdown.open .dropdown-panel { display: block; }
   .dropdown-panel ul { list-style:none; margin:0; padding:0; }
@@ -868,6 +870,22 @@ h4 {
     .property-card { height: 100%; }
   }
 
+  /* Ensure "List" display forces the grid breakpoints you requested */
+  .list-mode {
+    .properties-list {
+      .properties-grid {
+        grid-template-columns: repeat(1, 1fr);
+
+        @media (min-width: 758px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        @media (min-width: 1400px) {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+    }
+  }
+
   /* toolbar placement: results count + view toggles */
 .properties-controls {
   width: 100%;
@@ -914,6 +932,23 @@ h4 {
   margin-top:8px;
   font-weight:600;
 }
+.map-popup-card{
+  font-family: 'Inter', sans-serif !important;
+  .prop-badge {
+    background: rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    padding: 5px 10px;
+    color: white;
+  }
+  .prop-action{
+    display: none;
+  }
+  .map-popup-cta{
+    background: black;
+    color: white;
+    margin-top: 0;
+  }
+}
 
 /* hide underline for any links inside popup clones */
 .cng-map-popup a { text-decoration: none; color: #000; }
@@ -928,3 +963,60 @@ h4 {
 
 /* clear floats */
 .properties-controls::after { content: ""; display: table; clear: both; }
+
+/* Dropdown panels: never exceed viewport and stay boxed */
+.filter-dropdown {
+  position: relative;
+
+  .dropdown-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1200;
+    min-width: 220px;
+    max-width: calc(100vw - 48px);
+    box-sizing: border-box;
+    overflow: auto;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+}
+
+/* Beds / Baths labels as pill buttons */
+.filter-dropdown[data-filter="beds"],
+.filter-dropdown[data-filter="baths"] {
+  .dropdown-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #f4f4f4;
+    color: #222;
+    font-size: 14px;
+    transition: background .12s, color .12s, transform .06s;
+    border: 1px solid transparent;
+  }
+  label.selected {
+    background: #0d6efd;
+    color: #fff;
+    border-color: rgba(13,110,253,0.15);
+    transform: translateY(-1px);
+  }
+}
+
+/* small safety: ensure types panel doesn't force horizontal overflow */
+.filter-dropdown[data-filter="types"] .dropdown-panel {
+  max-width: calc(100vw - 48px);
+  left: 0;
+  right: auto;
+  box-sizing: border-box;
+}
