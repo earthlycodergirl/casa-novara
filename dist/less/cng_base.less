@@ -1,0 +1,217 @@
+// out: ../css/cng_base.css
+
+@import "_variables.less";
+
+/* Overlay navigation that sits on top of the hero */
+.overlay-nav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 6; /* above hero overlay (hero::before z-index:1, hero content z-index:2) */
+	background: transparent;
+	.navbar {
+		padding: 0.75rem 1rem;
+	}
+
+	.navbar-brand {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: @brand-color;
+		text-decoration: none;
+		img {
+			max-height: 116px;
+			width: auto;
+			display: block;
+		}
+	}
+
+	.navbar-nav {
+		.nav-link {
+			color: fade(@brand-color, 95%);
+			transition: color 0.18s ease;
+			padding: 0.5rem 0.75rem;
+		}
+		.nav-link:hover,
+		.nav-link:focus {
+			color: @brand-color;
+		}
+	}
+
+	/* Dropdown menu styling for desktop */
+	.dropdown-menu {
+		background: rgba(0, 0, 0, 0.85);
+		border: none;
+		min-width: 200px;
+		.dropdown-item {
+			color: @brand-color;
+			padding: 0.5rem 1rem;
+		}
+		.dropdown-item:hover {
+			background: rgba(255, 255, 255, 0.03);
+		}
+	}
+
+	/* Show dropdown on hover for larger screens */
+	@media (min-width: @mobile-break) {
+		.dropdown:hover > .dropdown-menu {
+			display: block;
+		}
+		.dropdown-menu {
+			margin-top: 0.25rem;
+		}
+	}
+
+	/* Mobile collapse styles */
+	@media (max-width: @mobile-break) {
+		.navbar {
+			padding: 0.5rem 0.75rem;
+		}
+
+		/* When collapsed, the menu background should be solid black with white text */
+		.navbar-collapse {
+			background: #000;
+			width: 100%;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			padding: 1rem 1rem 1.25rem 1rem;
+			border-top: 1px solid rgba(255, 255, 255, 0.04);
+			transition: max-height 0.35s ease, opacity 0.25s ease;
+			overflow: hidden;
+			max-height: 0;
+			opacity: 0;
+		}
+
+		/* When shown (Bootstrap adds .show), expand */
+		.navbar-collapse.show {
+			max-height: 600px; /* generous enough for menu items */
+			opacity: 1;
+		}
+
+		.navbar-nav {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+		.nav-link {
+			color: @brand-color !important;
+		}
+
+		.dropdown-menu {
+			position: static; /* flow inside the collapsed area */
+			background: transparent;
+			box-shadow: none;
+			padding-left: 0.5rem;
+			.dropdown-item {
+				color: @brand-color;
+			}
+		}
+	}
+}
+
+/* A small utility to ensure nav links are visible over dark backgrounds */
+.text-white-strong {
+	color: @brand-color !important;
+}
+
+/* Site footer and footer image */
+.site-footer {
+	background: #fff;
+	padding: 40px 0;
+	.footer-row {
+		display: flex;
+		gap: 24px;
+		align-items: flex-start;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+	.footer-col {
+		padding: 0 12px;
+	}
+
+	.footer-col--about {
+		flex: 0 0 50%;
+		max-width: 50%;
+		padding-right: 40px;
+	}
+	.footer-col--menu,
+	.footer-col--legal {
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+
+	.footer-small {
+		color: #333;
+		font-size: 13px;
+		margin-bottom: 22px;
+	}
+	.social {
+		display: flex;
+		gap: 8px;
+	}
+	.social-btn {
+		display: inline-flex;
+		width: 36px;
+		height: 36px;
+		align-items: center;
+		justify-content: center;
+		background: #000;
+		color: #fff;
+		border-radius: 50%;
+		text-decoration: none;
+	}
+
+	.footer-title {
+		margin: 0 0 10px 0;
+		font-size: 1rem;
+	}
+	.footer-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.footer-list li {
+		margin-bottom: 8px;
+		font-size: 13px;
+	}
+	.footer-list a {
+		color: #222;
+		text-decoration: none;
+	}
+
+	@media (max-width: 992px) {
+		/* tablet: equal sized columns (40/40/40 approximate) */
+		.footer-row {
+			flex-wrap: wrap;
+		}
+		.footer-col {
+			flex: 0 0 33.333%;
+			max-width: 33.333%;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.footer-row {
+			flex-direction: column;
+		}
+		.footer-col {
+			flex: 0 0 100%;
+			max-width: 100%;
+			padding: 8px 12px;
+		}
+	}
+}
+
+.footer-image {
+	width: 100%;
+	height: 20vh;
+	overflow: hidden;
+}
+.footer-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}

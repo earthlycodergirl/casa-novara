@@ -1,0 +1,203 @@
+/* Hero styles (kept as inlined version, converted to LESS) */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-align: center;
+  background-image: url('../img/hero.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.45) 30%, rgba(0, 0, 0, 0.15) 60%, rgba(0, 0, 0, 0) 100%);
+  z-index: 1;
+}
+.hero .container,
+.hero .hero-inner {
+  position: relative;
+  z-index: 2;
+  /* above overlay */
+}
+.hero .hero-title {
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 0.5rem;
+}
+.hero .hero-text {
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  margin-bottom: 1.25rem;
+}
+.hero .hero-buttons .btn {
+  min-width: 140px;
+}
+.hero .hero-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 1.5rem 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0));
+}
+.hero .hero-bottom .col:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.hero .hero-bottom .col:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero .hero-bottom .col:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.hero .hero-bottom .big-text {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+}
+.hero .hero-bottom .body-text {
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  max-width: 420px;
+}
+.hero .arrow {
+  width: 40px;
+  height: 40px;
+  opacity: 0.95;
+}
+.hero .bounce {
+  animation: bounce 1.6s infinite;
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+  .hero .hero-bottom {
+    padding: 1rem;
+  }
+  .hero .hero-bottom .big-text {
+    font-size: 1.4rem;
+  }
+}
+/* Overlay navigation that sits on top of the hero */
+.overlay-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  /* above hero overlay (hero::before z-index:1, hero content z-index:2) */
+  background: transparent;
+  /* Dropdown menu styling for desktop */
+  /* Show dropdown on hover for larger screens */
+  /* Mobile collapse styles */
+}
+.overlay-nav .navbar {
+  padding: 0.75rem 1rem;
+}
+.overlay-nav .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+.overlay-nav .navbar-brand img {
+  max-height: 46px;
+  width: auto;
+  display: block;
+}
+.overlay-nav .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.95);
+  transition: color 0.18s ease;
+  padding: 0.5rem 0.75rem;
+}
+.overlay-nav .navbar-nav .nav-link:hover,
+.overlay-nav .navbar-nav .nav-link:focus {
+  color: #ffffff;
+}
+.overlay-nav .dropdown-menu {
+  background: rgba(0, 0, 0, 0.85);
+  border: none;
+  min-width: 200px;
+}
+.overlay-nav .dropdown-menu .dropdown-item {
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+}
+.overlay-nav .dropdown-menu .dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+@media (min-width: 768px) {
+  .overlay-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+  .overlay-nav .dropdown-menu {
+    margin-top: 0.25rem;
+  }
+}
+@media (max-width: 768px) {
+  .overlay-nav {
+    /* When collapsed, the menu background should be solid black with white text */
+    /* When shown (Bootstrap adds .show), expand */
+  }
+  .overlay-nav .navbar {
+    padding: 0.5rem 0.75rem;
+  }
+  .overlay-nav .navbar-collapse {
+    background: #000;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1rem 1rem 1.25rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+  }
+  .overlay-nav .navbar-collapse.show {
+    max-height: 600px;
+    /* generous enough for menu items */
+    opacity: 1;
+  }
+  .overlay-nav .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .overlay-nav .nav-link {
+    color: #ffffff !important;
+  }
+  .overlay-nav .dropdown-menu {
+    position: static;
+    /* flow inside the collapsed area */
+    background: transparent;
+    box-shadow: none;
+    padding-left: 0.5rem;
+  }
+  .overlay-nav .dropdown-menu .dropdown-item {
+    color: #ffffff;
+  }
+}
+/* A small utility to ensure nav links are visible over dark backgrounds */
+.text-white-strong {
+  color: #ffffff !important;
+}

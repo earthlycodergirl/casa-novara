@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 
 // ENGLISH PAGES
-$link_home['en'] = '/';
+$link_home['en'] = '/casa-novara/';
 $link_about['en'] = 'about';
 $link_contact['en'] = 'contact-us';
 $link_blog['en'] = 'mexico-real-estate/';
@@ -16,12 +16,12 @@ $link_map['en'] = 'listings-map';
 $link_properties['en'] = '/listings';
 $link_terms['en'] = 'terms-and-conditions';
 $link_privacy['en'] = 'privacy-policy';
-$link_ptypes['en'] = array('listings/commercial','listings/residential','listings/lots-land');
-$link_loctypes['en'] = array('city'=>'listings/cities','town'=>'listings/towns','area'=>'listings/areas');
+$link_ptypes['en'] = ['listings/commercial','listings/residential','listings/lots-land'];
+$link_loctypes['en'] = ['city'=>'listings/cities','town'=>'listings/towns','area'=>'listings/areas'];
 $current_link['en'] = $link_home['en'];
 
 // SPANISH PAGES
-$link_home['es'] = '/es/';
+$link_home['es'] = '/casa-novara/es/';
 $link_about['es'] = 'es/quienes-somos';
 $link_contact['es'] = 'es/contacto';
 $link_blog['es'] = 'es/bienes-raices-mexico/';
@@ -31,15 +31,15 @@ $link_map['es'] = 'es/mapa';
 $link_properties['es'] = 'es/propiedades';
 $link_terms['es'] = 'es/terminos';
 $link_privacy['es'] = 'es/privacidad';
-$link_ptypes['es'] = array('es/propiedades/comercial','es/propiedades/residencial','es/propiedades/lotes');
-$link_loctypes['es'] = array('city'=>'es/ciudades','town'=>'es/pueblos','area'=>'es/areas');
+$link_ptypes['es'] = ['es/propiedades/comercial','es/propiedades/residencial','es/propiedades/lotes'];
+$link_loctypes['es'] = ['city'=>'es/ciudades','town'=>'es/pueblos','area'=>'es/areas'];
 $current_link['es'] = $link_home['es'];
 
-$site_url = '/';
-$base_href = '/';
+$site_url = '/casa-novara/';
+$base_href = '/casa-novara/';
 $nav_class = $logo_class = '';
 
-$phones_mia = $social_mia = array();
+$phones_mia = $social_mia = [];
 $phone_mia = '';
 
 $lang = 'en';

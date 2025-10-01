@@ -1,12 +1,12 @@
 RewriteEngine On
-Options -Indexes -MultiViews
+#Options -Indexes -MultiViews
 
 #RewriteCond %{HTTPS} !on
 #RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
 #RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
 #RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-RewriteBase /kiin/
+RewriteBase /casa-novara/
 
 RewriteRule ^images/(.*)$   adm/uploads/$1 [NC,L]
 
@@ -65,6 +65,9 @@ ErrorDocument 404 /404.php
 # END Expire headers
 
 
+
+
+RewriteRule    ^ss/bb/ei/send?$    dist/inc/emails/contact_submit_admin.php  [NC,L]
 
 RewriteRule    ^listing/([A-Za-z0-9-]+)/?$    listing.php?prop_id=$1&type=budd    [QSA,L]
 RewriteRule    ^listing-map/([A-Za-z0-9-]+)/?$    listing.php?prop_id=$1&type=budd    [QSA,L]
@@ -133,9 +136,10 @@ RewriteRule    ^es/propiedades/lotes?$   listings.php?page=1&list_type=0&locatio
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php72” package as the default “PHP” programming language.
 <IfModule mime_module>
-  AddHandler application/x-httpd-ea-php72 .php .php7 .phtml
+  AddHandler application/x-httpd-ea-php72 .php .php7 .phtmla
 </IfModule>
 # php -- END cPanel-generated handler, do not edit

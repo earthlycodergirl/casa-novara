@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<style>
+		:root{
+			--overlay: rgba(0,0,0,0.5);
+			--border-width: 2px;
+			--outside-margin: 25px; /* distance from viewport edge to the border */
+			--content-max-width: 920px;
+			--accent: #ffffff;
+			--gap: 1.25rem;
+		}
+
+		/* Reset + base */
+		html,body{height:100%;}
+		*{box-sizing:border-box}
+		body{
+			margin:0;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+
+			color:var(--accent);
+			-webkit-font-smoothing:antialiased;
+			-moz-osx-font-smoothing:grayscale;
+
+			/* Background image: first tries local file 'construction-bg.jpg' in the same folder. If not present, uses an embedded SVG gradient as fallback. */
+			background-image: url('bg-1.jpeg'),
+				url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 1200 800'><defs><linearGradient id='g' x1='0' x2='1'><stop offset='0' stop-color='%23364a63'/><stop offset='1' stop-color='%231a2836'/></linearGradient></defs><rect width='1200' height='800' fill='url(%23g)'/><g fill='rgba(255,255,255,0.03)'><circle cx='300' cy='200' r='200'/><circle cx='900' cy='600' r='300'/></g></svg>");
+			background-size: cover, cover;
+			background-position: center center, center center;
+			background-repeat: no-repeat;
+			min-height:100vh;
+		}
+
+		/* dimming overlay */
+		.overlay{
+			position:fixed;
+			inset:0;
+			background:var(--overlay);
+			z-index:1;
+			pointer-events:none; /* allow interactions through if any */
+		}
+
+		/* white border that sits over the overlay and outlines the visible window with an outside margin */
+		.frame{
+			position:fixed;
+			inset:var(--outside-margin);
+			border:var(--border-width) solid var(--accent);
+			z-index:3;
+			pointer-events:none;
+			border-radius:6px;
+		}
+
+		/* content sits above the overlay but below the frame so border appears on top */
+		.content-root{
+			position:relative;
+			z-index:2;
+			min-height:100vh;
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			padding:calc(var(--outside-margin) + 1rem);
+		}
+
+		.card{
+			width:100%;
+			max-width:var(--content-max-width);
+			text-align:center;
+			padding:clamp(1rem, 3vw, 3rem);
+			background:transparent; /* transparent so overlay shows */
+			margin:0 auto;
+		}
+
+		/* logo image (inline SVG) */
+		.logo{
+			width:clamp(64px, 12vw, 160px);
+			height:auto;
+			margin:0 auto var(--gap) auto;
+			display:block;
+			filter: drop-shadow(0 6px 18px rgba(0,0,0,0.45));
+		}
+
+		h1{
+			margin:0 0 0.5rem 0;
+			font-weight:400;
+			font-size:clamp(1.6rem, 6vw, 1.6rem);
+			letter-spacing:0.67em;
+            margin-top: 67px;
+            text-transform: uppercase;
+		}
+
+		p.lead{
+			margin:0;
+			font-size:clamp(0.95rem, 2.2vw, 1rem);
+			opacity:0.95;
+			line-height:1.45;
+            display: block;
+            max-width: 450px;
+            margin: 0 auto;
+		}
+
+        .logo{
+            width: 380px;
+        }
+
+		/* smaller devices: tighten spacing */
+		@media (max-width:520px){
+			body{background-attachment:scroll}
+			.frame{border-radius:4px}
+			.card{padding:1.25rem}
+            .logo{ width: 85%; }
+            h1{letter-spacing: 0.4em;}
+		}
+
+		/* aesthetic - ensure content doesn't touch the border on very small viewports */
+		@media (max-width:360px){
+			.content-root{padding:calc(var(--outside-margin) + 0.5rem)}
+			h1{font-size:1.75rem}
+		}
+	</style>
+</head>
+<body>
+
+	<!-- Background overlay -->
+	<div class="overlay" aria-hidden="true"></div>
+
+	<!-- Border frame over the overlay (inset by 25px) -->
+	<div class="frame" aria-hidden="true"></div>
+
+	<!-- Main content (above overlay, below border) -->
+	<main class="content-root" role="main">
+		<section class="card" aria-labelledby="coming-soon-title">
+
+			<img src="logo.png" width="" height="" class="logo" alt="Casa Novara Group">
+
+			<h1 id="coming-soon-title">Coming Soon</h1>
+			<p class="lead">We're putting the finishing touches on our new site. Stay tuned for something great.</p>
+
+		</section>
+	</main>
+
+</body>
+</html>
