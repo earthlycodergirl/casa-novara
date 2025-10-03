@@ -1,31 +1,60 @@
 // Filters UI behavior: search suggestions, dropdowns, types apply/clear, mobile toggle
 (function(){
     document.addEventListener('DOMContentLoaded', function(){
-        const root = document.querySelector('.listings-filter');
-        if(!root) return;
 
-        // Search suggestions
-        const suggestions = ["Playa del Carmen","Tulum","Cancún","Puerto Morelos","Valladolid","Merida","Chichen Itza"];
-        const searchInput = root.querySelector('#ls-search');
-        const suggBox = root.querySelector('.search-suggestions');
-        const suggList = suggBox && suggBox.querySelector('ul');
+        // ensure we have a reference to the search input and suggestions container
+        const searchInput = document.getElementById('ls-search');
+        const suggestionsWrap = document.querySelector('.search-suggestions');
+        const suggestionsList = suggestionsWrap ? suggestionsWrap.querySelector('ul') : null;
 
-        function renderSuggestions(filter){
-            const items = suggestions.filter(s => s.toLowerCase().includes(filter.toLowerCase()));
-            if(!suggList) return;
-            suggList.innerHTML = items.map(i=>`<li class="sugg-item" role="option">${i}</li>`).join('') || '<li class="sugg-empty">No results</li>';
+        // Build a unique list of locations from rendered property cards
+        const propertyCards = Array.from(document.querySelectorAll('.property-card'));
+        const locations = Array.from(new Set(propertyCards.map(c => (c.dataset.location || '').trim()).filter(Boolean)));
+
+        // Helper: escape html for safe insertion
+        function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+        // Update suggestion list (max 8)
+        function updateSuggestions(q){
+            if(!suggestionsList) return;
+            const term = (q||'').trim().toLowerCase();
+            const matches = term
+                ? locations.filter(l => l.toLowerCase().includes(term)).slice(0,8)
+                : locations.slice(0,8);
+            suggestionsList.innerHTML = matches.map(m => `<li class="suggest-item" data-val="${escapeHtml(m)}">${escapeHtml(m)}</li>`).join('');
+            suggestionsWrap.style.display = matches.length ? 'block' : 'none';
         }
 
+        // Wire input events: filter as you type and show suggestions
         if(searchInput){
-            searchInput.addEventListener('input', function(e){ renderSuggestions(e.target.value); suggBox.setAttribute('aria-hidden','false'); suggBox.style.display='block'; });
-            searchInput.addEventListener('focus', function(){ renderSuggestions(searchInput.value||''); suggBox.setAttribute('aria-hidden','false'); suggBox.style.display='block'; });
+            searchInput.addEventListener('input', function(e){
+                updateSuggestions(e.target.value);
+                // notify filtersChanged for live filtering
+                document.dispatchEvent(new Event('filtersChanged'));
+            });
+            // show suggestions on focus
+            searchInput.addEventListener('focus', function(){ updateSuggestions(searchInput.value); });
         }
 
-        document.addEventListener('click', function(e){ if(!root.contains(e.target)) { if(suggBox) suggBox.style.display='none'; closeAllDropdowns(); } });
-
-        if(suggList){
-            suggList.addEventListener('click', function(e){ const li = e.target.closest('li'); if(!li) return; if(li.classList.contains('sugg-empty')) return; if(searchInput) searchInput.value = li.textContent; suggBox.style.display='none'; });
+        // Clicking a suggestion sets the input and triggers filtering
+        if(suggestionsList){
+            suggestionsList.addEventListener('click', function(e){
+                const li = e.target.closest('.suggest-item');
+                if(!li) return;
+                const val = li.dataset.val;
+                searchInput.value = val;
+                suggestionsWrap.style.display = 'none';
+                // trigger filters update
+                document.dispatchEvent(new Event('filtersChanged'));
+            });
         }
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(e){
+            if(!suggestionsWrap) return;
+            if(e.target === searchInput || suggestionsWrap.contains(e.target)) return;
+            suggestionsWrap.style.display = 'none';
+        });
 
         // Generic dropdown behavior
         const dropdowns = Array.from(root.querySelectorAll('.filter-dropdown'));
@@ -64,19 +93,35 @@
 
             const filter = d.dataset.filter;
             if(filter === 'sale'){
-                panel.addEventListener('click', function(e){ const li = e.target.closest('li'); if(!li) return; const val = li.dataset.value; btn.textContent = li.textContent; d.classList.remove('open'); document.dispatchEvent(new Event('filtersChanged')); });
+                panel.addEventListener('click', function(e){ const li = e.target.closest('li'); if(!li) return; const val = li.dataset.value || li.textContent.trim(); btn.textContent = li.textContent; btn.dataset.value = val; d.classList.remove('open'); document.dispatchEvent(new Event('filtersChanged')); });
             }
             if(filter === 'price'){
                 panel.addEventListener('click', function(e){
                     const li = e.target.closest('li');
                     if(!li) return;
-                    // set both user-facing text and machine-friendly data-range (from data-value)
+                    // set both user-facing text and machine-friendly data-range (from data-value or label)
                     btn.textContent = li.textContent;
-                    if(li.dataset && li.dataset.value) btn.dataset.range = li.dataset.value;
+                    btn.dataset.range = li.dataset.value || li.textContent.trim();
                     d.classList.remove('open');
                     document.dispatchEvent(new Event('filtersChanged'));
                 });
             }
+
+            // NEW: location dropdown support (makes dropdown location selections filter the list)
+            if(filter === 'location'){
+                panel.addEventListener('click', function(e){
+                    const li = e.target.closest('li');
+                    if(!li) return;
+                    const val = li.dataset.value || li.textContent.trim();
+                    btn.textContent = li.textContent;
+                    btn.dataset.value = val;
+                    d.classList.remove('open');
+                    // populate search input as well so suggestions/UX stay consistent
+                    if(searchInput) { searchInput.value = val; }
+                    document.dispatchEvent(new Event('filtersChanged'));
+                });
+            }
+
             if(filter === 'types'){
                 const apply = d.querySelector('.btn-apply');
                 const clear = d.querySelector('.btn-clear');
@@ -119,19 +164,22 @@
         if(mobileToggle){ mobileToggle.addEventListener('click', function(){ root.classList.toggle('expanded'); }); }
 
         // When search changes via suggestions or typing, notify filters changed
-        if(searchInput) searchInput.addEventListener('input', function(){ document.dispatchEvent(new Event('filtersChanged')); });
+        if(searchInput) searchInput.addEventListener('input', function(){ updateSuggestions(searchInput.value); document.dispatchEvent(new Event('filtersChanged')); });
 
         // Apply filters: reads UI state and shows/hides .property-card elements
         function applyFilters(){
-            const cards = Array.from(document.querySelectorAll('.property-card'));
+            // Use the column wrappers so the grid cells collapse/expand correctly
+            const cols = Array.from(document.querySelectorAll('.property-col'));
             const searchVal = (searchInput && searchInput.value || '').trim().toLowerCase();
 
             const saleBtn = root.querySelector('[data-filter="sale"] .btn-filter');
             const saleVal = saleBtn ? (saleBtn.dataset.value || saleBtn.textContent.trim().toLowerCase()) : '';
 
             const priceBtn = root.querySelector('[data-filter="price"] .btn-filter');
-            // prefer machine-friendly data-range if present, otherwise button text
             const priceRange = priceBtn ? (priceBtn.dataset.range || priceBtn.textContent.trim()) : '';
+
+            const locationBtn = root.querySelector('[data-filter="location"] .btn-filter');
+            const locationVal = locationBtn ? (locationBtn.dataset.value || locationBtn.textContent.trim()).toLowerCase() : '';
 
             const typesChecked = Array.from(root.querySelectorAll('[data-filter="types"] .types-grid input[type="checkbox"]:checked'))
                                       .map(i=> i.closest('.type').dataset.value);
@@ -142,25 +190,36 @@
             const bathsVal = bathsChecked ? bathsChecked.value : 'any';
 
             let visible = 0;
-            cards.forEach(card => {
+            cols.forEach(col => {
+                const card = col.querySelector('.property-card');
+                if(!card){ col.style.display = 'none'; return; }
+
                 let ok = true;
-                // search matches location/title/type
-                if(searchVal){
+
+                // Location or free-text search
+                if(locationVal){
+                    const cardLoc = (card.dataset.location || '').toLowerCase();
+                    if(!cardLoc.includes(locationVal)) ok = false;
+                } else if(searchVal){
                     const hay = ((card.dataset.location||'') + ' ' + (card.dataset.title||'') + ' ' + (card.dataset.type||'')).toLowerCase();
                     if(!hay.includes(searchVal)) ok = false;
                 }
+
                 // sale / rent
                 if(saleVal && !/any/i.test(saleVal)){
                     const norm = saleVal.replace(/\s+/g,'').replace(/^for/i,'').trim();
                     if(card.dataset.listing && !card.dataset.listing.toLowerCase().includes(norm)) ok = false;
                 }
-                // price via helper
+
+                // price
                 if(!cardMatchesPrice(card, priceRange)) ok = false;
+
                 // types (OR match)
                 if(typesChecked.length){
                     const cardTypes = (card.dataset.types||'').split(',').map(s=>s.trim());
                     if(!typesChecked.some(t => cardTypes.includes(t))) ok = false;
                 }
+
                 // beds
                 if(bedsVal && bedsVal !== 'any'){
                     if(bedsVal === '5+'){
@@ -169,6 +228,7 @@
                         if(parseInt(card.dataset.beds||0) !== parseInt(bedsVal)) ok = false;
                     }
                 }
+
                 // baths
                 if(bathsVal && bathsVal !== 'any'){
                     if(bathsVal === '5+'){
@@ -179,10 +239,10 @@
                 }
 
                 if(ok){
-                    card.style.display = '';
+                    col.style.display = '';
                     visible++;
                 } else {
-                    card.style.display = 'none';
+                    col.style.display = 'none';
                 }
             });
 
@@ -191,7 +251,8 @@
             const noEl = document.querySelector('.no-results');
             if(noEl) noEl.style.display = (visible ? 'none' : 'block');
 
-            // notify other modules (map) that filters were applied
+            // Trigger reflow / grid realign and notify map
+            requestAnimationFrame(()=>{ window.dispatchEvent(new Event('resize')); });
             document.dispatchEvent(new CustomEvent('filtersApplied',{ detail: { visible } }));
         }
 

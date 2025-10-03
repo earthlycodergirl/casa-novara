@@ -146,4 +146,55 @@ $(document).ready(function(){
   }
 
 
+  // Initialize main image carousel
+  $('#property-d-1').owlCarousel({
+      items: 1,
+      loop: true,
+      nav: true,
+      dots: false,
+      autoplay: false,
+      responsive: {
+          0: {
+              nav: true
+          },
+          768: {
+              nav: true
+          },
+          992: {
+              nav: true
+          }
+      }
+  });
+
+  // Initialize thumbnail carousel
+  $('#property-d-1-2').owlCarousel({
+      items: 4,
+      loop: false,
+      nav: true,
+      dots: false,
+      margin: 10,
+      responsive: {
+          0: {
+              items: 3,
+              nav: true
+          },
+          768: {
+              items: 4,
+              nav: true
+          }
+      }
+  });
+
+  // Sync main carousel with thumbnails
+  $('#property-d-1-2 .item').click(function() {
+      var index = $(this).index();
+      $('#property-d-1').trigger('to.owl.carousel', [index, 300]);
+      
+      // Update active thumbnail
+      $('#property-d-1-2 .item img').removeClass('active');
+      $(this).find('img').addClass('active');
+  });
+
+  // Set first thumbnail as active
+  $('#property-d-1-2 .item:first img').addClass('active');
 });
