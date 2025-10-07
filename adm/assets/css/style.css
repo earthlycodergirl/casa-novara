@@ -23,9 +23,9 @@ a.link-me:hover {
 .sidebar-header {
   background-color: #000000;
 }
-.sidebar-header .logo img {
+/* .sidebar-header .logo img {
   max-width: 60%;
-}
+} */
 .form-control {
   border-color: #d2d2d2;
 }

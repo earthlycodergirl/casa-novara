@@ -63,21 +63,33 @@ function locDetails($dtype){
 
 
 if(isset($_POST['dd']) && isset($_POST['dtype'])){
+    // Validate and sanitize inputs
+    $dd = filter_var($_POST['dd'], FILTER_VALIDATE_INT);
+    $dtype = filter_var($_POST['dtype'], FILTER_SANITIZE_STRING);
+    
+    if($dd === false || empty($dtype)) {
+        $show_alert = 'danger';
+        $note_head = 'Error';
+        $note_txt = 'Invalid input parameters.';
+    } else {
+        $db = locDetails($dtype);
+        
+        // Whitelist allowed table and column names to prevent SQL injection
+        $allowed_tables = ['property_cities', 'property_counties', 'property_states', 'property_zones'];
+        $allowed_columns = ['city_id', 'county_id', 'state_id', 'zone_id', 'city', 'county', 'state', 'zone'];
+        
+        if($db['tb'] != '' && in_array($db['tb'], $allowed_tables) && in_array($db['id'], $allowed_columns)){
+          // Delete location - now safe with validated table/column names
+          $delit = new SqlIt("DELETE FROM ".$db['tb']." WHERE ".$db['id']." = ?","delete",array($dd));
+          if($delit){
 
-    $db = locDetails($_POST['dtype']);
-
-    if($db['tb'] != ''){
-      // Delete location
-      $delit = new SqlIt("DELETE FROM ".$db['tb']." WHERE ".$db['id']." = ?","delete",array($_POST['dd']));
-      if($delit){
-
-        if($_POST['dtype'] == 'town'){
-          $_POST['dtype'] = 'county';
-        }
-        // reassign the properties
-        if(isset($_POST['reas']) && $_POST['reas'] > 0){
-          new SqlIt("UPDATE property_list SET ".$_POST['dtype']." = ? WHERE ".$_POST['dtype']." = ?","update",array($_POST['reas'],$_POST['dd']));
-        }
+            if($dtype == 'town'){
+              $dtype = 'county';
+            }
+            // reassign the properties - validate column name
+            if(isset($_POST['reas']) && filter_var($_POST['reas'], FILTER_VALIDATE_INT) && in_array($dtype, $allowed_columns)){
+              new SqlIt("UPDATE property_list SET ".$dtype." = ? WHERE ".$dtype." = ?","update",array($_POST['reas'],$dd));
+            }
 
         $show_alert = 'success';
         $note_head = 'Deleted';

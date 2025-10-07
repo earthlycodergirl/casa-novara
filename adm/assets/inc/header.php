@@ -13,7 +13,7 @@
       <header class="sidebar-header">
 
         <span class="logo">
-          <a href="index"><img src="assets/img/logo-white.png" alt="logo"></a>
+          <a href="index"><img src="assets/img/logo-text-white.png" alt="logo"></a>
         </span>
         <span class="sidebar-toggle-fold"></span>
       </header>

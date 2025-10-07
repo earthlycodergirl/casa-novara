@@ -1,0 +1,4 @@
+2025-10-06 20:59:12 - ERROR: SQLSTATE[HY000] [1045] Access denied for user 'cnghost_prod'@'localhost' (using password: YES) - SQL: SELECT uid FROM users WHERE username = ? AND password = MD5(?)
+2025-10-06 20:59:59 - ERROR: SQLSTATE[HY000] [1045] Access denied for user 'cnghost_prod'@'localhost' (using password: YES) - SQL: SELECT uid FROM users WHERE username = ? AND password = MD5(?)
+2025-10-06 21:00:43 - ERROR: SQLSTATE[HY000] [1045] Access denied for user 'cnghost_prod'@'localhost' (using password: YES) - SQL: SELECT uid FROM users WHERE username = ? AND password = MD5(?)
+2025-10-06 21:09:19 - ERROR: SQLSTATE[HY000] [1049] Unknown database 'casa-novara' - SQL: SELECT uid FROM users WHERE username = ? AND password = MD5(?)

@@ -5,13 +5,25 @@ class Login {
 	public $Email;
 	public $Userid;
 	private $Password;
-	public $Redirect = '/adm/listings';
-	public $Return = '/adm/index';
+	public $Redirect;
+	public $Return;
 	public $Message;
 	public $Login = 0;
 
 	public function __construct(){
+		// Detect environment and set appropriate redirect paths
+		$is_dev = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || 
+		           strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false || 
+		           strpos($_SERVER['HTTP_HOST'], '::1') !== false ||
+		           strpos($_SERVER['SERVER_NAME'], 'localhost') !== false);
 
+		if ($is_dev) {
+			$this->Redirect = '/casa-novara/adm/listings';
+			$this->Return = '/casa-novara/adm/index';
+		} else {
+			$this->Redirect = '/adm/listings';
+			$this->Return = '/adm/index';
+		}
 	}
 
 	public function isLogged(){
@@ -36,10 +48,15 @@ class Login {
 	}
 
 	public function logIn($user,$pass){
-		$getUser = new SqlIt("SELECT uid FROM users WHERE username = ? AND password = MD5('".$pass."')","select",array($user));
+		// Sanitize inputs
+		$user = filter_var(trim($user), FILTER_SANITIZE_STRING);
+		$pass = trim($pass);
+		
+		// Use proper parameterized query - both username and password as parameters
+		$getUser = new SqlIt("SELECT uid FROM users WHERE username = ? AND password = MD5(?)","select",array($user, $pass));
 		if($getUser->NumResults == 1){
 			$this->Login = 1;
-			$this->Message = '<div class="alert alert-success text-center">Login successfull, redirecting...</div>';
+			$this->Message = '<div class="alert alert-success text-center">Login successful, redirecting...</div>';
 			$_SESSION['user'] = $getUser->Response[0]->uid;
 		}else{
 			$this->Login = 0;
@@ -88,7 +105,8 @@ class Login {
 
 				$resetPass = new SqlIt("SELECT uid FROM users WHERE uid = ?","select",array($userid));
 				if($resetPass->NumResults == 1){
-					new SqlIt("UPDATE users SET password = MD5('".$pass."') WHERE uid = ?","update",array($userid));
+					// Use parameterized query for password update
+					new SqlIt("UPDATE users SET password = MD5(?) WHERE uid = ?","update",array($pass, $userid));
 					$this->Message = '<div class="alert alert-success text-center">Your password was reset correctly. Please click below to return to the login page now.<br><a href="index" class="btn btn-danger">LOGIN NOW</a></div>';
 				}else{
 					$this->Message = '<div class="alert alert-danger text-center">We apologize but this link is broken. Please make sure it was pasted correctly from the confirmation email.</div>';

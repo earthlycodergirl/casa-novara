@@ -25,6 +25,7 @@ class User{
     public $Error = 0;
     public $Errors = array();
     public $RedirectUrl;
+    public $Return = 'index.php';
 
     public function __construct($action="get",$elems){
         switch($action){
@@ -49,15 +50,45 @@ class User{
     /** ----- USER LOGIN ------ **/
     public function userLogin($vars){
         if(isset($vars['user_login'])){
-            // Check if the user is in the TB
-            $getU = new SqlIt("SELECT * FROM users WHERE username = ? AND password = ?","select",array($vars['user'],md5($vars['pass'])));
+            // Sanitize inputs
+            $username = sanitize_input($vars['user'], 'string');
+            $password = trim($vars['pass']);
+            
+            // Get user by username only first
+            $getU = new SqlIt("SELECT * FROM users WHERE username = ?","select",array($username));
             if($getU->NumResults > 0){
-                // add last login
-                $this->UserId = $getU->Response[0]->uid;
-                new SqlIt("UPDATE users SET last_login = NOW() WHERE uid = ?","update",array($this->UserId));
+                $user = $getU->Response[0];
+                $password_valid = false;
+                
+                // Check if password uses new hashing (starts with $2y$ for PASSWORD_DEFAULT)
+                if (strpos($user->password, '$2y$') === 0) {
+                    // New password hashing
+                    $password_valid = password_verify($password, $user->password);
+                } else {
+                    // Legacy MD5 check (for transition period)
+                    $password_valid = (md5($password) === $user->password);
+                    
+                    // If MD5 is valid, upgrade to new hashing
+                    if($password_valid) {
+                        $new_hash = password_hash($password, PASSWORD_DEFAULT);
+                        new SqlIt("UPDATE users SET password = ? WHERE uid = ?","update",array($new_hash, $user->uid));
+                    }
+                }
+                
+                if($password_valid) {
+                    // Valid login - update last login
+                    $this->UserId = $user->uid;
+                    new SqlIt("UPDATE users SET last_login = NOW() WHERE uid = ?","update",array($this->UserId));
+                    log_security_event('Successful login', "User: $username");
+                } else {
+                    $this->Error = 1;
+                    $this->Errors[] = 'The login information you entered was incorrect. Please try again.';
+                    log_security_event('Failed login attempt', "User: $username");
+                }
             }else{
                 $this->Error = 1;
                 $this->Errors[] = 'The login information you entered was incorrect. Please try again.';
+                log_security_event('Failed login attempt', "Unknown user: $username");
             }
         }
     }

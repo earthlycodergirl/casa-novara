@@ -22,7 +22,7 @@
 		<header class="hero">
 			<!-- Overlay navigation -->
 			<nav class="overlay-nav">
-				
+				<?php require 'dist/inc/nav.php'; ?>
 			</nav>
 
 

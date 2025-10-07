@@ -1,7 +1,12 @@
 <?php
+// Production settings - disable error display and logging for security
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(1);
+
+// Include security configuration
+require_once __DIR__ . '/config/security.php';
+
 session_start();
 /*if(isset($_POST['username'])){
    if($_POST['username'] != 'budd_adm' && $_POST['password'] != 'BudRel$$2018'){
@@ -19,9 +24,22 @@ $homepage_url = 'dashboard.php';
 $lang = 'en';
 $apage = 0;
 $uploads_folder = 'uploads/';
-$base_href = '/adm/';
+
+// Detect environment and set appropriate base href
+$is_dev = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || 
+           strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false || 
+           strpos($_SERVER['HTTP_HOST'], '::1') !== false ||
+           strpos($_SERVER['SERVER_NAME'], 'localhost') !== false);
+
+if ($is_dev) {
+    $base_href = '/casa-novara/adm/';
+    $listings_url = 'http://localhost/casa-novara/listing/';
+} else {
+    $base_href = '/adm/';
+    $listings_url = 'https://casanovaragroup.com/listing/';
+}
+
 $message = '';
-$listings_url = 'https://casanovaragroup.com/listing/';
 // Classes to include accross all files
 include 'classes/sql.class.php';
 include 'classes/users.class.php';

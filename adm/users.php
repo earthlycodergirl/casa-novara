@@ -35,27 +35,74 @@ if(isset($_GET['activate']) && $_GET['activate'] > 0){
 }
 
 if(isset($_POST['add-user'])){
-      new SqlIt("INSERT INTO users (username,password,name, email, position,active) VALUES (?,?,?,?,?,?)","insert",array($_POST['username'],md5($_POST['password']),$_POST['name'],$_POST['email'],$_POST['position'],$_POST['active']));
-    $getId = new SqlIt("SELECT uid FROM users ORDER BY uid DESC LIMIT 1","select",array());
-    $id = $getId->Response[0]->uid;
-    if(isset($_POST['perm'])){
-        foreach($_POST['perm'] as $perm){
-            new SqlIt("INSERT INTO permissions_users (user_id,pid) VALUES (?,?)","insert",array($id,$perm));
+    // Validate and sanitize inputs
+    $username = filter_var(trim($_POST['username']), FILTER_SANITIZE_STRING);
+    $password = trim($_POST['password']);
+    $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
+    $email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
+    $position = filter_var(trim($_POST['position']), FILTER_SANITIZE_STRING);
+    $active = filter_var($_POST['active'], FILTER_VALIDATE_INT);
+    
+    // Basic validation
+    if(empty($username) || empty($password) || empty($name) || !$email || strlen($password) < 6) {
+        $show_alert = 'danger';
+        $note_head = 'Error';
+        $note_txt = 'Please fill all fields correctly. Password must be at least 6 characters.';
+    } else {
+        // Use proper password hashing (replace MD5)
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        
+        new SqlIt("INSERT INTO users (username,password,name, email, position,active) VALUES (?,?,?,?,?,?)","insert",array($username,$hashed_password,$name,$email,$position,$active));
+        $getId = new SqlIt("SELECT uid FROM users ORDER BY uid DESC LIMIT 1","select",array());
+        $id = $getId->Response[0]->uid;
+        if(isset($_POST['perm']) && is_array($_POST['perm'])){
+            foreach($_POST['perm'] as $perm){
+                $perm_id = filter_var($perm, FILTER_VALIDATE_INT);
+                if($perm_id !== false) {
+                    new SqlIt("INSERT INTO permissions_users (user_id,pid) VALUES (?,?)","insert",array($id,$perm_id));
+                }
+            }
+        }
+        $show_alert = 'success';
+        $note_head = 'Added';
+        $note_txt = 'The user has been added successfully.';
+    }
+if(isset($_POST['edit-user'])){
+    // Validate and sanitize inputs
+    $username = filter_var(trim($_POST['username']), FILTER_SANITIZE_STRING);
+    $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
+    $email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
+    $position = filter_var(trim($_POST['position']), FILTER_SANITIZE_STRING);
+    $active = filter_var($_POST['active'], FILTER_VALIDATE_INT);
+    $user_id = filter_var($_POST['user_id'], FILTER_VALIDATE_INT);
+    
+    if(empty($username) || empty($name) || !$email || $user_id === false) {
+        $show_alert = 'danger';
+        $note_head = 'Error';
+        $note_txt = 'Please fill all fields correctly.';
+    } else {
+        new SqlIt("UPDATE users SET username=?,name=?, email=?, position=?,active=? WHERE uid = ?","update",array($username,$name,$email,$position,$active,$user_id));
+        
+        // Only update password if provided
+        if(isset($_POST['password']) && trim($_POST['password']) != ''){
+            $password = trim($_POST['password']);
+            if(strlen($password) >= 6) {
+                // Use proper password hashing (replace MD5)
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                new SqlIt("UPDATE users SET password = ? WHERE uid=?","update",array($hashed_password,$user_id));
+            } else {
+                $show_alert = 'warning';
+                $note_head = 'Warning';
+                $note_txt = 'User updated but password not changed - must be at least 6 characters.';
+            }
+        }
+        
+        if(!isset($show_alert)) {
+            $show_alert = 'success';
+            $note_head = 'Updated';
+            $note_txt = 'The user has been updated successfully.';
         }
     }
-    $show_alert = 'success';
-    $note_head = 'Added';
-    $note_txt = 'The user has been added successfully.';
-}
-if(isset($_POST['edit-user'])){
-      new SqlIt("UPDATE users SET username=?,name=?, email=?, position=?,active=? WHERE uid = ?","update",array($_POST['username'],$_POST['name'],$_POST['email'],$_POST['position'],$_POST['active'],$_POST['user_id']));
-    if($_POST['password'] != ''){
-        new SqlIt("UPDATE users SET password = ? WHERE uid=?","update",array(md5($_POST['password']),$_POST['user_id']));
-    }
-    $show_alert = 'success';
-    $note_head = 'Updated';
-    $note_txt = 'The user has been updated successfully.';
-}
 $getUsers = new SqlIt("SELECT * FROM users ORDER BY name","select",array());
 ?>
     <!DOCTYPE html>

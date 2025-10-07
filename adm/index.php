@@ -58,7 +58,7 @@ if(isset($_GET['nosess'])){
           <!-- START Login Background Pic Wrapper-->
           <div class="bg-pic">
              <!-- START Background Pic-->
-             <img src="assets/img/login-bg.jpg" alt="Casa Novara" class="lazy">
+             <img src="assets/img/beach.jpeg" alt="Casa Novara" class="lazy">
              <!-- END Background Pic-->
              <!-- START Background Caption-->
              <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
@@ -72,7 +72,7 @@ if(isset($_GET['nosess'])){
           <!-- START Login Right Container-->
           <div class="login-container bg-white smaller">
              <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
-                     <img src="assets/img/logo-black.png" alt="logo" data-src="assets/img/logo-black.png" data-src-retina="assets/img/logo_2x.png" width="150" height="21">
+                     <img src="assets/img/logo-text-black.png" alt="logo" data-src="assets/img/logo-text-black.png" data-src-retina="assets/img/logo-text-black.png" width="250" style="border: 1px solid black;" height="">
                      <p class="p-t-35">Login to access Casa Novara listing administration</p>
                      <?= $message ?>
                      <!-- START Login Form -->
