@@ -745,8 +745,11 @@ class Search{
                     }
                     if($post['location'] == 0 && isset($post['cities']) && $post['cities'][0] > 0){
                       $this->Cities = $post['cities'];
-                    }else{
+                    }elseif($post['location'] > 0){
                       $this->Cities[] = $post['location'];
+                    }else{
+                      // No specific location - search all
+                      $this->SearchBy = 'all';
                     }
                     if(isset($post['beds'])){
                       $this->MinBeds = $post['beds'];  
@@ -933,11 +936,13 @@ class Search{
           $this->ReturnBuddQuery['vars'][] = $this->MLS;
         }else{
           // cities search
-          if(!empty($this->Cities) && $this->Cities[0] !== '0' && $this->SearchBy == 'city'){
+          if(!empty($this->Cities) && $this->Cities[0] !== '0' && $this->Cities[0] != 0 && $this->SearchBy == 'city'){
               if(count($this->Cities) == 1){
                   $budd_query = $up_query = " AND city = ".$this->Cities[0]." ";
                   $getCity = new SqlIt("SELECT location FROM locations_cities WHERE city_id = ?","select",array($this->Cities[0]));
-                  $this->CityName = $getCity->Response[0]->location;
+                  if($getCity->NumResults > 0){
+                      $this->CityName = $getCity->Response[0]->location;
+                  }
               }else{
                   $budd_query .= " AND (city = ".$this->Cities[0]." ";
 
@@ -1158,7 +1163,7 @@ class Search{
           }
 
           // max price
-          if($this->MaxPrice !== '' && $this->MaxPrice != 0 && $this->MaxPrice != '0'){
+          if($this->MaxPrice !== '' && $this->MaxPrice != 0 && $this->MaxPrice != '0' && $this->MaxPrice < 10000000000){
               // remove all non numerical variables
               $max_price = str_replace(',','',$this->MaxPrice);
               $max_price = str_replace('.','',$max_price);

@@ -59,13 +59,26 @@
             const originalHref = card.getAttribute('href') || card.dataset.url || (card.querySelector && (card.querySelector('a') ? card.querySelector('a').getAttribute('href') : null)) || null;
             // clone the card element and strip interactive bits except for the explicit CTA we add
             const clone = card.cloneNode(true);
-            clone.style.width = '280px';
+            clone.style.width = '200px';
             clone.classList.add('map-popup-card');
+            
+            // Remove the "See Property" button from the cloned card
+            const seePropertyBtn = clone.querySelector('.btn-see-property');
+            if(seePropertyBtn) {
+                seePropertyBtn.remove();
+            }
+            
+            // Also remove the action footer container if it's empty after button removal
+            const actionFooter = clone.querySelector('.prop-action-footer');
+            if(actionFooter && actionFooter.children.length === 0) {
+                actionFooter.remove();
+            }
+            
             // small style adjustments
             const img = clone.querySelector('.prop-image');
             if(img){
                 img.style.backgroundSize = 'cover';
-                img.style.height = '120px';
+                img.style.height = '80px';
                 img.style.borderRadius = '0 0 0 0';
             }
             // price bolding
@@ -117,6 +130,18 @@
           // Build popup content by cloning card, but keep a details link
           const clone = card.cloneNode(true);
 
+          // Remove the "See Property" button from the cloned card
+          const seePropertyBtn = clone.querySelector('.btn-see-property');
+          if(seePropertyBtn) {
+            seePropertyBtn.remove();
+          }
+          
+          // Also remove the action footer container if it's empty after button removal
+          const actionFooter = clone.querySelector('.prop-action-footer');
+          if(actionFooter && actionFooter.children.length === 0) {
+            actionFooter.remove();
+          }
+
           // Remove any anchor behavior on clone (so the popup doesn't navigate)
           const anchor = clone.querySelector('a');
           let detailUrl = '#';
@@ -131,7 +156,7 @@
           // Ensure image height in popup
           const img = clone.querySelector('.prop-image, .card-image');
           if (img) {
-            img.style.height = '200px';
+            img.style.height = '80px';
             img.style.backgroundSize = 'cover';
             img.style.backgroundPosition = 'center';
           }
@@ -157,7 +182,7 @@
           wrapper.appendChild(clone);
           wrapper.appendChild(detailsLink);
 
-          marker.bindPopup(wrapper, { maxWidth: 320, className: 'cng-map-popup' });
+          marker.bindPopup(wrapper, { maxWidth: 220, className: 'cng-map-popup' });
 
           // store reference to original card element
           marker._cardNode = card;
@@ -172,7 +197,7 @@
             if(Number.isFinite(lat) && Number.isFinite(lng)){
                 const marker = L.marker([lat,lng]).addTo(map);
                 marker.propertyCard = card; // link back
-                marker.bindPopup(createPopupContent(card), {maxWidth: 300});
+                marker.bindPopup(createPopupContent(card), {maxWidth: 220});
                 markers.push(marker);
 
                 // when marker clicked, open popup and ensure list item is visible

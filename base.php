@@ -48,9 +48,24 @@ if(isset($_GET['lang'])){
 }
 
 
-// prefix definitions
-$prop_img_url = '/images/';
-$blog_img_url = '/images/blog/';
+// prefix definitions - adjust for dev vs production environment
+$is_dev = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || 
+           strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false || 
+           strpos($_SERVER['HTTP_HOST'], '::1') !== false ||
+           strpos($_SERVER['SERVER_NAME'], 'localhost') !== false);
+
+if ($is_dev) {
+    // Development environment - include casa-novara subfolder
+    $prop_img_url = '/casa-novara/images/';
+    $blog_img_url = '/casa-novara/images/blog/';
+} else {
+    // Production environment - root domain
+    $prop_img_url = '/images/';
+    $blog_img_url = '/images/blog/';
+}
+
+// Include security configuration for database constants
+require_once('adm/config/security.php');
 
 require('adm/classes/sql.class.php');
 require('adm/classes/site.class.php');
