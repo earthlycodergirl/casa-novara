@@ -876,6 +876,12 @@ h4 {
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12);
   transform: translateY(-4px);
 }
+.properties-card.map-popup-card{
+  box-shadow: none;
+}
+.properties-card.map-popup-card:hover{
+  box-shadow: none;
+}
 .properties-list .prop-image {
   position: relative;
   width: 100%;
@@ -1022,11 +1028,7 @@ h4 {
 .map-popup-card .prop-action {
   display: none;
 }
-.map-popup-card .map-popup-cta {
-  background: black;
-  color: white;
-  margin-top: 0;
-}
+
 /* hide underline for any links inside popup clones */
 .cng-map-popup a {
   text-decoration: none;

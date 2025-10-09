@@ -83,7 +83,6 @@ $(document).ready(function(){
   var sync1 = $("#property-d-1");
   var sync2 = $("#property-d-1-2");
   sync1.owlCarousel({
-    autoPlay: 3000,
     singleItem: true,
     slideSpeed: 1000,
     transitionStyle: "fade",
@@ -94,7 +93,6 @@ $(document).ready(function(){
     responsiveRefreshRate: 200,
   });
   sync2.owlCarousel({
-	  autoPlay: true,
     items: 8,
     itemsDesktop: [1199, 10],
     itemsDesktopSmall: [979, 10],

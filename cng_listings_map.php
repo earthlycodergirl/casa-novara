@@ -212,6 +212,34 @@ if(isset($listings->SearchParams->Cities[0])){
 
         <!-- Additional styles for property features -->
         <style>
+            .prop-badge {
+                position: absolute;
+                top: 8px;
+                left: 8px;
+                background: rgba(0,0,0,0.8);
+                color: white;
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 12px;
+                font-weight: 500;
+            }
+            
+            .prop-action {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                background: rgba(255,255,255,0.9);
+                color: #333;
+                padding: 6px;
+                border-radius: 50%;
+                font-size: 14px;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
             .prop-featured {
                 position: absolute;
                 top: 8px;
@@ -237,31 +265,81 @@ if(isset($listings->SearchParams->Cities[0])){
                 display: flex;
                 flex-direction: column;
                 height: 100%;
+                background: white;
+                border-radius: 8px;
+                overflow: hidden;
+                text-decoration: none;
+                color: inherit;
+            }
+            
+            .property-card:hover {
+                text-decoration: none;
+                color: inherit;
+            }
+            
+            .prop-image {
+                height: 200px;
+                background-size: cover;
+                background-position: center;
+                position: relative;
+                background-color: #f5f5f5;
             }
             .prop-body {
                 display: flex;
                 flex-direction: column;
                 flex-grow: 1;
+                padding: 16px;
+            }
+            
+            .prop-price {
+                font-size: 18px;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 8px;
+            }
+            
+            .prop-meta {
+                font-size: 14px;
+                color: #666;
+                margin-bottom: 8px;
+            }
+            
+            .prop-location {
+                font-size: 14px;
+                color: #555;
+                margin-bottom: 4px;
+            }
+            
+            .prop-type {
+                font-size: 13px;
+                color: #777;
+                margin-bottom: 8px;
             }
             .prop-action-footer {
                 margin-top: auto;
                 padding-top: 12px;
+                border-top: 1px solid #f0f0f0;
             }
+            
             .btn-see-property {
-                background: none;
-                border: 1px solid #e0e0e0;
-                color: #666;
-                padding: 8px 16px;
+                background: transparent;
+                border: 2px solid #000;
+                color: #000;
+                padding: 12px 20px;
                 border-radius: 0;
-                font-size: 13px;
-                font-weight: 500;
+                font-size: 14px;
+                font-weight: 600;
                 cursor: pointer;
                 width: 100%;
                 text-align: center;
                 position: relative;
                 overflow: hidden;
+                text-decoration: none;
+                display: inline-block;
+                z-index: 10;
                 transition: color 0.3s ease;
             }
+            
             .btn-see-property::before {
                 content: '';
                 position: absolute;
@@ -273,16 +351,27 @@ if(isset($listings->SearchParams->Cities[0])){
                 transition: left 0.3s ease;
                 z-index: -1;
             }
+            
+            .btn-see-property:hover {
+                color: #fff;
+                text-decoration: none;
+            }
+            
             .btn-see-property:hover::before {
                 left: 0;
             }
-            .btn-see-property:hover {
-                color: #fff;
-                border-color: #000;
+            
+            /* Properties grid layout */
+            .properties-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 20px;
+                padding: 0;
             }
-            .btn-see-property:focus {
-                outline: 2px solid #007bff;
-                outline-offset: 2px;
+            
+            .property-col {
+                display: flex;
+                flex-direction: column;
             }
             
             /* Current filters section styles */
@@ -364,7 +453,7 @@ if(isset($listings->SearchParams->Cities[0])){
                     </div>
 
                     <!-- Price range -->
-                    <div class="filter-item filter-dropdown" data-filter="price-range">
+                    <div class="filter-item filter-dropdown" data-filter="price">
                         <button class="btn btn-outline-secondary btn-filter" type="button">Any Price</button>
                         <div class="dropdown-panel">
                             <ul>
@@ -488,7 +577,11 @@ if(isset($listings->SearchParams->Cities[0])){
                         </div>
                       </div>
                     </div>
-                    <div class="no-results" style="display:none; padding:24px; text-align:center; color:#666">No properties match your filters. Try adjusting your search.</div>
+                    <div class="no-results" style="display:none; padding:24px; text-align:center; color:#666">
+                        No properties match your filters. Try adjusting your search.
+                        <br><br>
+                        <a href="<?= $base_href ?>listings" type="button" class="btn btn-primary" onclick="showAllProperties()">Show All Properties</a>
+                    </div>
                 </div>
 
                 <!-- Properties list -->
@@ -573,17 +666,13 @@ if(isset($listings->SearchParams->Cities[0])){
                             
                             // Handle no results case
                             if(empty($properties_for_map)){ ?>
-                                <div class="no-results-message text-center py-5">
-                                    <h3>No Properties Found</h3>
-                                    <p>Try adjusting your search filters to see more results.</p>
-                                </div>
                             <?php } else {
                             
                             foreach($properties_for_map as $p):
                                 $types_attr = implode(',', $p['types']);
                             ?>
                             <div class="property-col">
-                                <a class="property-card" href="<?= $p['url'] ?>" data-id="<?= $p['id'] ?>" data-lat="<?= $p['lat'] ?>" data-lng="<?= $p['lng'] ?>" data-listing="<?= $p['listing'] ?>" data-price="<?= $p['price'] ?>" data-price-range="<?= $p['price_range'] ?>" data-types="<?= htmlspecialchars($types_attr) ?>" data-beds="<?= $p['beds'] ?>" data-baths="<?= $p['baths'] ?>" data-sqft="<?= $p['sqft'] ?>" data-location="<?= htmlspecialchars($p['location']) ?>" data-area="<?= $p['area'] ?>" data-status="<?= $p['status'] ?>">
+                                <div class="property-card" href="<?= $p['url'] ?>" data-id="<?= $p['id'] ?>" data-lat="<?= $p['lat'] ?>" data-lng="<?= $p['lng'] ?>" data-listing="<?= $p['listing'] ?>" data-price="<?= $p['price'] ?>" data-price-range="<?= $p['price_range'] ?>" data-types="<?= htmlspecialchars($types_attr) ?>" data-beds="<?= $p['beds'] ?>" data-baths="<?= $p['baths'] ?>" data-sqft="<?= $p['sqft'] ?>" data-location="<?= htmlspecialchars($p['location']) ?>" data-area="<?= $p['area'] ?>" data-status="<?= $p['status'] ?>">
                                     <div class="prop-image" style="background-image:url('<?= $p['image'] ?>');">
                                         <div class="prop-badge"><?= htmlspecialchars($p['status']) ?></div>
                                         <?php if($p['is_featured'] == 1){ ?>
@@ -601,10 +690,10 @@ if(isset($listings->SearchParams->Cities[0])){
                                         <div class="prop-mls">MLS #: <?= htmlspecialchars($p['mls']) ?></div>
                                         <?php } ?>
                                         <div class="prop-action-footer">
-                                            <button class="btn-see-property" type="button">See Property</button>
+                                            <a href="<?= $p['url'] ?>" class="btn-see-property" onclick="event.stopPropagation();">See Property</a>
                                         </div>
                                     </div>
-                                </a>
+                                 </div>
                             </div>
                             <?php endforeach; 
                             } // End of else statement for properties display ?>
@@ -625,6 +714,13 @@ if(isset($listings->SearchParams->Cities[0])){
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script src="dist/js/cng_listings_filters.js"></script>
     <script src="dist/js/cng_listings_map.js"></script>
+
+    <script>
+        function showAllProperties() {
+            // Clear all filters and reload page to show all properties
+            window.location.href = window.location.pathname;
+        }
+    </script>
 
     </body>
 </html>
