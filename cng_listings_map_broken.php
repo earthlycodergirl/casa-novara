@@ -1,11 +1,5 @@
 <?php
 session_start();
-
-// Error display disabled for production (re-enable if debugging needed)
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
 $show_listings = 1;
 $build_search = 1;
 $no_results = 0;
@@ -17,8 +11,43 @@ $curr = 1;
 $curr_desc = 'USD';
 
 require('base.php');
+require_once('adm/classes/listings.class.php');
 
-// Currency handling
+// create the spanish version of the website
+$current_li = basename($_SERVER['REQUEST_URI']);
+$current_li2 = basename($_SERVER['QUERY_STRING']);
+$get_url = explode('?',$current_li);
+if(isset($get_url[1])){
+$current_link['en'] = $link_properties['en'].'?'.$get_url[1];
+$current_link['es'] = $link_properties['es'].'?'.$get_url[1];
+}
+
+$site = new Site();
+
+// TODO: Fix these missing classes
+// $adv_search = new AdvSearch();
+// $adv_search->getLocations();
+// $adv_search->getMinMax();
+
+// $listing_cities = $listings->getLocations2();
+
+if(isset($_GET['dsearch'])){
+  $_GET['property_type'] = $_GET['beds'] = $_GET['baths'] = 0;
+  if(!isset($_GET['page'])){
+    $_GET['page'] = 1;
+  }
+  $_GET['search_type'] = 'basic';
+  if($_GET['dsearch'] == 'for-sale'){
+    $_GET['list_type'] = 3;
+  }elseif($_GET['dsearch'] == 'rentals'){
+    $_GET['list_type'] = 2;
+  }elseif($_GET['dsearch'] == 'for-lease'){
+    $_GET['list_type'] = 1;
+  }else{
+    $_GET['list_type'] = 0;
+  }
+}
+
 if((isset($_GET['currency']) && $_GET['currency'] != 'usd') || (isset($_SESSION['currency']) && $_SESSION['currency'] != 'usd')){
   if(isset($_GET['currency'])){
     $curr_desc = strtoupper($_GET['currency']);
@@ -31,77 +60,63 @@ if((isset($_GET['currency']) && $_GET['currency'] != 'usd') || (isset($_SESSION[
   $_SESSION['currency'] = 'usd';
 }
 
-// Initialize search and listings
-$site = new Site();
-$adv_search = new AdvSearch();
-$adv_search->getLocations();
-$adv_search->getMinMax();
-
-// Load property types from database
-$listings_helper = new SiteListings();
-$property_types = $listings_helper->getPropertyTypes();
-
-// Define property type icons mapping
-$property_type_icons = array(
-    'Residential' => '🏠',
-    'House' => '🏠',
-    'Apartment' => '🏢',
-    'Condo' => '🏢', 
-    'Condominium' => '🏢',
-    'Townhouse' => '🏘️',
-    'Townhome' => '🏘️',
-    'Villa' => '🏛️',
-    'Commercial' => '🏢',
-    'Office' => '🏢',
-    'Retail' => '🏪',
-    'Industrial' => '🏭',
-    'Warehouse' => '🏭',
-    'Land' => '🌾',
-    'Lot' => '🌾',
-    'Lots & Land' => '🌾',
-    'Farm' => '🚜',
-    'Ranch' => '🚜',
-    'Multi-family' => '🏘️',
-    'Duplex' => '🏘️',
-    'Triplex' => '🏘️',
-    'Fourplex' => '🏘️',
-    'Mobile Home' => '🚐',
-    'Manufactured' => '🚐',
-    'Co-op' => '🏗️',
-    'Other' => '📍'
-);
-
-// Function to get icon for property type
-function getPropertyTypeIcon($type_desc, $icons_map) {
-    // Try exact match first
-    if (isset($icons_map[$type_desc])) {
-        return $icons_map[$type_desc];
-    }
-    
-    // Try partial matches
-    $type_lower = strtolower($type_desc);
-    foreach ($icons_map as $key => $icon) {
-        if (strpos($type_lower, strtolower($key)) !== false) {
-            return $icon;
-        }
-    }
-    
-    // Default icon
-    return '📍';
+// get destinations
+if(isset($_GET['location']) && $_GET['location'] > 0){
+  require_once('dist/inc/locations.php');
 }
 
-// Set default parameters to show all listings when no filters are applied
-$default_params = array(
-    'page' => 1,
-    'search_type' => 'basic',
-    'location' => 0,
-    'dsearch' => 'all',
-    'property_type' => 0,
-    'beds' => 0,
-    'baths' => 0,
-    'search_type' => 'basic',
-    'list_type' => 0
-);
+// get variables for map
+if(isset($_GET['page'])){
+    $i = 0;
+
+    $search = $listings->SearchParams;
+    foreach($_GET as $kk=>$vv){
+        if(is_array($vv)){
+            foreach($vv as $ll=>$nn){
+                $get .= '&'.$kk.urlencode('['.$ll.']').'='.urlencode($nn);
+            }
+        }else{
+            if($i == 0){
+                $get .= '?'.$kk.'='.urlencode($vv);
+            }else{
+                if($kk != 'page'){
+                    $get .= '&'.$kk.'='.urlencode($vv);
+                }
+            }
+        }
+        $i++;
+    }
+    $listings = new PubListings('PUB');
+}else{
+    $listings = new PubListings('PUB');
+}
+
+if(count($listings->SearchParams->Counties) > 0 && (count($listings->SearchParams->Cities) == 0 || $listings->SearchParams->Cities[0] == 0)){
+  $cities = array();
+  // get the cities from towns parents and assign
+  foreach($listings->SearchParams->Counties as $kk=>$cc){
+    if(isset($adv_search->SCounties[$cc])){
+      if(!in_array($adv_search->SCounties[$cc]['parent_id'],$cities)){
+        $cities[] = $adv_search->SCounties[$cc]['parent_id'];
+      }
+    }
+  }
+  $listings->SearchParams->Cities = $cities;
+  $listings->getSideBar($listings->SearchParams->ReturnBuddQuery['query'],$listings->SearchParams->ReturnBuddQuery['vars']);
+}
+
+if(isset($listings->SearchParams->Cities[0])){
+  $city_id = $listings->SearchParams->Cities[0];
+  if(count($listings->SearchParams->Cities) > 1){
+    $adv_search->getTowns($listings->SearchParams->Cities);
+  }else{
+    $adv_search->getTowns($city_id);
+  }
+  $city_url = $listings->SearchParams->CityName;
+}else{
+  $city_id = 0;
+  $city_url = '';
+}
 
 // Merge any existing GET parameters with defaults
 $search_params = array_merge($default_params, $_GET);
@@ -199,8 +214,15 @@ if(isset($listings->SearchParams->Cities[0])){
         <base href="<?= $base_href ?>">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Listings — Map</title>
-
+        <title><?= $meta['props']['title'].utf8_encode($listings->SearchParams->CityName ?? 'All Properties') ?>, Mexico</title>
+        <meta name="robots" content="index" />
+        <link rel="canonical" href="https://casanovaragroup.com/<?= $city_url ?>">
+        
+        <meta property="og:title" content="<?= $meta['props']['title'].utf8_encode($listings->SearchParams->CityName ?? 'All Properties') ?>, Mexico">
+        <meta property="og:description" content="<?php echo str_replace('[CITY]',utf8_encode($listings->SearchParams->CityName ?? 'All Properties'),$meta['props']['title']) ?>, Mexico">,
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://casanovaragroup.com/">
+        
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -284,49 +306,6 @@ if(isset($listings->SearchParams->Cities[0])){
                 outline: 2px solid #007bff;
                 outline-offset: 2px;
             }
-            
-            /* Current filters section styles */
-            .current-filters {
-                transition: all 0.3s ease;
-            }
-            
-            .filter-tag {
-                background: #1976d2;
-                color: white;
-                padding: 4px 8px 4px 12px;
-                border-radius: 20px;
-                font-size: 13px;
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                border: none;
-                cursor: pointer;
-                transition: background-color 0.2s ease;
-            }
-            
-            .filter-tag:hover {
-                background: #1565c0;
-            }
-            
-            .filter-tag .remove-filter {
-                background: rgba(255, 255, 255, 0.3);
-                border: none;
-                color: white;
-                width: 18px;
-                height: 18px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 12px;
-                line-height: 1;
-                cursor: pointer;
-                transition: background-color 0.2s ease;
-            }
-            
-            .filter-tag .remove-filter:hover {
-                background: rgba(255, 255, 255, 0.5);
-            }
         </style>
 
         
@@ -364,15 +343,15 @@ if(isset($listings->SearchParams->Cities[0])){
                     </div>
 
                     <!-- Price range -->
-                    <div class="filter-item filter-dropdown" data-filter="price-range">
+                    <div class="filter-item filter-dropdown" data-filter="price">
                         <button class="btn btn-outline-secondary btn-filter" type="button">Any Price</button>
                         <div class="dropdown-panel">
                             <ul>
                                 <li data-value="any">Any Price</li>
-                                <li data-value="0-100000">Under $100k</li>
-                                <li data-value="100000-300000">$100k–$300k</li>
-                                <li data-value="300000-600000">$300k–$600k</li>
-                                <li data-value="600000-999999999">$600k+</li>
+                                <li data-value="0-100k">Under $100k</li>
+                                <li data-value="100k-300k">$100k–$300k</li>
+                                <li data-value="300k-600k">$300k–$600k</li>
+                                <li data-value="600k+">$600k+</li>
                             </ul>
                         </div>
                     </div>
@@ -382,28 +361,15 @@ if(isset($listings->SearchParams->Cities[0])){
                         <button class="btn btn-outline-secondary btn-filter" type="button">Property Types</button>
                         <div class="dropdown-panel types-panel">
                             <div class="types-grid">
-                                <?php 
-                                if (isset($property_types) && is_array($property_types)) {
-                                    foreach ($property_types as $type_id => $type_data) {
-                                        $type_desc = $type_data['desc'] ?? 'Unknown';
-                                        $icon = getPropertyTypeIcon($type_desc, $property_type_icons);
-                                        ?>
-                                        <label class="type" data-value="<?= htmlspecialchars($type_desc) ?>">
-                                            <input type="checkbox" value="<?= $type_id ?>">
-                                            <span class="type-icon"><?= $icon ?></span>
-                                            <span class="type-label"><?= htmlspecialchars($type_desc) ?></span>
-                                        </label>
-                                        <?php
-                                    }
-                                } else {
-                                    // Fallback if property types not loaded
-                                    ?>
-                                    <label class="type" data-value="Residential"><input type="checkbox"><span class="type-icon">🏠</span><span class="type-label">Residential</span></label>
-                                    <label class="type" data-value="Commercial"><input type="checkbox"><span class="type-icon">🏢</span><span class="type-label">Commercial</span></label>
-                                    <label class="type" data-value="Land"><input type="checkbox"><span class="type-icon">🌾</span><span class="type-label">Land</span></label>
-                                    <?php
-                                }
-                                ?>
+                                <label class="type" data-value="Residential"><input type="checkbox"><span class="type-icon">⌂</span><span class="type-label">Residential</span></label>
+                                <label class="type" data-value="Townhomes"><input type="checkbox"><span class="type-icon">⌂⌂</span><span class="type-label">Townhomes</span></label>
+                                <label class="type" data-value="Co-op"><input type="checkbox"><span class="type-icon">▢</span><span class="type-label">Co-op</span></label>
+                                <label class="type" data-value="Multi-family"><input type="checkbox"><span class="type-icon">⧉</span><span class="type-label">Multi-family</span></label>
+                                <label class="type" data-value="Condos"><input type="checkbox"><span class="type-icon">◪</span><span class="type-label">Condos</span></label>
+                                <label class="type" data-value="Commercial"><input type="checkbox"><span class="type-icon">⬜</span><span class="type-label">Commercial</span></label>
+                                <label class="type" data-value="Manufactured"><input type="checkbox"><span class="type-icon">⬚</span><span class="type-label">Manufactured</span></label>
+                                <label class="type" data-value="Land"><input type="checkbox"><span class="type-icon">▱</span><span class="type-label">Land</span></label>
+                                <label class="type" data-value="Other"><input type="checkbox"><span class="type-icon">◦</span><span class="type-label">Other</span></label>
                             </div>
                             <div class="types-actions">
                                 <button class="btn btn-sm btn-primary btn-apply">Apply</button>
@@ -449,21 +415,6 @@ if(isset($listings->SearchParams->Cities[0])){
 
                     
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Current Filters Section -->
-    <section class="current-filters" style="background-color: #e3f2fd; border-bottom: 1px solid #bbdefb; padding: 12px 0; display: none;">
-        <div class="container-fluid">
-            <div class="d-flex align-items-center flex-wrap gap-2">
-                <span class="me-2 text-muted fw-medium" style="font-size: 14px;">Active Filters:</span>
-                <div class="filter-tags d-flex flex-wrap gap-2" id="current-filter-tags">
-                    <!-- Filter tags will be dynamically inserted here -->
-                </div>
-                <button class="btn btn-link btn-sm p-0 ms-auto text-decoration-none" id="clear-all-filters" style="font-size: 14px; color: #1976d2;">
-                    Clear All
-                </button>
             </div>
         </div>
     </section>
@@ -536,10 +487,10 @@ if(isset($listings->SearchParams->Cities[0])){
                                     // Determine price range
                                     $price_range = 'any';
                                     $price = $ff->PropCosts;
-                                    if($price < 100000) $price_range = '0-100000';
-                                    elseif($price < 300000) $price_range = '100000-300000';
-                                    elseif($price < 600000) $price_range = '300000-600000';
-                                    else $price_range = '600000-999999999';
+                                    if($price < 100000) $price_range = '0-100k';
+                                    elseif($price < 300000) $price_range = '100k-300k';
+                                    elseif($price < 600000) $price_range = '300k-600k';
+                                    else $price_range = '600k+';
                                     
                                     // Build property array for map with safety checks
                                     $map_property = array(

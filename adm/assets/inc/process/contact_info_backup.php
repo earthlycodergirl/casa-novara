@@ -7,7 +7,8 @@ $return = '';
 
 if(isset($_POST['ctype'])){
 
-  if($_POST['ctype'] == 'add'){
+
+    // Add new property type
     $cinput = $_POST['cinput'];
     $cval = $_POST['cval'];
     $ctype = $_POST['csec'];
@@ -30,6 +31,23 @@ if(isset($_POST['ctype'])){
             'longitude' => $clong
         ));
     }
+    
+    // Get additional fields
+    $ctitle = isset($_POST['ctitle']) ? $_POST['ctitle'] : '';
+    $cdesc = isset($_POST['cdesc']) ? $_POST['cdesc'] : '';
+    $cwhatsapp = isset($_POST['cwhatsapp']) ? (int)$_POST['cwhatsapp'] : 0;
+    $clat = isset($_POST['clat']) ? $_POST['clat'] : '';
+    $clong = isset($_POST['clong']) ? $_POST['clong'] : '';
+    
+    // Build meta data for location
+    $meta = array();
+    if($cinput == 'location' && (!empty($clat) || !empty($clong))) {
+        $meta = array(
+            'latitude' => $clat,
+            'longitude' => $clong
+        );
+    }
+    $meta_json = json_encode($meta);
 
     function test_input($data) {
       $data = trim($data);
@@ -38,7 +56,10 @@ if(isset($_POST['ctype'])){
       return $data;
     }
 
+    //$phone_expr = '^\(?([0-9]{3})\)?[-]?([0-9]{3})[-]?([0-9]{4})$';
     $phone_expr = "/^[0-9.+-]/";
+
+
 
     // Clean out data type
     if($cinput == 'email'){
@@ -69,13 +90,11 @@ if(isset($_POST['ctype'])){
     }
     
     if($cinput == 'availability'){
-      $icon = 'time';
-      $cval = test_input($cval);
+        $icon = 'time';
     }
     
     if($cinput == 'location'){
-      $icon = 'location-pin';
-      $cval = test_input($cval);
+        $icon = 'location-pin';
     }
 
     if(isset($_POST['cdisplay']) && strlen($_POST['cdisplay']) > 2){
@@ -83,51 +102,54 @@ if(isset($_POST['ctype'])){
       $icon = $_POST['cdisplay'];
     }
 
+
     if(empty($errors)){
       if($_POST['ctype'] == 'add'){
-        $addIt = new SqlIt("INSERT INTO site_contact (contact_type,contact_value,contact_display,contact_section,contact_title,contact_description,is_whatsapp,contact_meta) VALUES (?,?,?,?,?,?,?,?)","insert",array($cinput,$cval,$cdisplay,$ctype,$ctitle,$cdesc,$cwhatsapp,$cmeta));
+        $addIt = new SqlIt("INSERT INTO site_contact (contact_type,contact_value,contact_display,contact_section,contact_title,contact_description,is_whatsapp,contact_meta) VALUES (?,?,?,?,?,?,?,?)","insert",array($cinput,$cval,$cdisplay,$ctype,$ctitle,$cdesc,$cwhatsapp,$meta_json));
 
         if($addIt){
           $lastid = $addIt->LastID;
           $success = 1;
           
-          // Generate proper return HTML based on section type
+          // Generate appropriate return HTML based on section type
           if($ctype == 'office_info') {
-              $titleDisplay = !empty($ctitle) ? htmlspecialchars($ctitle) : ucfirst($cinput);
-              $descDisplay = !empty($cdesc) ? '<small class="text-muted d-block mt-1">'.htmlspecialchars($cdesc).'</small>' : '';
               $whatsappBadge = ($cwhatsapp == 1 && $cinput == 'phone') ? '<span class="badge badge-success">WhatsApp</span>' : '';
+              $titleDisplay = !empty($ctitle) ? $ctitle : ucfirst($cinput);
+              $descDisplay = !empty($cdesc) ? '<small class="text-muted">'.$cdesc.'</small>' : '';
               
               $locationFields = '';
               if($cinput == 'location' && (!empty($clat) || !empty($clong))) {
                   $locationFields = '<div class="row mt-2">
                       <div class="col-6">
-                          <small class="text-muted">Lat: '.htmlspecialchars($clat).'</small>
+                          <label class="small">Latitude:</label>
+                          <input type="text" class="form-control form-control-sm" value="'.$clat.'" id="lat_'.$lastid.'">
                       </div>
                       <div class="col-6">
-                          <small class="text-muted">Lng: '.htmlspecialchars($clong).'</small>
+                          <label class="small">Longitude:</label>
+                          <input type="text" class="form-control form-control-sm" value="'.$clong.'" id="lng_'.$lastid.'">
                       </div>
                   </div>';
               }
               
-              $return = '<div class="contact-wrap added contact-display-item" id="wrap_'.$lastid.'">
-                  <div class="row align-items-center">
-                      <div class="col-9">
-                          <h6 class="mb-1">
-                              <i class="ti-'.$icon.'"></i> '.$titleDisplay.' '.$whatsappBadge.'
-                          </h6>
-                          <div class="mb-1">
-                              <strong>'.htmlspecialchars($cval).'</strong>
+              $return = '<div class="contact-wrap added" id="wrap_'.$lastid.'">
+                  <div class="card mb-2">
+                      <div class="card-body">
+                          <div class="row">
+                              <div class="col-8">
+                                  <h6 class="mb-1">
+                                      <i class="ti-'.$icon.'"></i> '.$titleDisplay.' '.$whatsappBadge.'
+                                  </h6>
+                                  <div class="input-group mb-2">
+                                      <input type="text" class="form-control" name="c_value" id="cval_'.$lastid.'" value="'.$cval.'">
+                                  </div>
+                                  '.$descDisplay.'
+                                  '.$locationFields.'
+                              </div>
+                              <div class="col-4 text-right">
+                                  <button type="button" class="btn btn-info-outline btn-sm update-contact" data-id="'.$lastid.'"><i class="ti-save"></i></button>
+                                  <button type="button" class="btn btn-danger-outline btn-sm del-contact" data-id="'.$lastid.'"><i class="ti-trash"></i></button>
+                              </div>
                           </div>
-                          '.$descDisplay.'
-                          '.$locationFields.'
-                      </div>
-                      <div class="col-3 text-right">
-                          <button type="button" class="btn btn-outline-primary btn-sm update-contact" data-id="'.$lastid.'" title="Edit">
-                              <i class="ti-pencil"></i>
-                          </button>
-                          <button type="button" class="btn btn-outline-danger btn-sm del-contact" data-id="'.$lastid.'" title="Delete">
-                              <i class="ti-trash"></i>
-                          </button>
                       </div>
                   </div>
               </div>';
@@ -135,7 +157,7 @@ if(isset($_POST['ctype'])){
               $return = '<div class="contact-wrap added" id="wrap_'.$lastid.'">
                   <div class="input-group">
                       <span class="input-group-addon"><i class="ti-'.$icon.'"></i></span>
-                      <input type="text" class="form-control" name="c_value" id="cval_'.$lastid.'" value="'.htmlspecialchars($cval).'">
+                      <input type="text" class="form-control" name="c_value" id="cval_'.$lastid.'" value="'.$cval.'">
                       <button type="button" class="btn btn-info-outline update-contact" data-id="'.$lastid.'"><i class="ti-save"></i></button>
                       <button type="button" class="btn btn-danger-outline del-contact" data-id="'.$lastid.'"><i class="ti-trash"></i></button>
                   </div>

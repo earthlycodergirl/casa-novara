@@ -139,18 +139,23 @@ class Site{
         'social'=>array(),
         'contact_emails'=>array(),
         'request_emails'=>array(),
-
+        'office_info'=>array(),
       );
 
       $getC = new SqlIt("SELECT * FROM site_contact","select",array());
       if($getC->NumResults > 0){
         foreach($getC->Response as $gg){
-          $this->ContactInfo[$gg->contact_section][] = array(
+          $contactData = array(
             'id'=>$gg->contact_id,
             'type'=>$gg->contact_type,
             'val'=>$gg->contact_value,
-            'icon'=>$gg->contact_display
+            'icon'=>$gg->contact_display,
+            'title'=>$gg->contact_title ?? '',
+            'description'=>$gg->contact_description ?? '',
+            'is_whatsapp'=>$gg->is_whatsapp ?? 0,
+            'meta'=>$gg->contact_meta ? json_decode($gg->contact_meta, true) : array()
           );
+          $this->ContactInfo[$gg->contact_section][] = $contactData;
         }
       }
     }

@@ -719,6 +719,7 @@ h4 {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
+  right: auto; /* Explicitly set to auto to avoid conflicts */
   min-width: 220px;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.06);
@@ -1080,6 +1081,16 @@ h4 {
 .filter-dropdown[data-filter="baths"] .dropdown-panel {
   flex-wrap: wrap;
   gap: 8px;
+  /* Ensure consistent initial positioning */
+  left: 0 !important;
+  right: auto !important;
+}
+
+/* Override for right-aligned positioning when needed */
+.filter-dropdown[data-filter="beds"].align-right .dropdown-panel,
+.filter-dropdown[data-filter="baths"].align-right .dropdown-panel {
+  left: auto !important;
+  right: 0 !important;
 }
 .filter-dropdown[data-filter="beds"] .pill,
 .filter-dropdown[data-filter="baths"] .pill {

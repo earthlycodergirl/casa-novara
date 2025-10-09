@@ -13,7 +13,7 @@ $link_blog['en'] = 'mexico-real-estate/';
 $link_list['en'] = 'list-property';
 $link_property['en'] = 'listing/';
 $link_map['en'] = 'listings-map';
-$link_properties['en'] = '/listings';
+$link_properties['en'] = 'listings';
 $link_terms['en'] = 'terms-and-conditions';
 $link_privacy['en'] = 'privacy-policy';
 $link_ptypes['en'] = ['listings/commercial','listings/residential','listings/lots-land'];
@@ -32,7 +32,7 @@ $link_properties['es'] = 'es/propiedades';
 $link_terms['es'] = 'es/terminos';
 $link_privacy['es'] = 'es/privacidad';
 $link_ptypes['es'] = ['es/propiedades/comercial','es/propiedades/residencial','es/propiedades/lotes'];
-$link_loctypes['es'] = ['city'=>'es/ciudades','town'=>'es/pueblos','area'=>'es/areas'];
+$link_loctypes['es'] = ['city'=>'es/propiedades/cities','town'=>'es/propiedades/towns','area'=>'es/propiedades/areas'];
 $current_link['es'] = $link_home['es'];
 
 $site_url = '/casa-novara/';

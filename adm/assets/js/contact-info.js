@@ -20,31 +20,68 @@ app.ready(function(){
         showAlert();
     }
 
-    // add new contact
+    // add new contact - updated for new structure
     $('.add-contact').on('click',function(e){
       e.preventDefault();
       $(".errors").html('');
-      var did = $(this).data('id');
       var dtype = $(this).data('type');
-      var dval = $("#cval_"+did).val();
-      var dinput = $("#ctype_"+did).val();
-      var ddisplay = $("#cdisplay_"+did).val();
-      var dcnt = $('.contact-wrap').length;
-      console.log(dcnt);
+      var contactType = $(this).data('contact-type');
+      var did = $(this).data('id');
+      
+      var dval = $("#cval_" + did).val();
+      var dtitle = $("#ctitle_" + did).val() || '';
+      var ddesc = $("#cdesc_" + did).val() || '';
+      var disWhatsapp = 0;
+      var dlat = '';
+      var dlong = '';
+      
+      // Get WhatsApp status for phone numbers
+      if(contactType === 'phone') {
+        disWhatsapp = $("#is_whatsapp_" + did).is(':checked') ? 1 : 0;
+      }
+      
+      // Get coordinates for location
+      if(contactType === 'location') {
+        dlat = $("#clat_" + did).val() || '';
+        dlong = $("#clong_" + did).val() || '';
+      }
+      
+      console.log('Adding contact:', {type: contactType, value: dval, title: dtitle});
 
-      $.post('assets/inc/process/contact_info.php',{ctype:'add',csec:dtype,cval:dval,cinput:dinput,cdisplay:ddisplay},function(data){
+      $.post('assets/inc/process/contact_info.php',{
+        ctype:'add',
+        csec:dtype,
+        cval:dval,
+        cinput:contactType,
+        cdisplay:'',
+        ctitle:dtitle,
+        cdesc:ddesc,
+        cwhatsapp:disWhatsapp,
+        clat:dlat,
+        clong:dlong
+      },function(data){
         if(data.success === 1){
           if(data.return !== ''){
-            $("#"+dtype).prepend(data.return);
+            $("#" + contactType + "_" + dtype).prepend(data.return);
             $(".contact-wrap").delay('2000').removeClass('added');
-            $("#cval_"+did).val('');
+            // Clear form fields
+            $("#cval_" + did).val('');
+            $("#ctitle_" + did).val('');
+            $("#cdesc_" + did).val('');
+            if(contactType === 'phone') {
+              $("#is_whatsapp_" + did).prop('checked', false);
+            }
+            if(contactType === 'location') {
+              $("#clat_" + did).val('');
+              $("#clong_" + did).val('');
+            }
           }
         }else{
           var errs = data.errors;
           if(errs.length > 0){
-            $("#err_"+dtype).html('');
+            $("#err_" + contactType + "_" + dtype).html('');
             $.each(data.errors, function(index, value) {
-              $("#err_"+dtype).append('<div class="err">'+value+'</div>');
+              $("#err_" + contactType + "_" + dtype).append('<div class="err alert alert-danger">'+value+'</div>');
             });
           }
         }

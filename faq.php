@@ -15,7 +15,8 @@ $nav_class = $logo_type = 'dark';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="dist/css/main.css" type="text/css" />
 
-    <title>Mexico Real Estate FAQ</title>
+    <title>Frequently Asked Questions - Casa Novara Group</title>
+    
 
   </head>
   <body class="<?= $mobile_class ?> about-page">
@@ -28,8 +29,8 @@ $nav_class = $logo_type = 'dark';
       <div class="container">
         <div class="row">
           <div class="col">
-              <h1>Mexico Real Estate FAQ</h1>
-              <h2>Here you will find a list of the most frequently asked questions.</h2>
+              <h1>Frequently Asked Questions</h1>
+              <h2>If you cannot find an answer to your question, feel free to contact us today!</h2>
 
               <div id="budd_blog">
               <?php if(1 == 3){ foreach($site->Blog as $bl){ ?>
@@ -38,7 +39,7 @@ $nav_class = $logo_type = 'dark';
               <?php } }else{ ?>
                 <div class="no-results">
                   <h5>Nothing here.</h5>
-                  <p>We apologize but we are busy selling homes and haven't uploaded our frequently asked questions yet. Please check back soon!</p>
+                  <p>We are still working on updating our website. Please check back soon or contact us now. </p>
                 </div>
               <?php } ?>
               </div>

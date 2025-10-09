@@ -21,7 +21,7 @@ if($lang == 'en'){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Riviera Maya Real Estate Info - MIA Realty</title>
+    <title>Casa Novara Group - Real Estate News</title>
     <meta name="description" content="<?= $meta['blog']['desc'] ?>" />
     <meta name="robots" content="index" />
   <link rel="canonical" href="https://casanovaragroup.com/<?= $link_blog[$lang] ?>">
@@ -37,20 +37,21 @@ if($lang == 'en'){
     <meta name="twitter:image:alt" content="<?= $site->Art['title'] ?>">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="dist/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="dist/css/cng_base.css" type="text/css" />
+    <link rel="stylesheet" href="dist/css/cng.css" type="text/css" />
+
 
     <?php include 'dist/inc/favicon.php'; ?>
 
   </head>
   <body class="<?= $mobile_class ?> about-page">
-    <?php require('dist/inc/nav_top.php') ?>
     <div class="inner-head dark">
-      <?php require('dist/inc/nav.php') ?>
+      <?php require('dist/inc/nav-inner.php') ?>
     </div>
 
     <section id="blog_list">
       <div class="container">
-        <div class="row">
+        <div class="row mt-5">
           <div class="col">
               <h1><?= $lan['bl']['h1'] ?></h1>
               <h2><?= $lan['bl']['h2'] ?></h2>

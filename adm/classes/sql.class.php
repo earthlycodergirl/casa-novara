@@ -1,5 +1,13 @@
 <?php
 
+// Check if security.php is already loaded, if not include it
+if (!defined('SECURITY_CONFIG_LOADED')) {
+    $security_path = dirname(__DIR__) . '/config/security.php';
+    if (file_exists($security_path)) {
+        require_once $security_path;
+    }
+}
+
 
 
 class SqlIt{
