@@ -12,6 +12,8 @@ $blog_id = 0;
 $blog_title = '';
 $blog_content = '';
 $blog_author = '';
+$blog_img = '';
+$blog_lang = '';
 
 
 if(isset($_GET['bid']) && $_GET['bid'] > 0){
@@ -22,6 +24,8 @@ if(isset($_GET['bid']) && $_GET['bid'] > 0){
         $blog_title = $rr->title;
         $blog_content = $rr->content;
         $blog_author = $rr->author;
+        $blog_img = $rr->main_img;
+        $blog_lang = $rr->lang;
         $edit = 1;
     }
 }
@@ -38,6 +42,11 @@ if(isset($_POST['update_blog'])){
       $return = uploadImg($upload_dir,'main_img');
       if($return['success'] == 1){
         $blog_img = $return['filename'];
+      } else {
+        // Handle upload errors
+        $show_alert = 'danger';
+        $note_head = 'Upload Error';
+        $note_txt = $return['errors'];
       }
     }
 
@@ -130,8 +139,8 @@ if(isset($_POST['update_blog'])){
 
 
         <h1 class="header-title">
-            <strong>Update Article</strong>
-            <small class="pt-0 mb-4">Please enter the text below in both English and Spanish.</small>
+            <strong><?php echo ($edit == 1) ? 'Update Article' : 'Add New Article'; ?></strong>
+            <small class="pt-0 mb-4">Enter an article here, select the language you are posting in (English or Spanish).</small>
         </h1>
          <form action="blog-entry.php" method="post" enctype="multipart/form-data">
         <div class="card shadow-3">
@@ -183,8 +192,8 @@ if(isset($_POST['update_blog'])){
 
                       <?php }else{ ?>
 
-                      <img src="https://placehold.it/250x150" />
-                      <? } ?>
+                      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDI1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRjVGNUY1Ii8+CjxyZWN0IHg9IjEiIHk9IjEiIHdpZHRoPSIyNDgiIGhlaWdodD0iMTQ4IiBzdHJva2U9IiNEREREREQiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8Y2lyY2xlIGN4PSI4NSIgY3k9IjU1IiByPSIxNSIgZmlsbD0iI0NDQ0NDQyIvPgo8cGF0aCBkPSJNNzAgODBMMTAwIDUwTDE4MCA5MEwyMzAgNDBWMTMwSDIwVjgwWiIgZmlsbD0iI0RERERERCIvPgo8dGV4dCB4PSIxMjUiIHk9IjkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5OTk5OTkiPkJsb2cgSW1hZ2U8L3RleHQ+Cjx0ZXh0IHg9IjEyNSIgeT0iMTA4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiNCQkJCQkIiPjI1MHgxNTA8L3RleHQ+Cjwvc3ZnPgo=" alt="Blog Image Placeholder" class="img-fluid" style="border: 1px solid #ddd; border-radius: 4px;" />
+                      <?php } ?>
                     </div>
                     <div class="col-sm-9">
                       <div class="form-group file-wrap">
@@ -199,7 +208,15 @@ if(isset($_POST['update_blog'])){
               </div>
             </div>
             <hr>
-          <button type="submit" name="update_blog" class="btn btn-primary btn-lg pull-right"><i class="ti-save"></i> Save changes</button>
+          <div class="text-right">
+            <?php if($edit == 1){ ?>
+            <a href="../blog-page.php?bid=<?= $blog_id ?>" target="_blank" class="btn btn-outline btn-info btn-lg mr-2"><i class="ti-eye"></i> Preview Article</a>
+            <?php } ?>
+            <button type="submit" name="update_blog" class="btn btn-primary btn-lg">
+              <i class="ti-<?php echo ($edit == 1) ? 'save' : 'plus'; ?>"></i> 
+              <?php echo ($edit == 1) ? 'Save Changes' : 'Add Article'; ?>
+            </button>
+          </div>
           <div class="clearfix"></div>
         </form>
 

@@ -33,7 +33,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="mexico-real-estate/">Blog</a>
+          <a class="nav-link text-dark" href="real-estate-news/">Blog</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-dark" href="contact-us">Contact</a>

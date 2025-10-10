@@ -57,8 +57,8 @@ RewriteRule    ^listing-map/([A-Za-z0-9-]+)/?$    cng_listing.php?prop_id=$1&typ
 RewriteRule    ^listingup/([A-Za-z0-9-]+)/?$    cng_listing.php?prop_id=$1&type=up    [NC,L]
 
 # Other routes
-RewriteRule    ^blog/([A-Za-z0-9-]+)/?$    blog-page.php?blog_id=$1   [NC,L]
-RewriteRule    ^mexico-real-estate/?$    blog.php   [NC,L]
+RewriteRule    ^real-estate-news/([A-Za-z0-9-]+)/?$    cng_blog_post.php?bid=$1   [NC,L]
+RewriteRule    ^real-estate-news/?$    cng_blog.php   [NC,L]
 RewriteRule    ^contact-us?$    contact.php  [NC,L]
 RewriteRule    ^real-estate-faq?$    faq.php  [NC,L]
 RewriteRule    ^privacy-policy?$    secure-privacy.php  [NC,L]
@@ -104,4 +104,5 @@ RewriteCond %{REQUEST_URI} !^/casa-novara/listing/
 RewriteCond %{REQUEST_URI} !^/casa-novara/listings/
 RewriteCond %{REQUEST_URI} !^/casa-novara/es/propiedad/
 RewriteCond %{REQUEST_URI} !^/casa-novara/es/propiedades/
+RewriteCond %{REQUEST_URI} !^/casa-novara/blog/
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
