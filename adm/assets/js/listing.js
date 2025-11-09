@@ -111,13 +111,13 @@ app.ready(function () {
     // Get and display areas
     $("#nj_city").on('change',function(){
         var pp = $(this).val();
-        $("#nj_county").html('<option>Loading</option>');
-        $("#nj_county").attr('disabled','disabled');
+        $("#nj_county").html('<option><i class="fas fa-spinner fa-spin"></i> Loading...</option>');
+        $("#nj_county").addClass('loading-select').attr('disabled','disabled');
         $("#nj_areas").html('<option></option>');
         $("#nj_areas").attr('disabled','disabled');
         $.post('assets/inc/process/get_areas.php',{city:pp},function(data){
             $("#nj_county").html(data);
-            $("#nj_county").removeAttr('disabled');
+            $("#nj_county").removeClass('loading-select').removeAttr('disabled');
         });
     });
 
@@ -125,11 +125,11 @@ app.ready(function () {
     // Get and display areas
     $("#nj_county").on('change',function(){
         var pp = $(this).val();
-        $("#nj_areas").html('<option>Loading...</option>');
-        $("#nj_areas").attr('disabled','disabled');
+        $("#nj_areas").html('<option><i class="fas fa-spinner fa-spin"></i> Loading...</option>');
+        $("#nj_areas").addClass('loading-select').attr('disabled','disabled');
         $.post('assets/inc/process/get_areas.php',{county:pp},function(data){
             $("#nj_areas").html(data);
-            $("#nj_areas").removeAttr('disabled');
+            $("#nj_areas").removeClass('loading-select').removeAttr('disabled');
         });
     });
 

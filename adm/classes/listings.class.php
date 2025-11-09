@@ -160,7 +160,7 @@ class Listings{
          $getAreas = new SqlIt("SELECT * FROM locations_areas WHERE town_id = ? ORDER BY area_name ASC","select",array($town_id));
          if($getAreas->NumResults > 0){
             foreach($getAreas->Response as $gs){
-               $this->Areas[$gs->area_id] = utf8_encode($gs->area_name);
+               $this->Areas[$gs->area_id] = $gs->area_name;
             }
          }
       }
@@ -177,7 +177,7 @@ class Listings{
          $getTowns = new SqlIt("SELECT * FROM locations_towns WHERE city_id = ? ORDER BY town_name ASC","select",array($city_id));
          if($getTowns->NumResults > 0){
             foreach($getTowns->Response as $gs){
-               $this->Towns[$gs->town_id] = utf8_encode($gs->town_name);
+               $this->Towns[$gs->town_id] = $gs->town_name;
             }
          }
       }
@@ -193,7 +193,7 @@ class Listings{
          $getCities = new SqlIt("SELECT * FROM locations_cities WHERE state_id = ? ORDER BY location ASC","select",array($state_id));
          if($getCities->NumResults > 0){
             foreach($getCities->Response as $gs){
-               $this->Cities[$gs->city_id] = utf8_encode($gs->location);
+               $this->Cities[$gs->city_id] = $gs->location;
             }
          }
       }
@@ -206,7 +206,7 @@ class Listings{
       $getStates = new SqlIt("SELECT * FROM locations_states ORDER BY state ASC","select",array());
       if($getStates->NumResults > 0){
          foreach($getStates->Response as $gs){
-            $this->States[$gs->state_id] = utf8_encode($gs->state);
+            $this->States[$gs->state_id] = $gs->state;
          }
       }
 
@@ -257,7 +257,7 @@ class Listings{
       GROUP BY city_id ORDER BY location ASC","select",array($state_id));
       if($getCities->NumResults > 0){
         foreach($getCities->Response as $gs){
-           $this->AdmCities[$gs->city_id]['name'] = utf8_encode($gs->location);
+           $this->AdmCities[$gs->city_id]['name'] = $gs->location;
            $this->AdmCities[$gs->city_id]['cnt'] = $gs->props;
            $this->AdmCities[$gs->city_id]['featured'] = $gs->is_featured;
         }
@@ -276,7 +276,7 @@ class Listings{
       GROUP BY town_id ORDER BY town_name ASC","select",array($city_id));
       if($getTowns->NumResults > 0){
         foreach($getTowns->Response as $gs){
-           $this->AdmTowns[$gs->town_id]['name'] = utf8_encode($gs->town_name);
+           $this->AdmTowns[$gs->town_id]['name'] = $gs->town_name;
            $this->AdmTowns[$gs->town_id]['cnt'] = $gs->props;
            $this->AdmTowns[$gs->town_id]['featured'] = $gs->is_featured;
         }
@@ -295,7 +295,7 @@ class Listings{
       GROUP BY area_id ORDER BY area_name ASC","select",array($town_id));
       if($getAreas->NumResults > 0){
         foreach($getAreas->Response as $gs){
-           $this->AdmAreas[$gs->area_id]['name'] = utf8_encode($gs->area_name);
+           $this->AdmAreas[$gs->area_id]['name'] = $gs->area_name;
            $this->AdmAreas[$gs->area_id]['cnt'] = $gs->props;
            $this->AdmAreas[$gs->area_id]['featured'] = $gs->is_featured;
         }

@@ -530,9 +530,9 @@ $lan['adv']['other'] = 'Other';
 
 
 
-$lan['bl']['h1'] = 'Mexico Real Estate Blog';
+$lan['bl']['h1'] = 'Real Estate News';
 
-$lan['bl']['h2'] = 'Welcome to your source for professional real estate information in the Mayan Riviera.';
+$lan['bl']['h2'] = 'Welcome to your source for professional real estate information in the field of excellence and luxury.';
 
 $lan['bl']['read'] = 'Read full article';
 

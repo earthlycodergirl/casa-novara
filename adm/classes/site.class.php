@@ -17,7 +17,7 @@ class Site{
       $getC = new SqlIt("SELECT * FROM locations_cities WHERE is_featured = ? ORDER BY location ASC","select",array(1));
       if($getC->NumResults > 0){
         foreach($getC->Response as $gc){
-          $nav['city'][$gc->city_id]['title'] = utf8_encode($gc->location);
+          $nav['city'][$gc->city_id]['title'] = $gc->location;
           $nav['city'][$gc->city_id]['link'] = urlencode(strtolower($gc->location));
           $nav['city'][$gc->city_id]['id'] = $gc->city_id;
         }
@@ -26,7 +26,7 @@ class Site{
       $getT = new SqlIt("SELECT * FROM locations_towns WHERE is_featured = ? ORDER BY town_name ASC","select",array(1));
       if($getT->NumResults > 0){
         foreach($getT->Response as $gc){
-          $nav['town'][$gc->town_id]['title'] = utf8_encode($gc->town_name);
+          $nav['town'][$gc->town_id]['title'] = $gc->town_name;
           $nav['town'][$gc->town_id]['link'] = urlencode(strtolower($gc->town_name));
           $nav['town'][$gc->town_id]['id'] = $gc->town_id;
         }
@@ -35,7 +35,7 @@ class Site{
       $getA = new SqlIt("SELECT * FROM locations_areas WHERE is_featured = ? ORDER BY area_name ASC","select",array(1));
       if($getA->NumResults > 0){
         foreach($getA->Response as $gc){
-          $nav['area'][$gc->area_id]['title'] = utf8_encode($gc->area_name);
+          $nav['area'][$gc->area_id]['title'] = $gc->area_name;
           $nav['area'][$gc->area_id]['link'] = urlencode(strtolower($gc->area_name));
           $nav['area'][$gc->area_id]['id'] = $gc->area_id;
         }

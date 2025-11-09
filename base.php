@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 
 // ENGLISH PAGES
-$link_home['en'] = '/casa-novara/';
+$link_home['en'] = '/';
 $link_about['en'] = 'about';
 $link_contact['en'] = 'contact-us';
 $link_blog['en'] = 'mexico-real-estate/';
@@ -21,7 +21,7 @@ $link_loctypes['en'] = ['city'=>'listings/cities','town'=>'listings/towns','area
 $current_link['en'] = $link_home['en'];
 
 // SPANISH PAGES
-$link_home['es'] = '/casa-novara/es/';
+$link_home['es'] = '/es/';
 $link_about['es'] = 'es/quienes-somos';
 $link_contact['es'] = 'es/contacto';
 $link_blog['es'] = 'es/bienes-raices-mexico/';
@@ -35,8 +35,8 @@ $link_ptypes['es'] = ['es/propiedades/comercial','es/propiedades/residencial','e
 $link_loctypes['es'] = ['city'=>'es/propiedades/cities','town'=>'es/propiedades/towns','area'=>'es/propiedades/areas'];
 $current_link['es'] = $link_home['es'];
 
-$site_url = '/casa-novara/';
-$base_href = '/casa-novara/';
+$site_url = 'https://casanovaragroup.com';
+$base_href = '/';
 $nav_class = $logo_class = '';
 
 $phones_mia = $social_mia = [];

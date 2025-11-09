@@ -29,6 +29,10 @@ if(isset($_POST['city']) && $_POST['city'] != ''){
     $list = new Listings();
     $list->getTowns($_POST['city']);
 
+    echo "<pre>";
+    print_r($list);
+    echo "</pre>";
+
 
     if(is_array($list->Towns) && !empty($list->Towns)){
         $success = 1;

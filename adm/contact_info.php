@@ -283,29 +283,29 @@ $con->getContact();
                                   <div class="col-12">
                                     <div class="form-group">
                                       <label>Phone Number</label>
-                                      <input type="text" class="form-control" id="cval_phone_<?= $o ?>" name="c_value" placeholder="+52 322 123-4567">
+                                      <input type="text" class="form-control" id="cval_<?= $o ?>" name="c_value" placeholder="+52 322 123-4567">
                                     </div>
                                   </div>
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label>Title</label>
-                                      <input type="text" class="form-control" id="ctitle_phone_<?= $o ?>" name="c_title" placeholder="e.g., Main Office">
+                                      <input type="text" class="form-control" id="ctitle_<?= $o ?>" name="c_title" placeholder="e.g., Main Office">
                                     </div>
                                   </div>
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label>Description</label>
-                                      <input type="text" class="form-control" id="cdesc_phone_<?= $o ?>" name="c_description" placeholder="e.g., Mon-Fri 9AM-6PM">
+                                      <input type="text" class="form-control" id="cdesc_<?= $o ?>" name="c_description" placeholder="e.g., Mon-Fri 9AM-6PM">
                                     </div>
                                   </div>
                                   <div class="col-12">
                                     <div class="form-check mb-3">
-                                      <input class="form-check-input" type="checkbox" id="is_whatsapp_phone_<?= $o ?>" name="is_whatsapp">
-                                      <label class="form-check-label" for="is_whatsapp_phone_<?= $o ?>">
+                                      <input class="form-check-input" type="checkbox" id="is_whatsapp_<?= $o ?>" name="is_whatsapp">
+                                      <label class="form-check-label" for="is_whatsapp_<?= $o ?>">
                                         <i class="ti-check"></i> WhatsApp Number
                                       </label>
                                     </div>
-                                    <button type="button" class="btn btn-success add-contact" data-type="<?= $key ?>" data-contact-type="phone" data-id="phone_<?= $o ?>">
+                                    <button type="button" class="btn btn-success add-contact" data-type="<?= $key ?>" data-contact-type="phone" data-id="<?= $o ?>">
                                       <i class="ti-plus"></i> Add Phone Number
                                     </button>
                                   </div>
@@ -326,28 +326,29 @@ $con->getContact();
                               <h5><i class="ti-time"></i> Office Hours</h5>
                               <p class="text-muted small">Set your office availability and hours</p>
                               
+                              <?php $o++; ?>
                               <div class="contact-wrap main-wrap" id="new_availability_<?= $key ?>">
                                 <div class="row copy-me">
                                   <div class="col-12">
                                     <div class="form-group">
                                       <label>Hours</label>
-                                      <input type="text" class="form-control" id="cval_availability_<?= $o ?>" name="c_value" placeholder="Monday-Friday 9:00 AM - 6:00 PM">
+                                      <input type="text" class="form-control" id="cval_<?= $o ?>" name="c_value" placeholder="Monday-Friday 9:00 AM - 6:00 PM">
                                     </div>
                                   </div>
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label>Title</label>
-                                      <input type="text" class="form-control" id="ctitle_availability_<?= $o ?>" name="c_title" placeholder="e.g., Business Hours">
+                                      <input type="text" class="form-control" id="ctitle_<?= $o ?>" name="c_title" placeholder="e.g., Business Hours">
                                     </div>
                                   </div>
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label>Description</label>
-                                      <input type="text" class="form-control" id="cdesc_availability_<?= $o ?>" name="c_description" placeholder="e.g., Call for appointments">
+                                      <input type="text" class="form-control" id="cdesc_<?= $o ?>" name="c_description" placeholder="e.g., Call for appointments">
                                     </div>
                                   </div>
                                   <div class="col-12">
-                                    <button type="button" class="btn btn-info add-contact" data-type="<?= $key ?>" data-contact-type="availability" data-id="availability_<?= $o ?>">
+                                    <button type="button" class="btn btn-info add-contact" data-type="<?= $key ?>" data-contact-type="availability" data-id="<?= $o ?>">
                                       <i class="ti-plus"></i> Add Hours
                                     </button>
                                   </div>
@@ -370,40 +371,41 @@ $con->getContact();
                               <h5><i class="ti-location-pin"></i> Office Location</h5>
                               <p class="text-muted small">Add office address and coordinates</p>
                               
+                              <?php $o++; ?>
                               <div class="contact-wrap main-wrap" id="new_location_<?= $key ?>">
                                 <div class="row copy-me">
                                   <div class="col-12">
                                     <div class="form-group">
                                       <label>Address</label>
-                                      <textarea class="form-control" id="cval_location_<?= $o ?>" name="c_value" rows="2" placeholder="Full office address"></textarea>
+                                      <textarea class="form-control" id="cval_<?= $o ?>" name="c_value" rows="2" placeholder="Full office address"></textarea>
                                     </div>
                                   </div>
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label>Title</label>
-                                      <input type="text" class="form-control" id="ctitle_location_<?= $o ?>" name="c_title" placeholder="e.g., Main Office">
+                                      <input type="text" class="form-control" id="ctitle_<?= $o ?>" name="c_title" placeholder="e.g., Main Office">
                                     </div>
                                   </div>
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label>Description</label>
-                                      <input type="text" class="form-control" id="cdesc_location_<?= $o ?>" name="c_description" placeholder="e.g., Ground floor">
+                                      <input type="text" class="form-control" id="cdesc_<?= $o ?>" name="c_description" placeholder="e.g., Ground floor">
                                     </div>
                                   </div>
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label>Latitude <small>(optional)</small></label>
-                                      <input type="text" class="form-control" id="clat_location_<?= $o ?>" name="c_latitude" placeholder="20.6534">
+                                      <input type="text" class="form-control" id="clat_<?= $o ?>" name="c_latitude" placeholder="20.6534">
                                     </div>
                                   </div>
                                   <div class="col-6">
                                     <div class="form-group">
                                       <label>Longitude <small>(optional)</small></label>
-                                      <input type="text" class="form-control" id="clong_location_<?= $o ?>" name="c_longitude" placeholder="-105.2253">
+                                      <input type="text" class="form-control" id="clong_<?= $o ?>" name="c_longitude" placeholder="-105.2253">
                                     </div>
                                   </div>
                                   <div class="col-12">
-                                    <button type="button" class="btn btn-warning add-contact" data-type="<?= $key ?>" data-contact-type="location" data-id="location_<?= $o ?>">
+                                    <button type="button" class="btn btn-warning add-contact" data-type="<?= $key ?>" data-contact-type="location" data-id="<?= $o ?>">
                                       <i class="ti-plus"></i> Add Location
                                     </button>
                                   </div>
@@ -460,6 +462,13 @@ $con->getContact();
                                   <div class="col-2">
                                       <button type="button" class="btn btn-info add-contact" data-type="<?= $key ?>" data-id="<?= $o ?>" style="margin-top: 27px;"><i class="ti-plus"></i></button>
                                   </div>
+                                  
+                                  <!-- Hidden inputs with default values -->
+                                  <input type="hidden" id="ctitle_<?= $o ?>" value="<?= ucfirst(str_replace('_', ' ', $key)) ?> Contact">
+                                  <input type="hidden" id="cdesc_<?= $o ?>" value="Contact information for <?= str_replace('_', ' ', $key) ?>">
+                                  <input type="hidden" id="is_whatsapp_<?= $o ?>" value="0">
+                                  <input type="hidden" id="clat_<?= $o ?>" value="">
+                                  <input type="hidden" id="clong_<?= $o ?>" value="">\
 
                               <?php } else { ?>
                                 <div class="col-8 mb-2">
@@ -473,6 +482,13 @@ $con->getContact();
                                 <div class="col-2">
                                     <button type="button" class="btn btn-info add-contact" data-type="<?= $key ?>" data-id="<?= $o ?>"><i class="ti-plus"></i></button>
                                 </div>
+                                
+                                <!-- Hidden inputs with default values -->
+                                <input type="hidden" id="ctitle_<?= $o ?>" value="<?= ucfirst(str_replace('_', ' ', $key)) ?> Contact">
+                                <input type="hidden" id="cdesc_<?= $o ?>" value="Email for <?= str_replace('_', ' ', $key) ?>">
+                                <input type="hidden" id="is_whatsapp_<?= $o ?>" value="0">
+                                <input type="hidden" id="clat_<?= $o ?>" value="">
+                                <input type="hidden" id="clong_<?= $o ?>" value="">\
                               <?php } ?>
                                 <!-- CONTACT PAGE END -->
                           </div>
@@ -509,56 +525,12 @@ $con->getContact();
                 </div>
                 </div>
 
-                <!-- JavaScript to load existing office info items -->
-                <?php if($key == 'office_info' && !empty($con->ContactInfo[$key])) { 
-                  foreach($con->ContactInfo[$key] as $kk=>$ll){
-                    $sectionId = $ll['type'] . '_' . $key;
-                    ?>
-                    <script>
-                    $(document).ready(function(){
-                      setTimeout(function(){
-                        var existingItem = `<div class="contact-display-item" id="wrap_<?= $ll['id'] ?>">
-                          <div class="row align-items-center">
-                            <div class="col-9">
-                              <h6 class="mb-1">
-                                <i class="ti-<?= $ll['type'] == 'phone' ? 'mobile' : ($ll['type'] == 'availability' ? 'time' : 'location-pin') ?>"></i> 
-                                <?= !empty($ll['title']) ? htmlspecialchars($ll['title']) : ucfirst($ll['type']) ?>
-                                <?php if($ll['is_whatsapp'] == 1 && $ll['type'] == 'phone') { ?>
-                                  <span class="badge badge-success">WhatsApp</span>
-                                <?php } ?>
-                              </h6>
-                              <div class="mb-1"><strong><?= htmlspecialchars($ll['val']) ?></strong></div>
-                              <?php if(!empty($ll['description'])) { ?>
-                                <small class="text-muted d-block"><?= htmlspecialchars($ll['description']) ?></small>
-                              <?php } ?>
-                              <?php if($ll['type'] == 'location' && !empty($ll['meta'])) { ?>
-                                <?php if(!empty($ll['meta']['latitude']) || !empty($ll['meta']['longitude'])) { ?>
-                                  <div class="row mt-1">
-                                    <?php if(!empty($ll['meta']['latitude'])) { ?>
-                                      <div class="col-6"><small class="text-muted">Lat: <?= htmlspecialchars($ll['meta']['latitude']) ?></small></div>
-                                    <?php } ?>
-                                    <?php if(!empty($ll['meta']['longitude'])) { ?>
-                                      <div class="col-6"><small class="text-muted">Lng: <?= htmlspecialchars($ll['meta']['longitude']) ?></small></div>
-                                    <?php } ?>
-                                  </div>
-                                <?php } ?>
-                              <?php } ?>
-                            </div>
-                            <div class="col-3 text-right">
-                              <button type="button" class="btn btn-outline-primary btn-sm update-contact" data-id="<?= $ll['id'] ?>" title="Edit">
-                                <i class="ti-pencil"></i>
-                              </button>
-                              <button type="button" class="btn btn-outline-danger btn-sm del-contact" data-id="<?= $ll['id'] ?>" title="Delete">
-                                <i class="ti-trash"></i>
-                              </button>
-                            </div>
-                          </div>
-                        </div>`;
-                        $('#<?= $sectionId ?>').append(existingItem);
-                      }, 100);
-                    });
-                    </script>
-                <?php } } ?>
+                <!-- Store office info data for JavaScript loading -->
+                <?php if($key == 'office_info' && !empty($con->ContactInfo[$key])) { ?>
+                <script type="application/json" id="office-info-data">
+                <?= json_encode($con->ContactInfo[$key]) ?>
+                </script>
+                <?php } ?>
 
               <?php $o++; } ?>
             </div>
@@ -599,6 +571,14 @@ $con->getContact();
     <script src="assets/js/core.min.js" data-provide="sweetalert"></script>
     <script src="assets/js/app.min.js"></script>
     <script src="assets/js/script.min.js"></script>
+    <script>
+        // Verify jQuery is available
+        if(typeof jQuery !== 'undefined') {
+            console.log('jQuery loaded from core.min.js:', jQuery().jquery);
+        } else {
+            console.error('jQuery not available!');
+        }
+    </script>
     <script src="assets/js/contact-info.js"></script>
 
 </body>

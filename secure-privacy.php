@@ -24,6 +24,7 @@ $nav_class = $logo_type = 'dark';
     <style>
         .secure-content {
             padding: 2rem 0 4rem;
+            background: #f2f2f2;
         }
         .content-wrapper {
             background: white;
@@ -58,18 +59,6 @@ $nav_class = $logo_type = 'dark';
 </head>
 <body class="secure-privacy-page">
     <?php require 'dist/inc/nav-inner.php';?>
-
-    <!-- Breadcrumbs Section -->
-    <div class="breadcrumb-section">
-        <div class="container-fluid">
-            <nav style="--bs-breadcrumb-divider: ' > ';" aria-label="breadcrumb" class="breadcrumbs">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?= $link_home[$lang] ?>">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Privacy Policy</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
 
     <!-- Main Content Section -->
     <section class="secure-content">

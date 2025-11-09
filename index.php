@@ -33,8 +33,8 @@
 						<p class="hero-text">Exceptional properties for those who live exceptionally.</p>
 
 						<div class="d-flex justify-content-center gap-3 hero-buttons">
-							<a href="#" class="btn btn-dark btn-lg">Find Properties</a>
-							<a href="#" class="btn btn-outline-light btn-lg">Contact Expert</a>
+							<a href="/listings" class="btn btn-dark btn-lg">Find Properties</a>
+							<a href="/contact-us" class="btn btn-outline-light btn-lg">Contact Expert</a>
 						</div>
 					</div>
 				</div>

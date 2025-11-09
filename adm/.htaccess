@@ -1,7 +1,7 @@
 RewriteEngine On
 #RewriteCond %{HTTPS} off
 #RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-RewriteBase /adm/
+RewriteBase /casa-novara/adm/
 
 RewriteRule    ^listing/([A-Za-z0-9-]+)/?$    listing.php?prop_id=$1&type=budd    [L,QSA]
 RewriteRule    ^listingup/([A-Za-z0-9-]+)/?$    listing.php?prop_id=$1&type=up    [NC,L]

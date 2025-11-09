@@ -436,6 +436,13 @@
     <div class="card shadow-3" id="location">
         <h4 class="card-title">Listing <b>Location</b></h4>
         <div class="card-body">
+            <div class="callout callout-info" style="background: #f3f8ff" role="alert">
+                  <button type="button" class="close" data-dismiss="callout" aria-label="Close">
+                    <span>×</span>
+                  </button>
+                <h5 style=" margin-bottom: 0; font-size: 16px; font-weight: 500; display: inline-block;">Smart Location Entry:</h5> 
+                <p style="line-height: normal;display: inline;">City and Area dropdowns support custom entries! If you don't see your location in the list, input it in the dropdown field and it will be automatically saved to the database for future use.</p>
+            </div>
             <div class="row">
                 <div class="col-9">
                     <div class="form-group">
@@ -463,6 +470,7 @@
                            <option <?php if($prop->Location->City == $key){ echo 'selected'; } ?> value="<?= $key ?>"><?= $ss ?></option>
                            <?php } ?>
                        </select>
+                       
                    </div>
                </div>
                <div class="col-3">
@@ -474,6 +482,10 @@
                           <option <?php if($prop->Location->County == $key){ echo 'selected'; } ?> value="<?= $key ?>"><?= $ss ?></option>
                           <?php } ?>
                       </select>
+                      <small class="form-text text-muted">
+                          <i class="fas fa-info-circle text-primary"></i> 
+                          Custom locations will be automatically saved to the database.
+                      </small>
                   </div>
 
                 </div>
@@ -488,6 +500,10 @@
                            <option <?php if($prop->Location->Area == $key){ echo 'selected'; } ?> value="<?= $key ?>"><?= $ss ?></option>
                            <?php } ?>
                        </select>
+                       <small class="form-text text-muted">
+                           <i class="fas fa-info-circle text-primary"></i> 
+                           Type to add new areas not shown in the list.
+                       </small>
                    </div>
                 </div>
             </div>

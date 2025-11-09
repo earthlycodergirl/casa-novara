@@ -90,6 +90,47 @@ if(!isset($prop->PropertyTitle)) {
     $prop->PropertyId = $prop->PropertyId ?? 0;
 }
 
+// Set default description and details if not set
+if(!isset($prop->description) || trim($prop->description) == '') {
+    $prop->description = $prop->PropertyDesc ?? 'No description available for this property.';
+}
+if(!isset($prop->descr_es) || trim($prop->descr_es) == '') {
+    $prop->descr_es = $prop->PropertyDescEs ?? 'No hay descripción disponible para esta propiedad.';
+}
+if(!isset($prop->construction_area_sqmts)) {
+    $prop->construction_area_sqmts = 0;
+}
+if(!isset($prop->lot_size_sqmts)) {
+    $prop->lot_size_sqmts = 0;
+}
+if(!isset($prop->development)) {
+    $prop->development = 'Not Available';
+}
+if(!isset($prop->furnished)) {
+    $prop->furnished = 'Not Available';
+}
+if(!isset($prop->pets_allowed)) {
+    $prop->pets_allowed = 0;
+}
+if(!isset($prop->zone)) {
+    $prop->zone = $prop->Location->AreaName ?? 'Marina Vallarta';
+}
+if(!isset($prop->city)) {
+    $prop->city = $prop->Location->CityName ?? 'Puerto Vallarta';
+}
+if(!isset($prop->state)) {
+    $prop->state = $prop->Location->StateName ?? 'Jalisco';
+}
+if(!isset($prop->zip_code)) {
+    $prop->zip_code = $prop->Location->Zip ?? '48354';
+}
+if(!isset($prop->latitude)) {
+    $prop->latitude = $prop->Location->Latitude ?? '20.6598';
+}
+if(!isset($prop->longitude)) {
+    $prop->longitude = $prop->Location->Longitude ?? '-105.2257';
+}
+
 // Set default location if not set
 if(!isset($prop->Location)) {
     $prop->Location = new stdClass();
@@ -197,7 +238,7 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
             padding-left: 15px;
             padding-right: 15px;
         }
-        
+
         /* Ensure consistent margins for mobile and desktop */
         @media (min-width: 576px) {
             .breadcrumb-section .container-fluid,
@@ -208,7 +249,7 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
                 padding-right: 20px;
             }
         }
-        
+
         @media (min-width: 768px) {
             .breadcrumb-section .container-fluid,
             .properties .container-fluid,
@@ -217,6 +258,40 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
                 padding-left: 24px;
                 padding-right: 24px;
             }
+        }
+
+        /* Set max height for owl carousel wrapper */
+        .owl-carousel .owl-wrapper-outer {
+            max-height: 70vh;
+        }
+
+        /* Center main slider image vertically and horizontally */
+        #property-d-1 .item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 70vh;
+            min-height: 300px;
+            background: #f8f8f8;
+        }
+        #property-d-1 .item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Thumbnails: inactive = grayscale, active = color */
+        #property-d-1-2 .item img {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: filter 0.2s;
+        }
+        #property-d-1-2 .item img.active,
+        #property-d-1-2 .owl-item.center .item img {
+            filter: none;
+            opacity: 1;
         }
     </style>
 

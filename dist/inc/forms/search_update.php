@@ -17,7 +17,7 @@
                  <select name="location" id="location" class="form-control select-mia">
                      <option value="0"><?= $lan['bas']['where'][1] ?></option>
                      <?php  if(!empty($listing_cities)){ foreach($listing_cities as $kk=>$vv){ if($kk == $city_id){ $sel = 'selected'; }else{ $sel = ''; } ?>
-                     <option value="<?= $kk ?>" <?= $sel ?>><?= utf8_encode($vv['loc']).', Mexico ('.$vv['cnt'].')' ?></option>
+                     <option value="<?= $kk ?>" <?= $sel ?>><?= $vv['loc'].', Mexico ('.$vv['cnt'].')' ?></option>
                      <?php } } ?>
                  </select>
               </div>

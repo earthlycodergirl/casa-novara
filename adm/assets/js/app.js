@@ -3037,38 +3037,98 @@ jQuery.fn.scrollToEnd = function() {
 
 
 
-  // Make an element fullscreen
+  // Sidebar collapse toggle (formerly fullscreen)
   //
   provider.initFullscreen = function() {
-    if ( window['screenfull'] === undefined ) {
-      return;
-    }
-
-    if ( ! screenfull.enabled ) {
-      return;
-    }
-
     var selector = '[data-provide~="fullscreen"]';
 
     $(selector).each(function(){
       $(this).data('fullscreen-default-html', $(this).html());
     });
 
-    document.addEventListener(screenfull.raw.fullscreenchange, function() {
-      if (screenfull.isFullscreen) {
-        $(selector).each(function(){
-          $(this).addClass('is-fullscreen')
-        });
-      }
-      else {
-        $(selector).each(function(){
-          $(this).removeClass('is-fullscreen')
+    // Add CSS for collapsed sidebar
+    if (!$('#sidebar-collapse-styles').length) {
+      $('<style id="sidebar-collapse-styles">')
+        .text(`
+          .sidebar-collapsed .sidebar {
+            width: 0 !important;
+            transform: translateX(-100%);
+            transition: all 0.3s ease;
+          }
+          .sidebar-collapsed .topbar,
+          .sidebar-collapsed .main-container {
+            margin-left: 0 !important;
+            transition: all 0.3s ease;
+          }
+          .sidebar-collapsed .hamburger-menu {
+            display: inline-block !important;
+          }
+          .hamburger-menu {
+            display: none;
+            margin-right: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.1);
+            color: inherit;
+          }
+          .hamburger-menu:hover {
+            background: rgba(255,255,255,0.2);
+          }
+        `)
+        .appendTo('head');
+    }
+
+    // Add hamburger menu if not exists
+    $(selector).each(function() {
+      var $button = $(this);
+      var $hamburger = $button.parent().find('.hamburger-menu');
+      if (!$hamburger.length) {
+        $hamburger = $('<span class="hamburger-menu">☰</span>');
+        $button.before($hamburger);
+        
+        // Handle hamburger menu click
+        $hamburger.on('click', function() {
+          $('body').removeClass('sidebar-collapsed');
+          updateFullscreenIcon();
         });
       }
     });
 
-    $(document).on('click', selector, function(){
-      screenfull.toggle();
+    function updateFullscreenIcon() {
+      var isCollapsed = $('body').hasClass('sidebar-collapsed');
+      $(selector).each(function() {
+        var $this = $(this);
+        var $expand = $this.find('.fullscreen-default');
+        var $contract = $this.find('.fullscreen-active');
+        
+        if (isCollapsed) {
+          $expand.hide();
+          $contract.show();
+          $this.attr('data-original-title', 'Show sidebar');
+        } else {
+          $expand.show();
+          $contract.hide();
+          $this.attr('data-original-title', 'Hide sidebar');
+        }
+      });
+    }
+
+    // Update icon on page load
+    updateFullscreenIcon();
+
+    $(document).on('click', selector, function(e) {
+      e.preventDefault();
+      var isCollapsed = $('body').hasClass('sidebar-collapsed');
+      
+      if (isCollapsed) {
+        $('body').removeClass('sidebar-collapsed');
+      } else {
+        $('body').addClass('sidebar-collapsed');
+      }
+      
+      updateFullscreenIcon();
     });
 
   };
@@ -3171,13 +3231,22 @@ jQuery.fn.scrollToEnd = function() {
         placeholder: "sortable-placeholder",
         init: function() {
         this.on('success', function(file, json) {
-          var jj = JSON.parse(json);
-          $('.sort-me[data-name="'+file.name+'"] .dz-success-mark').fadeIn('slow').delay(2000).fadeOut();
-          $('.sort-me[data-name="'+file.name+'"] .dz-progress').css("opacity","0");
-          $("#img_list").append('<input type="hidden" class="img-input" name="images['+($('.img-input').length)+']" value="'+file.name+'">');
+          try {
+            var jj = JSON.parse(json);
+            $('.sort-me[data-name="'+file.name+'"] .dz-success-mark').fadeIn('slow').delay(2000).fadeOut();
+            $('.sort-me[data-name="'+file.name+'"] .dz-progress').css("opacity","0");
+            $("#img_list").append('<input type="hidden" class="img-input" name="images['+($('.img-input').length)+']" value="'+file.name+'">');
+          } catch(e) {
+            // If JSON parse fails, re-enable submit button
+            $('.submit-form').removeAttr('disabled');
+            $('.submit-form').removeClass('disabled');
+          }
         });
         this.on('error', function(file, json) {
           $(".dz-error-mark").fadeIn('slow').delay(2000).fadeOut();
+          // Always re-enable submit button on error
+          $('.submit-form').removeAttr('disabled');
+          $('.submit-form').removeClass('disabled');
         });
         this.on('addedfile', function(file) {
           $(file.previewElement).attr('data-name',file.name);

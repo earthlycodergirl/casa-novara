@@ -1,4 +1,11 @@
 <?php
+// Suppress all errors and warnings that could contaminate JSON output
+error_reporting(0);
+ini_set('display_errors', 0);
+
+// Start output buffering to catch any unwanted output
+ob_start();
+
 require_once('../../plugin/php-image-resize/lib/ImageResize.php');
 require_once('../../plugin/php-image-resize/lib/ImageResizeException.php');
 use \Gumlet\ImageResize;
@@ -67,7 +74,7 @@ function uploadImg($directory,$files_name){
     }
 
     if($uploadOk == 0) {
-        $return_array['errors'] = "Sorry, your file was not uploaded. Here are the errors returned:<br>".implode('<br>',$err);
+        $return_array['errors'] = "Sorry, your file was not uploaded. Here are the errors returned: ".implode(' | ',$err);
     }else{
         if(move_uploaded_file($_FILES[$files_name]["tmp_name"], $target_file)){
             $return_array['filename'] = $file_name;
@@ -79,19 +86,21 @@ function uploadImg($directory,$files_name){
 
 
     // add a reduced size image if too big
-    if($width > 900 || $height > 900){
-      $image = new ImageResize($directory.$file_name);
-      $image->resizeToLongSide(900);
-      $image->save($directory.$file_name);
+    try {
+        if($width > 900 || $height > 900){
+          $image = new ImageResize($directory.$file_name);
+          $image->resizeToLongSide(900);
+          $image->save($directory.$file_name);
+        }
+
+        // add a resized thumbnail image
+        $image = new ImageResize($directory.$file_name);
+        $image->resize(150,150);
+        $image->save($directory.'thumbs/'.$file_name);
+    } catch (Exception $e) {
+        // Silently handle image processing errors
+        // Could log to file if needed
     }
-
-    // add a resized thumbnail image
-    $image = new ImageResize($directory.$file_name);
-    $image->resize(150,150);
-    $image->save($directory.'thumbs/'.$file_name);
-
-
-
 
     //echo "<pre>"; print_r($err); echo "</pre>";
     return $return_array;
@@ -115,6 +124,10 @@ if(isset($_POST['del_img']) && $_POST['del_img'] > 0){
         $return['success'] = 0;
         $return['id'] = 0;
     }
+    
+    // Clean any unwanted output before sending JSON
+    ob_clean();
+    header('Content-Type: application/json');
     echo json_encode($return);
 }
 
@@ -134,6 +147,9 @@ if(isset($_GET['lid']) && $_GET['lid'] > 0){
       $return['imgid'] = $addIt->LastID;
     }
 
+    // Clean any unwanted output before sending JSON
+    ob_clean();
+    header('Content-Type: application/json');
     echo json_encode($return);
 }elseif(isset($_GET['lid']) && $_GET['lid'] == 0){
     $upload_dir = '../../../uploads/listings/temp/';
@@ -144,6 +160,9 @@ if(isset($_GET['lid']) && $_GET['lid'] > 0){
 
     //new SqlIt("INSERT INTO property_photos (img_name,img_folder,property_id,img_type) VALUES (?,?,?,?)","insert",array($return['filename'],$gallery_dir,$_GET['lid'],'listing_gallery'));
 
+    // Clean any unwanted output before sending JSON
+    ob_clean();
+    header('Content-Type: application/json');
     echo json_encode($return);
 }
 
