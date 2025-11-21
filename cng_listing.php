@@ -37,24 +37,30 @@ if(isset($_GET['prop_id']) && $_GET['prop_id'] > 0){
 
             if(isset($prop->PropertyId) && $prop->PropertyId > 0){
                 // Initialize property type display with safe defaults
-                if(isset($listings->PropertyTypes[$prop->PropertyTypeId]['desc'])) {
-                    $prop->PropTypeDisplay = $listings->PropertyTypes[$prop->PropertyTypeId]['desc'];
+                if(isset($list->PropertyTypes[$prop->PropertyTypeId]['desc'])) {
+                    $prop->PropTypeDisplay = $list->PropertyTypes[$prop->PropertyTypeId]['desc'];
+                } else {
+                    $prop->PropTypeDisplay = 'Property Type Unknown';
                 }
-                if(isset($listings->ZoningTypes[$prop->ZoningId][$lang])) {
-                    $prop->ZoneDisplay = $listings->ZoningTypes[$prop->ZoningId][$lang];
+                
+                if(isset($list->ZoningTypes[$prop->ZoningId][$lang])) {
+                    $prop->ZoneDisplay = $list->ZoningTypes[$prop->ZoningId][$lang];
+                } else {
+                    $prop->ZoneDisplay = 'Zone Unknown';
                 }
-                if(!empty($listings->PropertyTypes[$prop->PropertyTypeId]['subs'])) {
-                    $prop->PropTypeSubDisplay = $listings->PropertyTypes[$prop->PropertyTypeId]['subs'][$prop->PropertySubTypeId];
+                
+                if(!empty($list->PropertyTypes[$prop->PropertyTypeId]['subs']) && isset($list->PropertyTypes[$prop->PropertyTypeId]['subs'][$prop->PropertySubTypeId])) {
+                    $prop->PropTypeSubDisplay = $list->PropertyTypes[$prop->PropertyTypeId]['subs'][$prop->PropertySubTypeId];
                 } else {
                     $prop->PropTypeSubDisplay = '';
                 }
 
                 if($lang == 'es'){
-                    if(isset($listings->PropertyTypes[$prop->PropertyTypeId]['desc_es'])) {
-                        $prop->PropTypeDisplay = $listings->PropertyTypes[$prop->PropertyTypeId]['desc_es'];
+                    if(isset($list->PropertyTypes[$prop->PropertyTypeId]['desc_es'])) {
+                        $prop->PropTypeDisplay = $list->PropertyTypes[$prop->PropertyTypeId]['desc_es'];
                     }
-                    if(!empty($listings->PropertyTypes[$prop->PropertyTypeId]['subs_es'])) {
-                        $prop->PropTypeSubDisplay = $listings->PropertyTypes[$prop->PropertyTypeId]['subs_es'][$prop->PropertySubTypeId];
+                    if(!empty($list->PropertyTypes[$prop->PropertyTypeId]['subs_es']) && isset($list->PropertyTypes[$prop->PropertyTypeId]['subs_es'][$prop->PropertySubTypeId])) {
+                        $prop->PropTypeSubDisplay = $list->PropertyTypes[$prop->PropertyTypeId]['subs_es'][$prop->PropertySubTypeId];
                     }
                 }
 
@@ -216,16 +222,16 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="dist/plugins/owl/owl.carousel.css" rel="stylesheet" type="text/css"/>
-    <link href="dist/plugins/owl/owl.transitions.css" rel="stylesheet" type="text/css"/>
+    <link href="<?= $assets_prefix ?>/dist/plugins/owl/owl.carousel.css" rel="stylesheet" type="text/css"/>
+    <link href="<?= $assets_prefix ?>/dist/plugins/owl/owl.transitions.css" rel="stylesheet" type="text/css"/>
     <?php if(isset($prop->Location->Latitude) && $prop->Location->Latitude != ''){ ?>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
     <?php } ?>
 
     <!-- Custom CSS -->
-    <link href="dist/css/cng_base.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="dist/css/cng.css" />
-    <link rel="stylesheet" type="text/css" href="dist/css/cng_listing.css" />
+    <link href="<?= $assets_prefix ?>/dist/css/cng_base.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?= $assets_prefix ?>/dist/css/cng.css" />
+    <link rel="stylesheet" type="text/css" href="<?= $assets_prefix ?>/dist/css/cng_listing.css" />
     <script src="https://cdn.jsdelivr.net/npm/less@4.1.3/dist/less.min.js"></script>
     
     <!-- Alignment Fix for Container Consistency -->
@@ -779,8 +785,8 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-    <script src="dist/plugins/owl/owl.carousel.min.js"></script>
-    <script src="dist/js/listing.js"></script>
+    <script src="<?= $assets_prefix ?>/dist/plugins/owl/owl.carousel.min.js"></script>
+    <script src="<?= $assets_prefix ?>/dist/js/listing.js"></script>
     
     <script>
         // Initialize Mapbox Map with dynamic coordinates

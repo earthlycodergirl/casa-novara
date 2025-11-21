@@ -47,8 +47,8 @@ if($lang == 'en'){
 		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		
 		<!-- Custom stylesheets -->
-		<link href="dist/css/cng_base.css" rel="stylesheet">
-		<link href="dist/css/cng.css" rel="stylesheet">
+		<link href="<?= $assets_prefix ?>/dist/css/cng_base.css" rel="stylesheet">
+		<link href="<?= $assets_prefix ?>/dist/css/cng.css" rel="stylesheet">
 
 		<style>
 			/* Blog Listing Specific Styles */

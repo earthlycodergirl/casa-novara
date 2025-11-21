@@ -58,10 +58,14 @@ if ($is_dev) {
     // Development environment - include casa-novara subfolder
     $prop_img_url = '/casa-novara/images/';
     $blog_img_url = '/casa-novara/images/blog/';
+    $link_prefix = '/casa-novara';
+    $assets_prefix = '/casa-novara';
 } else {
     // Production environment - root domain
     $prop_img_url = '/images/';
     $blog_img_url = '/images/blog/';
+    $link_prefix = '';
+    $assets_prefix = '';
 }
 
 // Include security configuration for database constants

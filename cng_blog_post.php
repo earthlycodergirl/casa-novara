@@ -58,8 +58,8 @@ $page_image = !empty($post->main_img) ? 'adm/uploads/blog/main/' . $post->main_i
 		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		
 		<!-- Custom stylesheets -->
-		<link href="dist/css/cng_base.css" rel="stylesheet">
-		<link href="dist/css/cng.css" rel="stylesheet">
+		<link href="<?= $assets_prefix ?>/dist/css/cng_base.css" rel="stylesheet">
+		<link href="<?= $assets_prefix ?>/dist/css/cng.css" rel="stylesheet">
 		
 		<style>
 			/* Blog Post Specific Styles */
@@ -347,11 +347,11 @@ $page_image = !empty($post->main_img) ? 'adm/uploads/blog/main/' . $post->main_i
 					<div class="row justify-content-center">
 						<div class="col-lg-8">
 							<nav aria-label="breadcrumb">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="/">Home</a></li>
-									<li class="breadcrumb-item"><a href="/real-estate-news/">Blog</a></li>
-									<li class="breadcrumb-item active" aria-current="page"><?= htmlspecialchars($post->title) ?></li>
-								</ol>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="<?= $link_prefix ?>/">Home</a></li>
+								<li class="breadcrumb-item"><a href="<?= $link_prefix ?>/real-estate-news/">Blog</a></li>
+								<li class="breadcrumb-item active" aria-current="page"><?= htmlspecialchars($post->title) ?></li>
+							</ol>
 							</nav>
 							<h1 class="display-4 fw-bold mb-3"><?= htmlspecialchars($post->title) ?></h1>
 						</div>

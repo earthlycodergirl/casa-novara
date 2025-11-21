@@ -199,14 +199,54 @@ app.ready(function () {
     });
 
     // Delete image from gallery
-    $('.del-img').on('click',function(e){
+    $(document).on('click', '.del-img', function(e){
         e.preventDefault();
         var did = $(this).attr('data-id');
-        $.post('assets/inc/process/upload_img.php',{del_img: did},function(data){
-            $("#img"+data.id).fadeOut();
-        },'json');
-
+        var imgElement = $(this).closest('li');
+        
+        // Show loading state
+        $(this).addClass('deleting').html('<i class="ti-reload ti-spin"></i> Deleting...');
+        
+        console.log('Deleting image with ID:', did);
+        
+        $.post('assets/inc/process/upload_img.php', {del_img: did})
+        .done(function(data){
+            console.log('Delete response:', data);
+            if(data.success == 1) {
+                // Successful deletion
+                imgElement.fadeOut(300, function(){
+                    $(this).remove();
+                    console.log('Image removed from DOM');
+                    
+                    // Update the hidden inputs order
+                    updateImageInputs();
+                });
+            } else {
+                // Failed deletion
+                console.log('Delete failed:', data);
+                alert('Failed to delete image. Please try again.');
+                // Reset button
+                $(this).removeClass('deleting').html('delete');
+            }
+        })
+        .fail(function(xhr, status, error){
+            console.log('Delete request failed:', error);
+            alert('Error deleting image: ' + error);
+            // Reset button
+            $(this).removeClass('deleting').html('delete');
+        });
     });
+    
+    // Function to update image input order after deletion
+    function updateImageInputs() {
+        $("#img_list").empty();
+        $('#imgs_contain li.sort-me').each(function(index){
+            var imgName = $(this).attr('data-name');
+            if(imgName) {
+                $("#img_list").append('<input type="hidden" class="img-input" name="images['+index+']" value="'+imgName+'">');
+            }
+        });
+    }
 
     // Jump to section on page
     $(".nav-page").find("a").click(function (e) {

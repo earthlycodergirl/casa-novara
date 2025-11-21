@@ -65,6 +65,7 @@
                                 <option <?php if($prop->ZoningId == $key){ echo 'selected'; } ?> value="<?= $key ?>"><?= $ty ?></option>
                             <?php } ?>
                         </select>
+                        <p class="text-muted" style="line-height: 1.2; margin-top: 8px"> Add more zoning types in the <br><a href="/adm/property-zones.php">Zoning Types Page <span class="ti-new-window"></span></a>.</p>
                     </div>
                 </div>
                 <div class="col-3">
@@ -76,6 +77,7 @@
                                 <option <?php if($prop->PropertyTypeId == $key){ echo 'selected'; } ?> value="<?= $key ?>"><?= $ty['desc'] ?></option>
                             <?php } ?>
                         </select>
+                        <p class="text-muted" style="line-height: 1.2; margin-top: 8px"> Add more types in the <br><a href="/adm/property-types.php">Property Types Page <span class="ti-new-window"></span></a>.</p>
                     </div>
                 </div>
                 <div class="col-3">
@@ -85,10 +87,11 @@
                          <label>Select property sub type</label>
                          <select name="sub_id" class="form-control">
                              <option value="0" selected>-- Select --</option>
-                             <?php foreach($properties->PropertyTypes[$prop->PropertyTypeId]['subs'] as $kk=>$vv){ if($kk == $prop->PropertySubTypeId){ $sel = 'selected'; }else{ $sel = ''; } ?>
+                             <?php foreach($properties->PropertyTypes[$prop->PropertyTypeId]['subs'] as $kk=>$vv){ if($kk == $prop->PropertySubTypeId){ $sel = 'selected'; }else{ $sel = '<option value="0"No options available</option>'; } ?>
                              <option <?= $sel ?> value="<?= $kk ?>"><?= $vv ?></option>
                           <?php } ?>
                           </select>
+                         <p class="text-muted" style="line-height: 1.2; margin-top: 8px"> Add more subtypes in the <br><a href="/adm/property-sub-types.php">Property Sub Types Page <span class="ti-new-window"></span></a>.</p>
                        </div>
                     <?php } ?>
                   </div>
@@ -144,67 +147,75 @@
         </h4>
         <div class="card-body">
            <div class="row">
-             <div class="col-2">
-                  <div class="form-group">
-                     <label>Month Built/Completed</label>
-                     <select name="month_built" class="form-control">
-                       <option value="0" selected>-- Select --</option>
-                       <option value="1" <?php if($prop->MonthBuilt == 1){ echo 'selected'; } ?>>January</option>
-                       <option value="2" <?php if($prop->MonthBuilt == 2){ echo 'selected'; } ?>>February</option>
-                       <option value="3" <?php if($prop->MonthBuilt == 3){ echo 'selected'; } ?>>March</option>
-                       <option value="4" <?php if($prop->MonthBuilt == 4){ echo 'selected'; } ?>>April</option>
-                       <option value="5" <?php if($prop->MonthBuilt == 5){ echo 'selected'; } ?>>May</option>
-                       <option value="6" <?php if($prop->MonthBuilt == 6){ echo 'selected'; } ?>>June</option>
-                       <option value="7" <?php if($prop->MonthBuilt == 7){ echo 'selected'; } ?>>July</option>
-                       <option value="8" <?php if($prop->MonthBuilt == 8){ echo 'selected'; } ?>>August</option>
-                       <option value="9" <?php if($prop->MonthBuilt == 9){ echo 'selected'; } ?>>September</option>
-                       <option value="10" <?php if($prop->MonthBuilt == 10){ echo 'selected'; } ?>>October</option>
-                       <option value="11" <?php if($prop->MonthBuilt == 11){ echo 'selected'; } ?>>November</option>
-                       <option value="12" <?php if($prop->MonthBuilt == 12){ echo 'selected'; } ?>>December</option>
-                     </select>
-                  </div>
-              </div>
-              <div class="col-2">
-                   <div class="form-group">
-                      <label>Year Built/Completed</label>
-                      <input type="number" name="year_built" class="form-control" placeholder="<?= date('Y') ?>" value="<?= $prop->YearBuilt ?>">
-                   </div>
-                   <div class="form-group">
-                      <label>comments:</label>
-                      <input type="text" name="year_notes" class="form-control" placeholder="released 8 months after purchase" value="<?= $prop->YearNotes ?>">
-                   </div>
-               </div>
-               <div class="col-2">
-                   <div class="form-group">
-                      <label>Bedrooms</label>
-                      <input type="number" class="form-control" name="bedrooms" value="<?= $prop->Bedrooms ?>" placeholder="# of bedrooms">
-                   </div>
-               </div>
-               <div class="col-2">
-                  <div class="form-group">
-                    <label>Room Type</label>
-                    <select name="room_type" class="form-control">
-                      <option value="bed" <?php if($prop->RoomType == 'bed'){ echo 'selected'; } ?>>Bedroom(s)</option>
-                      <option value="studio" <?php if($prop->RoomType == 'studio'){ echo 'selected'; } ?>>Studio</option>
-                      <option value="loft" <?php if($prop->RoomType == 'loft'){ echo 'selected'; } ?>>Loft</option>
-                    </select>
-                  </div>
-               </div>
-               <div class="col-2">
-                   <div class="form-group">
-                      <label>Full bathrooms</label>
-                      <input type="number" class="form-control" name="full_bath" value="<?= $prop->Bathrooms ?>" placeholder="# of baths">
-                   </div>
-               </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Month Built/Completed</label>
+                            <select name="month_built" class="form-control">
+                            <option value="0" selected>-- Select --</option>
+                            <option value="1" <?php if($prop->MonthBuilt == 1){ echo 'selected'; } ?>>January</option>
+                            <option value="2" <?php if($prop->MonthBuilt == 2){ echo 'selected'; } ?>>February</option>
+                            <option value="3" <?php if($prop->MonthBuilt == 3){ echo 'selected'; } ?>>March</option>
+                            <option value="4" <?php if($prop->MonthBuilt == 4){ echo 'selected'; } ?>>April</option>
+                            <option value="5" <?php if($prop->MonthBuilt == 5){ echo 'selected'; } ?>>May</option>
+                            <option value="6" <?php if($prop->MonthBuilt == 6){ echo 'selected'; } ?>>June</option>
+                            <option value="7" <?php if($prop->MonthBuilt == 7){ echo 'selected'; } ?>>July</option>
+                            <option value="8" <?php if($prop->MonthBuilt == 8){ echo 'selected'; } ?>>August</option>
+                            <option value="9" <?php if($prop->MonthBuilt == 9){ echo 'selected'; } ?>>September</option>
+                            <option value="10" <?php if($prop->MonthBuilt == 10){ echo 'selected'; } ?>>October</option>
+                            <option value="11" <?php if($prop->MonthBuilt == 11){ echo 'selected'; } ?>>November</option>
+                            <option value="12" <?php if($prop->MonthBuilt == 12){ echo 'selected'; } ?>>December</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Year Built/Completed</label>
+                            <input type="number" name="year_built" class="form-control" placeholder="<?= date('Y') ?>" value="<?= $prop->YearBuilt ?>">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                                <label>comments:</label>
+                                <input type="text" name="year_notes" class="form-control" placeholder="released 8 months after purchase" value="<?= $prop->YearNotes ?>">
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Bedrooms</label>
+                            <input type="number" class="form-control" name="bedrooms" value="<?= $prop->Bedrooms ?>" placeholder="# of bedrooms">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Room Type</label>
+                            <select name="room_type" class="form-control">
+                            <option value="bed" <?php if($prop->RoomType == 'bed'){ echo 'selected'; } ?>>Bedroom(s)</option>
+                            <option value="studio" <?php if($prop->RoomType == 'studio'){ echo 'selected'; } ?>>Studio</option>
+                            <option value="loft" <?php if($prop->RoomType == 'loft'){ echo 'selected'; } ?>>Loft</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Full bathrooms</label>
+                            <input type="number" class="form-control" name="full_bath" value="<?= $prop->Bathrooms ?>" placeholder="# of baths">
+                        </div>
+                    </div>
 
-               <div class="col-2">
-                   <div class="form-group">
-                      <label>1/2 bathrooms</label>
-                      <input type="number" class="form-control" name="half_bath" value="<?= $prop->HalfBaths ?>" placeholder="# of half baths">
-                   </div>
-               </div>
-
-
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>1/2 bathrooms</label>
+                            <input type="number" class="form-control" name="half_bath" value="<?= $prop->HalfBaths ?>" placeholder="# of half baths">
+                        </div>
+                    </div>
+                </div>
+            </div>
            </div>
            <hr>
            <div class="row">
@@ -457,7 +468,7 @@
                       <label>State</label>
                       <select name="state" class="form-control" id="nj_states">
                           <?php foreach($properties->States as $key=>$ss){ ?>
-                          <option <?php if($prop->Location->State == $key){ echo 'selected'; } ?> value="<?= $key ?>"><?= $ss ?></option>
+                          <option <?php if($prop->Location->State == $key){ echo 'selected'; } ?> value="<?= $key ?>"><?= utf8_encode($ss) ?></option>
                           <?php } ?>
                       </select>
                   </div>
@@ -483,7 +494,7 @@
                           <?php } ?>
                       </select>
                       <small class="form-text text-muted">
-                          <i class="fas fa-info-circle text-primary"></i> 
+                          <i class="ti-help-alt text-primary"></i> 
                           Custom locations will be automatically saved to the database.
                       </small>
                   </div>
@@ -500,8 +511,8 @@
                            <option <?php if($prop->Location->Area == $key){ echo 'selected'; } ?> value="<?= $key ?>"><?= $ss ?></option>
                            <?php } ?>
                        </select>
-                       <small class="form-text text-muted">
-                           <i class="fas fa-info-circle text-primary"></i> 
+                       <small class="form-text text-info">
+                           <i class="ti-help-alt text-info"></i> 
                            Type to add new areas not shown in the list.
                        </small>
                    </div>
@@ -664,6 +675,7 @@
 
               </ul>
           </div>
+          <p class="helper-text text-muted text-center"><span class="ti-hand-stop"></span> Hold down your mouse and drag the images to rearrange their order.</p>
       </div>
   </div>
 
@@ -683,6 +695,7 @@
       </div>
     </li>
   </div>
+  
 
     <hr>
 

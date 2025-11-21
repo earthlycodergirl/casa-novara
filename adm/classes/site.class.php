@@ -2,8 +2,13 @@
 class Site{
     public $Testimonials=array();
     public $Blog=array();
+    public $BlogA=array();
     public $ContactInfo = array();
     public $NavDests = array();
+    public $Art = array();
+    public $Prev = array();
+    public $Next = array();
+    
 
     public function __construct(){
 

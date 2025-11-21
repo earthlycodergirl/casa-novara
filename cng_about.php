@@ -1,3 +1,4 @@
+<?php require_once('base.php'); ?>
 <!doctype html>
 <html lang="en">
 	<head>
@@ -13,9 +14,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		<!-- Custom compiled stylesheet (from dist/less/cng.less) -->
-		<link href="dist/css/cng_base.css" rel="stylesheet">
-		<link href="dist/css/cng.css" rel="stylesheet">
-      <link href="dist/css/cng_about.css" rel="stylesheet">
+		<link href="<?= $assets_prefix ?>/dist/css/cng_base.css" rel="stylesheet">
+		<link href="<?= $assets_prefix ?>/dist/css/cng.css" rel="stylesheet">
+      <link href="<?= $assets_prefix ?>/dist/css/cng_about.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -84,7 +85,7 @@
                <div class="contact-cta">
                   <h2>Ready to Find Your Dream Property?</h2>
                   <p>Let our experienced team guide you to the perfect luxury property in paradise.</p>
-                  <a href="/contact.php" class="cta-button">Contact Us Today</a>
+                  <a href="<?= $link_prefix ?>/contact.php" class="cta-button">Contact Us Today</a>
                </div>
 
             </div>

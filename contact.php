@@ -86,8 +86,8 @@ foreach($office_info as $info) {
      crossorigin=""/>
 
     <!-- Custom CSS -->
-    <link href="dist/css/cng_base.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="dist/css/cng.css" />
+    <link href="<?= $assets_prefix ?>/dist/css/cng_base.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?= $assets_prefix ?>/dist/css/cng.css" />
     <script src="https://cdn.jsdelivr.net/npm/less@4.1.3/dist/less.min.js"></script>
     
     <!-- Contact Page Specific Styles -->

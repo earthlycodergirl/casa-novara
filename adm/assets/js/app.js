@@ -3230,32 +3230,100 @@ jQuery.fn.scrollToEnd = function() {
         previewsContainer: '#imgs_contain',
         placeholder: "sortable-placeholder",
         init: function() {
-        this.on('success', function(file, json) {
+        this.on('success', function(file, response) {
           try {
-            var jj = JSON.parse(json);
-            $('.sort-me[data-name="'+file.name+'"] .dz-success-mark').fadeIn('slow').delay(2000).fadeOut();
-            $('.sort-me[data-name="'+file.name+'"] .dz-progress').css("opacity","0");
-            $("#img_list").append('<input type="hidden" class="img-input" name="images['+($('.img-input').length)+']" value="'+file.name+'">');
+            console.log('Dropzone success response:', response);
+            
+            // Handle both JSON string and already parsed object
+            var jj;
+            if (typeof response === 'string') {
+              jj = JSON.parse(response);
+            } else if (typeof response === 'object') {
+              jj = response;
+            } else {
+              throw new Error('Invalid response type');
+            }
+            
+            // Check if the server actually returned success
+            if (jj.success == 1) {
+              // Find the preview element for this file
+              var previewElement = $(file.previewElement);
+              
+              // Hide progress bar and show success
+              previewElement.find('.dz-progress').fadeOut();
+              previewElement.find('.dz-success-mark').fadeIn('slow').delay(2000).fadeOut();
+              previewElement.addClass('dz-success');
+              previewElement.removeClass('dz-error');
+              
+              // Add to form data
+              $("#img_list").append('<input type="hidden" class="img-input" name="images['+($('.img-input').length)+']" value="'+file.name+'">');
+              console.log('Image upload successful for:', file.name);
+            } else {
+              // Server returned an error
+              console.log('Server upload error:', jj.errors);
+              var previewElement = $(file.previewElement);
+              
+              // Show error state
+              previewElement.find('.dz-progress').fadeOut();
+              previewElement.find('.dz-error-mark').fadeIn('slow');
+              previewElement.find('.dz-error-message span').text(jj.errors || 'Upload failed');
+              previewElement.addClass('dz-error');
+              previewElement.removeClass('dz-success');
+              
+              // Re-enable submit button
+              $('.submit-form').removeAttr('disabled');
+              $('.submit-form').removeClass('disabled');
+            }
           } catch(e) {
-            // If JSON parse fails, re-enable submit button
+            // If parsing fails, treat as error
+            console.log('Response parse error:', e, 'Response was:', response);
+            var previewElement = $(file.previewElement);
+            
+            previewElement.find('.dz-progress').fadeOut();
+            previewElement.find('.dz-error-mark').fadeIn('slow');
+            previewElement.find('.dz-error-message span').text('Invalid response from server');
+            previewElement.addClass('dz-error');
+            previewElement.removeClass('dz-success');
+            
             $('.submit-form').removeAttr('disabled');
             $('.submit-form').removeClass('disabled');
           }
         });
-        this.on('error', function(file, json) {
-          $(".dz-error-mark").fadeIn('slow').delay(2000).fadeOut();
+        this.on('error', function(file, errorMessage, xhr) {
+          console.log('Dropzone error for file:', file.name, 'Error:', errorMessage);
+          var previewElement = $(file.previewElement);
+          
+          // Show error state
+          previewElement.find('.dz-progress').fadeOut();
+          previewElement.find('.dz-error-mark').fadeIn('slow');
+          previewElement.addClass('dz-error');
+          previewElement.removeClass('dz-success');
+          
+          // Show specific error message if available
+          if (typeof errorMessage === 'string') {
+            previewElement.find('.dz-error-message span').text(errorMessage);
+          } else if (errorMessage && errorMessage.errors) {
+            previewElement.find('.dz-error-message span').text(errorMessage.errors);
+          } else {
+            previewElement.find('.dz-error-message span').text('Upload failed');
+          }
+          
           // Always re-enable submit button on error
           $('.submit-form').removeAttr('disabled');
           $('.submit-form').removeClass('disabled');
         });
         this.on('addedfile', function(file) {
-          $(file.previewElement).attr('data-name',file.name);
-          $(file.previewElement).attr('id',(new Date().getTime()+''));
+          var previewElement = $(file.previewElement);
+          previewElement.attr('data-name', file.name);
+          previewElement.attr('id', (new Date().getTime() + ''));
           $('.submit-form').attr('disabled','disabled');
           $('.submit-form').addClass('disabled');
+          console.log('File added:', file.name);
         });
-        this.on('totaluploadprogress', function(file,progress,bytes) {
-          $('.sort-me[data-name="'+file.name+'"] .dz-upload').css("width", progress + "%");
+        this.on('uploadprogress', function(file, progress, bytesSent) {
+          var previewElement = $(file.previewElement);
+          previewElement.find('.dz-upload').css("width", progress + "%");
+          console.log('Upload progress for', file.name + ':', progress + '%');
         });
         this.on("queuecomplete", function(file,progress,bytes) {
           $('.submit-form').removeAttr('disabled');

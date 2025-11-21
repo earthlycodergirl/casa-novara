@@ -6,7 +6,7 @@ Options -Indexes -MultiViews
 #RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
 #RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-RewriteBase /
+RewriteBase /casa-novara/
 
 RewriteRule ^images/(.*)$   adm/uploads/$1 [NC,L]
 

@@ -204,8 +204,8 @@ if(isset($listings->SearchParams->Cities[0])){
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-        <link href="dist/css/cng_base.css" rel="stylesheet">
-        <link href="dist/css/cng.css" rel="stylesheet">
+        <link href="<?= $assets_prefix ?>/dist/css/cng_base.css" rel="stylesheet">
+        <link href="<?= $assets_prefix ?>/dist/css/cng.css" rel="stylesheet">
 
         <!-- Leaflet CSS (free, easy map) -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
@@ -712,8 +712,8 @@ if(isset($listings->SearchParams->Cities[0])){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <script src="dist/js/cng_listings_filters.js"></script>
-    <script src="dist/js/cng_listings_map.js"></script>
+    <script src="<?= $assets_prefix ?>/dist/js/cng_listings_filters.js"></script>
+    <script src="<?= $assets_prefix ?>/dist/js/cng_listings_map.js"></script>
 
     <script>
         function showAllProperties() {

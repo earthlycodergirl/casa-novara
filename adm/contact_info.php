@@ -468,7 +468,7 @@ $con->getContact();
                                   <input type="hidden" id="cdesc_<?= $o ?>" value="Contact information for <?= str_replace('_', ' ', $key) ?>">
                                   <input type="hidden" id="is_whatsapp_<?= $o ?>" value="0">
                                   <input type="hidden" id="clat_<?= $o ?>" value="">
-                                  <input type="hidden" id="clong_<?= $o ?>" value="">\
+                                  <input type="hidden" id="clong_<?= $o ?>" value="">
 
                               <?php } else { ?>
                                 <div class="col-8 mb-2">

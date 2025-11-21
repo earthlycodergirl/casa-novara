@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md">
   <div class="container-fluid">
-  <a class="navbar-brand" href="/">
-      <img src="./dist/img/logo-white.png" alt="Casa Novara Group" onerror="this.style.display='none'">
+  <a class="navbar-brand" href="<?= $link_prefix ?>/">
+      <img src="<?= $assets_prefix ?>/dist/img/logo-white.png" alt="Casa Novara Group" onerror="this.style.display='none'">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon" style="color:#fff">☰</span>
@@ -10,13 +10,13 @@
     <div class="collapse navbar-collapse justify-content-end" id="mainNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="<?= $link_prefix ?>/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="about">About</a>
+          <a class="nav-link" href="<?= $link_prefix ?>/about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="listings">Properties</a>
+          <a class="nav-link" href="<?= $link_prefix ?>/listings">Properties</a>
         </li>
         <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="propertiesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Properties</a>
@@ -32,10 +32,10 @@
           </ul>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="mexico-real-estate/">Blog</a>
+          <a class="nav-link" href="<?= $link_prefix ?>/mexico-real-estate/">Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contact-us">Contact</a>
+          <a class="nav-link" href="<?= $link_prefix ?>/contact-us">Contact</a>
         </li>
       </ul>
     </div>

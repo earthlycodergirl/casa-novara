@@ -49,5 +49,5 @@
 
 				<!-- Full-screen image below footer -->
 				<section class="footer-image">
-					<img src="dist/img/footer-img.jpeg" alt="Footer visual" />
+					<img src="<?= $assets_prefix ?>/dist/img/footer-img.jpeg" alt="Footer visual" />
 				</section>

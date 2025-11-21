@@ -1,3 +1,4 @@
+<?php require_once('base.php'); ?>
 <!doctype html>
 <html lang="en">
 	<head>
@@ -13,8 +14,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		<!-- Custom compiled stylesheet (from dist/less/cng.less) -->
-		<link href="dist/css/cng_base.css" rel="stylesheet">
-		<link href="dist/css/cng.css" rel="stylesheet">
+		<link href="<?= $assets_prefix ?>/dist/css/cng_base.css" rel="stylesheet">
+		<link href="<?= $assets_prefix ?>/dist/css/cng.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -32,10 +33,10 @@
 						<h1 class="hero-title">Live your life in Paradise</h1>
 						<p class="hero-text">Exceptional properties for those who live exceptionally.</p>
 
-						<div class="d-flex justify-content-center gap-3 hero-buttons">
-							<a href="/listings" class="btn btn-dark btn-lg">Find Properties</a>
-							<a href="/contact-us" class="btn btn-outline-light btn-lg">Contact Expert</a>
-						</div>
+					<div class="d-flex justify-content-center gap-3 hero-buttons">
+							<a href="<?= $link_prefix ?>/listings" class="btn btn-dark btn-lg">Find Properties</a>
+							<a href="<?= $link_prefix ?>/contact-us" class="btn btn-outline-light btn-lg">Contact Expert</a>
+					</div>
 					</div>
 				</div>
 			</div>
@@ -76,14 +77,14 @@
                         </div>
                         <div class="col-md-9">
                             <p>Casa Novara is a leading property management company that specializes in providing exceptional homes and experiences for our clients. We are committed to creating a safe, secure, and enjoyable living environment for our clients, and we strive to make every property a destination.</p>
-                            <img src="dist/img/side-6.jpeg" alt="About Us" class="img-sm">
+                            <img src="<?= $assets_prefix ?>/dist/img/side-6.jpeg" alt="About Us" class="img-sm">
                         </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="right-side">
-                        <img src="dist/img/side-5.jpeg" alt="About Us" class="img-side">
+                        <img src="<?= $assets_prefix ?>/dist/img/side-5.jpeg" alt="About Us" class="img-side">
                     </div>
                 </div>
             </div>
@@ -100,7 +101,7 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <p>Discover the top spots we have on register! This is just some holder text for the real thing when my mind can think way faster.</p>
-                    <a href="listings" class="btn btn-outline-secondary btn-lg btn-round">View All Properties</a>
+                    <a href="<?= $link_prefix ?>/listings" class="btn btn-outline-secondary btn-lg btn-round">View All Properties</a>
                 </div>
             </div>
         </div>   
@@ -108,7 +109,7 @@
 
         <?php for($i=1; $i<=10; $i++):?>
             <div class="slide">
-            <a href="/property/123">
+            <a href="<?= $link_prefix ?>/property/123">
                 <div class="card">
                 <div class="card-image" style="background-image:url('dist/img/side-3.jpeg');"></div>
                 <div class="card-body">
@@ -208,7 +209,7 @@
 		<section class="split-section" aria-label="Feature split">
 		  <div class="split-wrap">
 		    <div class="split-left">
-		      <img src="dist/img/side-4.jpeg" alt="Feature image">
+		      <img src="<?= $assets_prefix ?>/dist/img/side-4.jpeg" alt="Feature image">
 		    </div>
 		    <div class="split-right">
 		      <div class="split-content container">
@@ -222,7 +223,7 @@
 		            <div class="feature-num">1</div>
 		            <div class="feature-body">
 		              <h3>Personalized search</h3>
-		              <p class="small">We match listings to your lifestyle and priorities for a precise fit. Use this website to find our recent listings or <a href="contact">contact one our experts</a> today.</p>
+		              <p class="small">We match listings to your lifestyle and priorities for a precise fit. Use this website to find our recent listings or <a href="<?= $link_prefix ?>/contact">contact one our experts</a> today.</p>
 		            </div>
 		          </div>
 
@@ -248,7 +249,7 @@
 		</section>
 
 		<section class="logo-footer">
-            <img src="dist/img/logo-black.png" class="img-fluid logo-footer-img" alt="Logo" />
+            <img src="<?= $assets_prefix ?>/dist/img/logo-black.png" class="img-fluid logo-footer-img" alt="Logo" />
         </section>
       <?php require 'dist/inc/foot.php' ?>
 		

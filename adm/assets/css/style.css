@@ -356,26 +356,111 @@ a.link-me:hover {
 .dz-upload,
 .progress-bar {
   display: block;
-  background-color: red;
+  background-color: #007bff; /* Blue for progress */
   height: 10px;
   width: 0%;
+  transition: background-color 0.3s ease;
+}
+
+/* Success state */
+.dz-success .dz-upload {
+  background-color: #28a745; /* Green for success */
+}
+
+/* Error state */
+.dz-error .dz-upload {
+  background-color: #dc3545; /* Red for error */
 }
 .removePicFromAlbum {
   border: none;
-  padding: 0;
-  margin: 0;
-  margin-top: 5px;
+  padding: 8px 12px;
+  margin: 5px;
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
+
 .removePicFromAlbum:hover {
-  color: red;
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.removePicFromAlbum.deleting {
+  background: #6c757d;
+  color: white;
+  border-color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.removePicFromAlbum.deleting:hover {
+  background: #6c757d;
+  color: white;
+  transform: none;
+}
+
+/* Spin animation for loading state */
+.ti-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 .dz-img-contain {
   width: 150px;
   height: 120px;
   overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+  border: 2px solid #dee2e6;
+  transition: all 0.3s ease;
 }
+
+.dz-img-contain:hover {
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.3);
+}
+
 .dz-img-contain img {
   min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+/* Image gallery list styling */
+#imgs_contain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 20px 0;
+}
+
+#imgs_contain .sort-me {
+  list-style: none;
+  position: relative;
+  cursor: move;
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+#imgs_contain .sort-me:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 #swal2-content a {
   display: inline-block;

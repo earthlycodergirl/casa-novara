@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white">
   <div class="container-fluid">
-  <a class="navbar-brand" href="/">
-      <img src="./dist/img/logo-black.png" alt="Casa Novara Group" width="300" onerror="this.style.display='none'">
+  <a class="navbar-brand" href="<?= $link_prefix ?>/">
+      <img src="<?= $assets_prefix ?>/dist/img/logo-black.png" alt="Casa Novara Group" width="300" onerror="this.style.display='none'">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavInner" aria-controls="mainNavInner" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon" style="color:#111">☰</span>
@@ -10,13 +10,13 @@
     <div class="collapse navbar-collapse justify-content-end" id="mainNavInner">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-dark" href="/">Home</a>
+          <a class="nav-link text-dark" href="<?= $link_prefix ?>/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="/about">About</a>
+          <a class="nav-link text-dark" href="<?= $link_prefix ?>/about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="/listings">Properties</a>
+          <a class="nav-link text-dark" href="<?= $link_prefix ?>/listings">Properties</a>
         </li>
         <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-dark" href="#" id="propertiesDropdownInner" role="button" data-bs-toggle="dropdown" aria-expanded="false">Properties</a>
@@ -37,10 +37,10 @@
           </ul>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link text-dark" href="/real-estate-news/">Blog</a>
+          <a class="nav-link text-dark" href="<?= $link_prefix ?>/real-estate-news/">Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="/contact-us">Contact</a>
+          <a class="nav-link text-dark" href="<?= $link_prefix ?>/contact-us">Contact</a>
         </li>
       </ul>
     </div>

@@ -1,3 +1,4 @@
+<?php require_once('base.php'); ?>
 <!doctype html>
 <html lang="en">
 	<head>
@@ -13,8 +14,45 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		<!-- Custom compiled stylesheet (from dist/less/cng.less) -->
-		<link href="dist/css/cng_base.css" rel="stylesheet">
-		<link href="dist/css/cng.css" rel="stylesheet">
+		<link href="<?= $assets_prefix ?>/dist/css/cng_base.css" rel="stylesheet">
+		<link href="<?= $assets_prefix ?>/dist/css/cng.css" rel="stylesheet">
+		
+		<!-- Custom styles for property types dropdown alignment -->
+		<style>
+			.filter-types .dropdown-panel {
+				right: 0 !important;
+				left: auto !important;
+			}
+			/* Style for checkbox dropdown items */
+			.dropdown-checkbox {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				cursor: pointer;
+				width: 100%;
+				padding: 4px 0;
+			}
+			.dropdown-checkbox input[type="checkbox"] {
+				margin: 0;
+				cursor: pointer;
+			}
+			.dropdown-checkbox span {
+				flex: 1;
+				cursor: pointer;
+			}
+			.dropdown-actions {
+				border-top: 1px solid #eee;
+				padding-top: 8px;
+				margin-top: 8px;
+			}
+			/* Ensure dropdown doesn't go off screen on mobile */
+			@media (max-width: 768px) {
+				.filter-types .dropdown-panel {
+					right: auto !important;
+					left: 0 !important;
+				}
+			}
+		</style>
 	</head>
 
 	<body>
@@ -65,22 +103,28 @@
 				<!-- Property types -->
 				<div class="filter-item filter-dropdown filter-types" data-filter="types">
 					<button class="btn btn-outline-secondary btn-filter" type="button">Property Types</button>
-					<div class="dropdown-panel types-panel">
-						<div class="types-grid">
-							<!-- 9 items 3x3 -->
-							<label class="type" data-value="Residential"><input type="checkbox"><span class="type-icon">🏠</span><span class="type-label">Residential</span></label>
-							<label class="type" data-value="Townhomes"><input type="checkbox"><span class="type-icon">🏘️</span><span class="type-label">Townhomes</span></label>
-							<label class="type" data-value="Co-op"><input type="checkbox"><span class="type-icon">🏢</span><span class="type-label">Co-op</span></label>
-							<label class="type" data-value="Multi-family"><input type="checkbox"><span class="type-icon">👥</span><span class="type-label">Multi-family</span></label>
-							<label class="type" data-value="Condos"><input type="checkbox"><span class="type-icon">🏬</span><span class="type-label">Condos</span></label>
-							<label class="type" data-value="Commercial"><input type="checkbox"><span class="type-icon">🏢</span><span class="type-label">Commercial</span></label>
-							<label class="type" data-value="Manufactured"><input type="checkbox"><span class="type-icon">🚚</span><span class="type-label">Manufactured</span></label>
-							<label class="type" data-value="Land"><input type="checkbox"><span class="type-icon">🌾</span><span class="type-label">Land</span></label>
-							<label class="type" data-value="Other"><input type="checkbox"><span class="type-icon">⋯</span><span class="type-label">Other</span></label>
-						</div>
-						<div class="types-actions">
-							<button class="btn btn-sm btn-primary btn-apply">Apply</button>
-							<button class="btn btn-sm btn-link btn-clear">Clear</button>
+					<div class="dropdown-panel">
+						<ul>
+							<?php 
+							if(!empty($listings2->PropertyTypes)){
+								foreach($listings2->PropertyTypes as $typeId => $type){
+									$typeName = $type['desc'];
+									echo '<li><label class="dropdown-checkbox">';
+									echo '<input type="checkbox" data-value="'.htmlspecialchars($typeName).'">';
+									echo '<span>'.htmlspecialchars($typeName).'</span>';
+									echo '</label></li>';
+								}
+							} else {
+								// Fallback to hardcoded if database is empty
+								echo '<li><label class="dropdown-checkbox"><input type="checkbox" data-value="Residential"><span>Residential</span></label></li>';
+								echo '<li><label class="dropdown-checkbox"><input type="checkbox" data-value="Commercial"><span>Commercial</span></label></li>';
+								echo '<li><label class="dropdown-checkbox"><input type="checkbox" data-value="Land"><span>Land</span></label></li>';
+								echo '<li><label class="dropdown-checkbox"><input type="checkbox" data-value="Condos"><span>Condos</span></label></li>';
+							}
+							?>
+						</ul>
+						<div class="dropdown-actions">
+							<button class="btn btn-sm btn-link btn-clear">Clear All</button>
 						</div>
 					</div>
 				</div>
@@ -236,11 +280,29 @@
 			panel.addEventListener('click', function(e){ const li = e.target.closest('li'); if(!li) return; btn.textContent = li.textContent; d.classList.remove('open'); });
 		}
 		if(filter === 'types'){
-			const apply = d.querySelector('.btn-apply');
 			const clear = d.querySelector('.btn-clear');
-			const checkboxes = Array.from(d.querySelectorAll('.types-grid input[type="checkbox"]'));
-			apply.addEventListener('click', function(){ const selected = checkboxes.filter(i=>i.checked).map(i=> i.closest('.type').dataset.value); btn.textContent = selected.length ? `${selected.length} types` : 'Property Types'; d.classList.remove('open'); });
-			clear.addEventListener('click', function(){ checkboxes.forEach(c=> c.checked=false); btn.textContent = 'Property Types'; });
+			const checkboxes = Array.from(d.querySelectorAll('input[type="checkbox"]'));
+			
+			// Auto-update when checkbox is clicked
+			checkboxes.forEach(checkbox => {
+				checkbox.addEventListener('change', function(){
+					const selected = checkboxes.filter(i=>i.checked).map(i=> i.dataset.value || i.getAttribute('data-value'));
+					btn.textContent = selected.length ? `${selected.length} type${selected.length === 1 ? '' : 's'}` : 'Property Types';
+					// Auto-apply filters
+					setTimeout(function(){ 
+						if(typeof applyFilters === 'function') applyFilters(); 
+					}, 50);
+				});
+			});
+			
+			clear.addEventListener('click', function(){
+				checkboxes.forEach(c=> c.checked=false);
+				btn.textContent = 'Property Types';
+				// Auto-apply filters
+				setTimeout(function(){
+					if(typeof applyFilters === 'function') applyFilters();
+				}, 50);
+			});
 		}
 		if(filter === 'beds' || filter === 'baths'){
 			panel.addEventListener('click', function(e){ const li = e.target.closest('label'); if(!li) return; const input = li.querySelector('input'); if(!input) return; setTimeout(()=>{ const val = input.value; btn.textContent = (filter==='beds' ? (val==='any' ? 'All Beds' : val+' bed'+(val==='1'?'':'s')) : (val==='any' ? 'All Baths' : val+' bath'+(val==='1'?'':'s'))); d.classList.remove('open'); },20); });
@@ -283,8 +345,13 @@
 		const typesDropdown = document.querySelector('.filter-dropdown[data-filter="types"]');
 		filters.types = [];
 		if(typesDropdown){
-			const checks = typesDropdown.querySelectorAll('.types-grid input[type="checkbox"]');
-			checks.forEach(c=>{ if(c.checked) filters.types.push(c.closest('.type').dataset.value); });
+			const checks = typesDropdown.querySelectorAll('input[type="checkbox"]');
+			checks.forEach(c=>{ 
+				if(c.checked) {
+					const value = c.dataset.value || c.getAttribute('data-value');
+					if(value) filters.types.push(value);
+				}
+			});
 		}
 		// beds
 		const bedsDropdown = document.querySelector('.filter-dropdown[data-filter="beds"]');
@@ -362,8 +429,7 @@
 	const panels = Array.from(document.querySelectorAll('.dropdown-panel'));
 	panels.forEach(p=> p.addEventListener('click', function(){ setTimeout(applyFilters, 50); }));
 
-	// types apply/clear
-	document.querySelectorAll('.btn-apply').forEach(b=> b.addEventListener('click', function(){ setTimeout(applyFilters, 60); }));
+	// clear buttons
 	document.querySelectorAll('.btn-clear').forEach(b=> b.addEventListener('click', function(){ setTimeout(applyFilters, 60); }));
 
 	// beds/baths radio change

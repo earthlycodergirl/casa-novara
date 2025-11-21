@@ -28,7 +28,7 @@ require('base.php');
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="dist/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="<?= $assets_prefix ?>/dist/css/main.css" type="text/css" />
 
 
     <?php include 'dist/inc/favicon.php'; ?>
@@ -102,7 +102,7 @@ require('base.php');
     <div class="container list-middle">
       <div class="row">
         <div class="col-md-6 col-lg-5">
-          <img src="dist/img/list-prop-bg.jpg" class="img-fluid check-left" alt="Sell your Property Mexico" />
+          <img src="<?= $assets_prefix ?>/dist/img/list-prop-bg.jpg" class="img-fluid check-left" alt="Sell your Property Mexico" />
         </div>
         <div class="col-md-6 col-lg-7 list-right">
           <div class="d-flex">
@@ -171,7 +171,7 @@ require('base.php');
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <script src="dist/js/list-prop.js"></script>
+    <script src="<?= $assets_prefix ?>/dist/js/list-prop.js"></script>
 
 
   </body>

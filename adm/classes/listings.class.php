@@ -5,6 +5,8 @@ class Listings{
     public $PropertyTypes = array();
     public $ListingTypes = array();
     public $ZoneTypes = array();
+    public $ZoningTypes = array();
+    public $PriceTypes = array();
     public $States = array();
     public $Cities = array();
     public $Towns = array();
@@ -308,7 +310,7 @@ class Listings{
 
 class Listing{
     public $PropertyId;
-    public $IsVisible;
+    public $IsVisible = 1;
     public $IsFeatured = 0;
     public $Status;
     public $DisplayStatus;
@@ -324,6 +326,7 @@ class Listing{
     public $MLS;
     public $Bedrooms;
     public $Bathrooms;
+    public $TotalBaths;
     public $RoomType;
     public $HalfBaths;
     public $ThirdBaths;
@@ -333,6 +336,8 @@ class Listing{
     public $VirtualTour;
     public $Foreclosure;
     public $Construction;
+    public $MonthBuilt;
+    public $YearNotes;
     public $Size;
     public $Location;
     public $Type = 'budd';
@@ -342,6 +347,7 @@ class Listing{
     public $Prices = array();
     public $OpenHouses = array();
     public $RoomInfo = array();
+    public $PhotosDisplay = array();
 
 
     public function __construct($lid = 0, $type = 'budd'){
@@ -416,7 +422,7 @@ class Listing{
                     $this->MonthBuilt = $pp->month_built;
                     $this->YearNotes = $pp->release_notes;
                     $this->VirtualTour = $pp->virtual_tour;
-                    $this->Forclosure = $pp->is_foreclosure;
+                    $this->Foreclosure = $pp->is_foreclosure;
                     $this->Construction = $pp->is_construction;
                     $this->IsFeatured = $pp->is_featured;
 
@@ -726,6 +732,10 @@ class Listing{
     }
 
     public function updateListing($post){
+        // Debug: Check if size_lot_mt is in the POST data
+        error_log("DEBUG - updateListing: size_lot_mt = " . (isset($post['size_lot_mt']) ? $post['size_lot_mt'] : 'NOT SET'));
+        error_log("DEBUG - updateListing POST data: " . print_r($post, true));
+        
         if(isset($post['property_id']) && $post['property_id'] > 0){
 
             if(!isset($post['sub_id'])){
@@ -747,6 +757,14 @@ class Listing{
                 $post['area'] = $addArea->LastID;
               }
             }
+
+            // Debug the size fields before SQL update
+            error_log("DEBUG - Before SQL update:");
+            error_log("size_ft: " . (isset($post['size_ft']) ? $post['size_ft'] : 'NOT SET'));
+            error_log("size_mt: " . (isset($post['size_mt']) ? $post['size_mt'] : 'NOT SET'));
+            error_log("size_lot: " . (isset($post['size_lot']) ? $post['size_lot'] : 'NOT SET'));
+            error_log("size_lot_mt: " . (isset($post['size_lot_mt']) ? $post['size_lot_mt'] : 'NOT SET'));
+            error_log("size_units: " . (isset($post['size_units']) ? $post['size_units'] : 'NOT SET'));
 
             // Update listing
             $updateProp = new SqlIt("UPDATE property_list SET
@@ -927,7 +945,7 @@ class Listing{
 
                 // Add images to property
                 if(isset($post['images']) && !empty($post['images'])){
-                  $destination = "uploads/listings/".$property_id."/";
+                  $destination = "uploads/listings/".$post['property_id']."/";
 
                   if(!file_exists($destination)) {
                       mkdir($destination, 0777, true);
@@ -968,11 +986,13 @@ class PubListings{
         **/
 
         if($type == 'PUB'){
-            $this->getListings();
+            $this->getListingsPub();
         }elseif($type == 'ADM'){
             $this->getListingsAdm();
         }
     }
+
+    public function getListingsPub(){}
 
     public function getListingsAdm(){
         $getList = new SqlIt("SELECT listing_id,listing_number,agency_name,agency_phone,agency_agent,property_group,card_format,book_section,days_on_market,status_change,price_original,price_current,parcel_num,county,city,buy_broker_com,sell_broker_com FROM listings_upload","select",array());
