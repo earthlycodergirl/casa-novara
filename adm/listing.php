@@ -78,6 +78,7 @@ if(isset($_POST['update_listing'])){
     <link href="assets/css/mia.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.13.0/dist/sweetalert2.min.css" integrity="sha256-g63UuGJzNKJaeNzy1f7N4V59R3+DZamET2Fg0cXAGDQ=" crossorigin="anonymous">
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/cng-icons.css" rel="stylesheet">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">

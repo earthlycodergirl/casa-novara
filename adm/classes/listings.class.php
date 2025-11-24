@@ -304,6 +304,99 @@ class Listings{
       }
     }
 
+    /**
+     * Get property icons data
+     * @param int|null $icon_id Optional icon ID to get specific icon, null to get all icons
+     * @return array|string Returns array of all icons or specific icon title
+     */
+    public function getPropertyIcons($icon_id = null) {
+        $icons = array(
+            1 => '24-hour access',
+            2 => 'Duplex',
+            3 => 'Furnished',
+            4 => 'Dishwasher',
+            5 => 'Garage',
+            6 => 'Home Security',
+            7 => 'Balcony',
+            8 => 'Beachfront',
+            9 => 'Bunk Beds',
+            10 => 'Single Family',
+            11 => 'Bathtub',
+            12 => 'Closet',
+            13 => 'Apartments',
+            14 => 'Kitchenette',
+            15 => 'Cabinets',
+            16 => 'Townhouse',
+            17 => 'Single Home',
+            18 => 'Jacuzzi',
+            19 => 'Fireplace',
+            20 => 'Park/Jungle',
+            21 => 'Refridgerator',
+            22 => 'Parks/Forests',
+            23 => 'Full Kitchen',
+            24 => 'Home Alarm',
+            25 => 'Pool',
+            26 => 'Parking',
+            27 => 'Full kitchen',
+            28 => 'Bar',
+            29 => 'Sauna/Spa',
+            30 => 'Living Area',
+            31 => 'Olympic Pool',
+            32 => 'Pool 2',
+            33 => 'Onsite Security',
+            34 => 'Secure Parking',
+            35 => 'Washing Machine',
+            36 => 'WiFi'
+        );
+
+        if ($icon_id !== null) {
+            return isset($icons[$icon_id]) ? $icons[$icon_id] : '';
+        }
+
+        return $icons;
+    }
+
+    /**
+     * Get formatted icon options for select dropdown
+     * @return array Formatted array for select options
+     */
+    public function getIconSelectOptions() {
+        $icons = $this->getPropertyIcons();
+        $options = array();
+        
+        foreach ($icons as $id => $title) {
+            $options[] = array(
+                'value' => $id,
+                'text' => $title,
+                'class' => 'icon-sprite icon-' . $id
+            );
+        }
+
+        return $options;
+    }
+
+    /**
+     * Render icon HTML with optional scaling
+     * @param int $icon_id Icon ID
+     * @param string $scale Optional scale class (icon-scale-75, icon-scale-50, icon-scale-25)
+     * @param string $additional_classes Optional additional CSS classes
+     * @return string HTML for icon
+     */
+    public function renderIcon($icon_id, $scale = '', $additional_classes = '') {
+        $title = $this->getPropertyIcons($icon_id);
+        $classes = 'icon-sprite icon-' . $icon_id;
+        
+        if (!empty($scale)) {
+            $classes .= ' ' . $scale;
+        }
+        
+        if (!empty($additional_classes)) {
+            $classes .= ' ' . $additional_classes;
+        }
+
+        return '<span class="' . $classes . '" title="' . htmlspecialchars($title) . '"></span>';
+    }
+
 
 }
 
@@ -348,6 +441,10 @@ class Listing{
     public $OpenHouses = array();
     public $RoomInfo = array();
     public $PhotosDisplay = array();
+    public $PropTypeDisplay;
+    public $PropTypeSubDisplay;
+    public $ZoneDisplay;
+    public $PropThumb;
 
 
     public function __construct($lid = 0, $type = 'budd'){
@@ -481,9 +578,15 @@ class Listing{
                     if($getF->NumResults != 0){
                         foreach($getF->Response as $gf){
                           if($gf->lang == 'en'){
-                            $this->Features[$gf->feature_name] = $gf->feature_val;
+                            $this->Features[$gf->feature_name] = array(
+                                'value' => $gf->feature_val,
+                                'icon' => $gf->feature_icon
+                            );
                           }elseif($gf->lang == 'es'){
-                            $this->FeaturesEs[$gf->feature_name] = $gf->feature_val;
+                            $this->FeaturesEs[$gf->feature_name] = array(
+                                'value' => $gf->feature_val,
+                                'icon' => $gf->feature_icon
+                            );
                           }
                         }
                     }
@@ -643,15 +746,18 @@ class Listing{
                     if(isset($post['feature_name'][1]) && $post['feature_name'][1] != ''){
                         foreach($post['feature_name'] as $key=>$val){
                             if($post['feature_value'][$key] != ''){
+                                $feature_icon = isset($post['feature_icon'][$key]) && !empty($post['feature_icon'][$key]) ? $post['feature_icon'][$key] : 0;
                                 new SqlIt("
                                 INSERT INTO property_features (
                                     feature_name,
                                     feature_val,
+                                    feature_icon,
                                     property_id,
                                     lang)
-                                VALUES (?,?,?,?)","insert",array(
+                                VALUES (?,?,?,?,?)","insert",array(
                                     $post['feature_name'][$key],
                                     $post['feature_value'][$key],
+                                    $feature_icon,
                                     $property_id,
                                     'en'
                                 ));
@@ -664,15 +770,18 @@ class Listing{
                     if(isset($post['feature_name_es'][1]) && $post['feature_name_es'][1] != ''){
                         foreach($post['feature_name_es'] as $key=>$val){
                             if($post['feature_value_es'][$key] != ''){
+                                $feature_icon_es = isset($post['feature_icon_es'][$key]) && !empty($post['feature_icon_es'][$key]) ? $post['feature_icon_es'][$key] : 0;
                                 new SqlIt("
                                 INSERT INTO property_features (
                                     feature_name,
                                     feature_val,
+                                    feature_icon,
                                     property_id,
                                     lang)
-                                VALUES (?,?,?,?)","insert",array(
+                                VALUES (?,?,?,?,?)","insert",array(
                                     $post['feature_name_es'][$key],
                                     $post['feature_value_es'][$key],
+                                    $feature_icon_es,
                                     $property_id,
                                     'es'
                                 ));
@@ -896,16 +1005,19 @@ class Listing{
                     foreach($post['feature_name'] as $key=>$val){
                         if($post['feature_name'][$key] != '' && $post['feature_value'][$key] != ''){
                             if($post['feature_value'][$key] != ''){
+                                $feature_icon = isset($post['feature_icon'][$key]) && !empty($post['feature_icon'][$key]) ? $post['feature_icon'][$key] : 0;
                                 new SqlIt("
                                 INSERT INTO property_features (
                                     feature_name,
                                     feature_val,
+                                    feature_icon,
                                     property_id,
                                     lang,
                                     forder)
-                                VALUES (?,?,?,?,?)","insert",array(
+                                VALUES (?,?,?,?,?,?)","insert",array(
                                     $post['feature_name'][$key],
                                     $post['feature_value'][$key],
+                                    $feature_icon,
                                     $post['property_id'],
                                     'en',
                                     $jj
@@ -922,16 +1034,19 @@ class Listing{
                   $jj = 1;
                     foreach($post['feature_name_es'] as $key=>$val){
                         if($post['feature_value_es'][$key] != ''){
+                            $feature_icon_es = isset($post['feature_icon_es'][$key]) && !empty($post['feature_icon_es'][$key]) ? $post['feature_icon_es'][$key] : 0;
                             new SqlIt("
                             INSERT INTO property_features (
                                 feature_name,
                                 feature_val,
+                                feature_icon,
                                 property_id,
                                 lang,
                                 forder)
-                            VALUES (?,?,?,?,?)","insert",array(
+                            VALUES (?,?,?,?,?,?)","insert",array(
                                 $post['feature_name_es'][$key],
                                 $post['feature_value_es'][$key],
+                                $feature_icon_es,
                                 $post['property_id'],
                                 'es',
                                 $jj

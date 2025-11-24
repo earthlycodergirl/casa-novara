@@ -573,6 +573,7 @@
                         <table class="table table-sm">
                             <thead>
                                 <tr>
+                                    <th style="width: 100px">Icon</th>
                                     <th style="width: 200px">Feature name</th>
                                     <th>Feature value</th>
                                     <th style="width: 95px;"></th>
@@ -581,16 +582,66 @@
                             </thead>
                             <tbody id="tb_features">
                                <tr class="bg-pale-secondary" id="add_new_feature">
-                                    <td><input type="text" name="feature_name[]" class="form-control" placeholder="Feature name"></td>
+                                    <td>
+                                        <select name="feature_icon[]" class="form-select" 
+                                                data-provide="selectpicker" 
+                                                data-dropup-auto="false"
+                                                data-size="8"
+                                                data-live-search="true"
+                                                data-none-selected-text="Select Icon">
+                                            <option value="">No Icon</option>
+                                            <?php 
+                                            $icon_options = $properties->getIconSelectOptions();
+                                            foreach($icon_options as $icon){ ?>
+                                            <option value="<?= $icon['value'] ?>" data-icon="<?= $icon['class'] ?> icon-scale-50">
+                                                <?= $icon['text'] ?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="feature_name[]" class="form-control" placeholder="Feature name">
+                                        <!-- <select name="feature_name[]" class="form-control">
+                                            <option value="location">Location</option>
+                                            <option value="pool">Pool</option>
+                                            <option value="parking">Parking</option>
+                                            <option value="kitchen">Kitchen</option>
+                                            <option value="modern_kitchen">Modern Kitchen</option>
+                                            <option value="private_garden">Private Garden</option>
+                                            <option value="security">24/7 Security</option>
+                                            <option value="walking_distance">Walking Distance</option>
+                                        </select> -->
+                                    </td>
                                     <td><input type="text" name="feature_value[]" class="form-control" placeholder="Feature value"></td>
                                     <td colspan="2"><button type="button" class="btn btn-pure btn-primary" id="add_feature" data-provide="tooltip" title="Add this feature"><i class="ti-plus"></i></button></td>
                                 </tr>
                                 <?php if($edit_list != 0){  if(!empty($prop->Features)){ foreach($prop->Features as $key=>$val){ ?>
                                 <tr class="sort-it" data-id="<?= $key ?>">
                                     <td>
-                                      <input type="hidden" name="feature_order[]" value="0" />
-                                      <input type="text" name="feature_name[]" class="form-control" placeholder="Feature name" value="<?= $key ?>"></td>
-                                    <td><input type="text" name="feature_value[]" class="form-control" placeholder="Feature value" value="<?= $val ?>"></td>
+                                        <input type="hidden" name="feature_order[]" value="0" />
+                                        <select name="feature_icon[]" class="form-select" 
+                                                data-provide="selectpicker" 
+                                                data-dropup-auto="false"
+                                                data-size="8"
+                                                data-live-search="true"
+                                                data-none-selected-text="Select Icon">
+                                            <option value="">No Icon</option>
+                                            <?php 
+                                            $icon_options = $properties->getIconSelectOptions();
+                                            foreach($icon_options as $icon){ 
+                                                $selected = '';
+                                                if(isset($val['icon']) && $val['icon'] == $icon['value']) {
+                                                    $selected = 'selected';
+                                                }
+                                            ?>
+                                            <option value="<?= $icon['value'] ?>" <?= $selected ?> data-icon="<?= $icon['class'] ?> icon-scale-50">
+                                                <?= $icon['text'] ?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" name="feature_name[]" class="form-control" placeholder="Feature name" value="<?= $key ?>"></td>
+                                    <td><input type="text" name="feature_value[]" class="form-control" placeholder="Feature value" value="<?= isset($val['value']) ? $val['value'] : $val ?>"></td>
                                     <td><button type="button" class="btn btn-pure btn-danger delete-tr" data-provide="tooltip" title="Delete this feature"><i class="ti-trash"></i></button></td>
                                     <td><i class="ti-move"></i></td>
                                 </tr>
@@ -604,6 +655,7 @@
                         <table class="table table-sm">
                             <thead>
                                 <tr>
+                                    <th style="width: 100px">Icon</th>
                                     <th style="width: 200px">Feature name (ES)</th>
                                     <th>Feature value (ES)</th>
                                     <th style="width: 95px;"></th>
@@ -612,14 +664,53 @@
                             </thead>
                             <tbody id="tb_features_es">
                                <tr class="bg-pale-secondary" id="add_new_feature_es">
+                                    <td>
+                                        <select name="feature_icon_es[]" class="form-select" 
+                                                data-provide="selectpicker" 
+                                                data-dropup-auto="false"
+                                                data-size="8"
+                                                data-live-search="true"
+                                                data-none-selected-text="Select Icon">
+                                            <option value="">No Icon</option>
+                                            <?php 
+                                            $icon_options = $properties->getIconSelectOptions();
+                                            foreach($icon_options as $icon){ ?>
+                                            <option value="<?= $icon['value'] ?>" data-icon="<?= $icon['class'] ?> icon-scale-50">
+                                                <?= $icon['text'] ?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
+                                    </td>
                                     <td><input type="text" name="feature_name_es[]" class="form-control" placeholder="Feature name"></td>
                                     <td><input type="text" name="feature_value_es[]" class="form-control" placeholder="Feature value"></td>
                                     <td colspan="2"><button type="button" class="btn btn-pure btn-primary" id="add_feature_es" data-provide="tooltip" title="Add this feature"><i class="ti-plus"></i></button></td>
                                 </tr>
                                 <?php if($edit_list != 0){  if(!empty($prop->FeaturesEs)){ foreach($prop->FeaturesEs as $key=>$val){ ?>
                                 <tr>
+                                    <td>
+                                        <select name="feature_icon_es[]" class="form-select" 
+                                                data-provide="selectpicker" 
+                                                data-dropup-auto="false"
+                                                data-size="8"
+                                                data-live-search="true"
+                                                data-none-selected-text="Select Icon">
+                                            <option value="">No Icon</option>
+                                            <?php 
+                                            $icon_options = $properties->getIconSelectOptions();
+                                            foreach($icon_options as $icon){ 
+                                                $selected = '';
+                                                if(isset($val['icon']) && $val['icon'] == $icon['value']) {
+                                                    $selected = 'selected';
+                                                }
+                                            ?>
+                                            <option value="<?= $icon['value'] ?>" <?= $selected ?> data-icon="<?= $icon['class'] ?> icon-scale-50">
+                                                <?= $icon['text'] ?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
+                                    </td>
                                     <td><input type="text" name="feature_name_es[]" class="form-control" placeholder="Feature name" value="<?= $key ?>"></td>
-                                    <td><input type="text" name="feature_value_es[]" class="form-control" placeholder="Feature value" value="<?= $val ?>"></td>
+                                    <td><input type="text" name="feature_value_es[]" class="form-control" placeholder="Feature value" value="<?= isset($val['value']) ? $val['value'] : $val ?>"></td>
                                     <td><button type="button" class="btn btn-pure btn-danger delete-tr" data-provide="tooltip" title="Delete this feature"><i class="ti-trash"></i></button></td>
                                     <td><i class="ti-move"></i></td>
                                 </tr>

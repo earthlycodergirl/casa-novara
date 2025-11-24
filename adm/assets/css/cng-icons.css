@@ -1,0 +1,190 @@
+.icon-sprite {
+  background-image: url('../img/css_sprites.png');
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  /* Removed background-size for better performance - sprite should be exact size */
+}
+
+/* Responsive icon scaling classes - Optimized for performance */
+.icon-sprite.icon-scale-75 {
+  transform: scale(0.75);
+  transform-origin: center;
+  will-change: transform; /* GPU acceleration hint */
+}
+
+.icon-sprite.icon-scale-50 {
+  transform: scale(0.5);
+  transform-origin: center;
+  will-change: transform;
+}
+
+.icon-sprite.icon-scale-25 {
+  transform: scale(0.25);
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* Row 1 - Updated for new sprite layout */
+.icon-1  { background-position: -10px -8px; }    /* 24-hour access */
+.icon-2  { background-position: -78px -8px; }    /* Swimming pool */
+.icon-3  { background-position: -148px -8px; }   /* Refrigerator */
+.icon-4  { background-position: -218px -8px; }   /* Coffee/tea station */
+.icon-5  { background-position: -288px -8px; }   /* Brick wall view */
+.icon-6  { background-position: -358px -8px; }   /* Drink service */
+.icon-7  { background-position: -10px -78px; }   /* Duplex homes */
+
+/* Row 2 */
+.icon-8  { background-position: -78px -78px; }   /* Garage */
+.icon-9  { background-position: -148px -78px; }  /* Kitchen */
+.icon-10 { background-position: -218px -78px; }  /* Apartment building */
+.icon-11 { background-position: -288px -78px; }  /* Sauna/Spa */
+.icon-12 { background-position: -358px -78px; }  /* Balcony */
+.icon-13 { background-position: -10px -148px; }  /* Security/Alarm */
+
+/* Row 3 */
+.icon-14 { background-position: -78px -148px; }  /* Bathtub */
+.icon-15 { background-position: -148px -148px; } /* Bar/Kitchenette */
+.icon-16 { background-position: -218px -148px; } /* City view */
+.icon-17 { background-position: -288px -148px; } /* Lockbox/Safe */
+.icon-18 { background-position: -358px -148px; } /* Beach/palm */
+.icon-19 { background-position: -10px -218px; }  /* Parking garage */
+
+/* Row 4 */
+.icon-20 { background-position: -78px -218px; }  /* Single house */
+.icon-21 { background-position: -148px -218px; } /* Modern home */
+.icon-22 { background-position: -218px -218px; } /* Tiny home */
+.icon-23 { background-position: -290px -220px; } /* Bathroom sink */
+.icon-24 { background-position: -360px -220px; } /* Dresser */
+.icon-25 { background-position: -10px -288px; }  /* Washer */
+
+/* Row 5 */
+.icon-26 { background-position: -78px -288px; }  /* Full kitchen */
+.icon-27 { background-position: -148px -288px; } /* Park/trees */
+.icon-28 { background-position: -218px -288px; } /* Microwave */
+.icon-29 { background-position: -288px -288px; } /* Fireplace */
+.icon-30 { background-position: -358px -288px; } /* Bunk beds */
+.icon-31 { background-position: -10px -358px; }  /* WiFi */
+
+/* Row 6 */
+.icon-32 { background-position: -78px -358px; }  /* Poolside view */
+.icon-33 { background-position: -148px -358px; } /* Clubhouse/Lobby */
+.icon-34 { background-position: -218px -358px; } /* Wardrobe */
+.icon-35 { background-position: -288px -358px; } /* Cottage/Home */
+.icon-36 { background-position: -358px -358px; } /* City skyline */
+.icon-37 { background-position: -10px -428px; }  /* Bedroom */
+
+/* Row 7 */
+.icon-38 { background-position: -78px -428px; }  /* Parking space */
+.icon-39 { background-position: -148px -428px; } /* Park/forest/bench */
+.icon-40 { background-position: -218px -428px; } /* Additional icon */
+
+/* Performance optimizations */
+.icon-sprite {
+  /* Optimize for better performance */
+  backface-visibility: hidden; /* Prevent flickering */
+  -webkit-backface-visibility: hidden;
+}
+
+/* Preload hint for the sprite image */
+.icon-sprite:before {
+  content: '';
+  background-image: url('../img/css_sprites.png');
+  position: absolute;
+  left: -9999px;
+  width: 0;
+  height: 0;
+}
+
+/* Icon select dropdown optimizations */
+.icon-select-dropdown {
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  direction: ltr !important;
+}
+
+/* Bootstrap Select dropdown optimizations */
+.bootstrap-select .dropdown-menu {
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* Force bootstrap-select to open downward */
+.bootstrap-select.dropup .dropdown-menu {
+  top: 100% !important;
+  bottom: auto !important;
+  margin-top: 2px !important;
+  margin-bottom: 0 !important;
+  transform: none !important;
+}
+
+/* Override dropup class entirely for icon selects */
+.bootstrap-select[data-dropup-auto="false"] {
+  position: static !important;
+}
+
+.bootstrap-select[data-dropup-auto="false"] .dropdown-menu {
+  position: absolute !important;
+  top: 100% !important;
+  bottom: auto !important;
+  margin-top: 1px !important;
+  max-height: 250px !important;
+  overflow-y: auto !important;
+}
+
+/* Force select2 dropdowns with icons to open downward */
+.select2-container--default .select2-dropdown {
+  max-height: 300px !important;
+  overflow-y: auto !important;
+}
+
+.select2-container--default .select2-dropdown--above {
+  /* Override upward opening - force downward */
+  top: 100% !important;
+  bottom: auto !important;
+  margin-top: 1px !important;
+  margin-bottom: 0 !important;
+}
+
+/* Style for icon options in select dropdown */
+.icon-option {
+  display: flex !important;
+  align-items: center !important;
+  padding: 8px 12px !important;
+  gap: 10px !important;
+}
+
+.icon-option .icon-sprite {
+  flex-shrink: 0;
+  transform: scale(0.75); /* Smaller icons in dropdown */
+}
+
+/* Custom scrollbar for better UX */
+.icon-select-dropdown::-webkit-scrollbar,
+.select2-container--default .select2-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.icon-select-dropdown::-webkit-scrollbar-track,
+.select2-container--default .select2-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.icon-select-dropdown::-webkit-scrollbar-thumb,
+.select2-container--default .select2-dropdown::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.icon-select-dropdown::-webkit-scrollbar-thumb:hover,
+.select2-container--default .select2-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+.dropdown-menu.open.show {
+    overflow-y: hidden !important;
+}

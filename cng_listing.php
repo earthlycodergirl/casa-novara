@@ -119,36 +119,36 @@ if(!isset($prop->pets_allowed)) {
     $prop->pets_allowed = 0;
 }
 if(!isset($prop->zone)) {
-    $prop->zone = $prop->Location->AreaName ?? 'Marina Vallarta';
+    $prop->zone = $prop->Location->AreaName ?? 'Quinta Avenida';
 }
 if(!isset($prop->city)) {
-    $prop->city = $prop->Location->CityName ?? 'Puerto Vallarta';
+    $prop->city = $prop->Location->CityName ?? 'Playa del Carmen';
 }
 if(!isset($prop->state)) {
-    $prop->state = $prop->Location->StateName ?? 'Jalisco';
+    $prop->state = $prop->Location->StateName ?? 'Quintana Roo';
 }
 if(!isset($prop->zip_code)) {
-    $prop->zip_code = $prop->Location->Zip ?? '48354';
+    $prop->zip_code = $prop->Location->Zip ?? '09870';
 }
 if(!isset($prop->latitude)) {
-    $prop->latitude = $prop->Location->Latitude ?? '20.6598';
+    $prop->latitude = $prop->Location->Latitude ?? '20.373864';
 }
 if(!isset($prop->longitude)) {
-    $prop->longitude = $prop->Location->Longitude ?? '-105.2257';
+    $prop->longitude = $prop->Location->Longitude ?? '-87.044753';
 }
 
 // Set default location if not set
 if(!isset($prop->Location)) {
     $prop->Location = new stdClass();
-    $prop->Location->Latitude = '20.6534';
-    $prop->Location->Longitude = '-105.2253';
-    $prop->Location->CityName = 'Puerto Vallarta';
-    $prop->Location->StateName = 'Jalisco';
-    $prop->Location->CountyName = 'Marina Vallarta';
-    $prop->Location->AreaName = 'Marina District';
-    $prop->Location->Address = 'Marina Vallarta';
-    $prop->Location->Zip = '48354';
-    $prop->Location->City = 'puerto-vallarta';
+    $prop->Location->Latitude = '20.373864';
+    $prop->Location->Longitude = '-87.044753';
+    $prop->Location->CityName = 'Solidaridad';
+    $prop->Location->StateName = 'Quintana Roo';
+    $prop->Location->CountyName = 'Playa del Carmen';
+    $prop->Location->AreaName = '5th Avenue';
+    $prop->Location->Address = 'Quinta Avenida';
+    $prop->Location->Zip = '09870';
+    $prop->Location->City = 'playa-del-carmen';
 }
 
 // Set default property features if not set
@@ -354,11 +354,11 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
                             <!-- Property Info - Left Side (40%) -->
                             <div class="col-lg-4 col-md-5">
                                 <div class="property-info-left">
-                                <!-- <div class="location-badge"><?= $prop->Location->AreaName ?? 'Marina Vallarta' ?></div> -->
-                                <h1><?= ($lang == 'es') ? ($prop->PropertyTitleEs ?? 'Villa de Lujo con Vista al Mar') : ($prop->PropertyTitle ?? 'Luxury Villa with Ocean Views') ?></h1>
+                                <!-- <div class="location-badge"><?= $prop->Location->AreaName ?></div> -->
+                                <h1><?= ($lang == 'es') ? $prop->PropertyTitleEs : $prop->PropertyTitle ?></h1>
                                 <div class="location-detail">
                                     <i class="bi bi-geo-alt"></i>
-                                    <?= ($prop->Location->CityName ?? 'Puerto Vallarta').', '.($prop->Location->StateName ?? 'Jalisco').' '.($prop->Location->Zip ?? '48354') ?>
+                                    <?= $prop->Location->CityName .', '. $prop->Location->StateName .' '. $prop->Location->Zip ?>
                                 </div>
                                 
                                 <!-- Property Features Grid -->
@@ -377,6 +377,14 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
                                     <div class="feature-item">
                                         <i class="bi bi-rulers"></i>
                                         <span><?= number_format($prop->Size->Ft) ?> ft²</span>
+                                        <?php if(isset($prop->Size->Mt) && $prop->Size->Mt > 0) { ?>
+                                            /<span><?= number_format($prop->Size->Mt) ?> mt²</span>
+                                        <?php } ?>
+                                    </div>
+                                    <?php } elseif(isset($prop->Size->Mt) && $prop->Size->Mt > 0) { ?>
+                                        <div class="feature-item">
+                                        <i class="bi bi-rulers"></i>
+                                        <span><?= number_format($prop->Size->Mt) ?> mt²</span>
                                     </div>
                                     <?php } else { ?>
                                     <div class="feature-item">

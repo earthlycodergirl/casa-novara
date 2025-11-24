@@ -43,6 +43,26 @@ app.ready(function () {
     tags: true
     });
 
+    // Initialize selectpicker with dropdown control
+    $('select[data-provide="selectpicker"]').selectpicker({
+        dropupAuto: false,
+        size: 8,
+        liveSearch: true,
+        noneSelectedText: "Select Icon",
+        style: 'btn-outline-secondary',
+        iconBase: 'icon-sprite',
+        tickIcon: 'ti-check'
+    });
+
+    // Force dropdown to open downward
+    $('select[data-provide="selectpicker"]').on('show.bs.select', function () {
+        var $dropdown = $(this).next('.bootstrap-select').find('.dropdown-menu');
+        $dropdown.removeClass('show-above').addClass('show-below');
+        
+        // Remove any existing dropup classes and force downward
+        $(this).next('.bootstrap-select').removeClass('dropup');
+    });
+
     $('input[type=text]').bind('mousedown.ui-disableSelection selectstart.ui-disableSelection', function(event) {
       event.stopImmediatePropagation();
     });
@@ -148,13 +168,26 @@ app.ready(function () {
     // Add a new feature to list
     $("#add_feature").on('click', function (e) {
         e.preventDefault();
+        var iconSelect = $('#add_new_feature select[name="feature_icon[]"]');
         var fname = $('#add_new_feature input[name="feature_name[]"]');
         var fval = $('#add_new_feature input[name="feature_value[]"]');
+        
+        // Get selected icon HTML for new row
+        var iconHtml = iconSelect.prop('outerHTML').replace('feature_icon[]', 'feature_icon[]');
 
-        var newtr = $('<tr class="bg-pale-success"><td><input type="text" name="feature_name[]" class="form-control" placeholder="Feature name" value="' + fname.val() + '"></td><td><input type="text" name="feature_value[]" class="form-control" placeholder="Feature value" value="' + fval.val() + '"></td><td><button type="button" class="btn btn-pure btn-danger" data-provide="tooltip" title="Delete this feature"><i class="ti-trash"></i></button></td><td><i class="ti-move"></i></td></tr>');
+        var newtr = $('<tr class="bg-pale-success"><td>' + iconHtml + '</td><td><input type="text" name="feature_name[]" class="form-control" placeholder="Feature name" value="' + fname.val() + '"></td><td><input type="text" name="feature_value[]" class="form-control" placeholder="Feature value" value="' + fval.val() + '"></td><td><button type="button" class="btn btn-pure btn-danger delete-tr" data-provide="tooltip" title="Delete this feature"><i class="ti-trash"></i></button></td><td><i class="ti-move"></i></td></tr>');
 
         newtr.insertAfter('#add_new_feature');
+        
+        // Initialize selectpicker on the new dropdown
+        newtr.find('select[data-provide="selectpicker"]').selectpicker({
+            dropupAuto: false,
+            size: 8,
+            liveSearch: true,
+            noneSelectedText: 'Select Icon'
+        });
 
+        iconSelect.selectpicker('val', '');
         fname.val('');
         fval.val('');
 
@@ -164,16 +197,29 @@ app.ready(function () {
     });
 
 
-    // Add a new feature to list
+    // Add a new feature to list (Spanish)
     $('body').on('click',"#add_feature_es", function (e) {
         e.preventDefault();
+        var iconSelect = $('#add_new_feature_es select[name="feature_icon_es[]"]');
         var fname = $('#add_new_feature_es input[name="feature_name_es[]"]');
         var fval = $('#add_new_feature_es input[name="feature_value_es[]"]');
+        
+        // Get selected icon HTML for new row
+        var iconHtml = iconSelect.prop('outerHTML').replace('feature_icon_es[]', 'feature_icon_es[]');
 
-        var newtr = $('<tr class="bg-pale-success"><td><input type="text" name="feature_name_es[]" class="form-control" placeholder="Feature name" value="' + fname.val() + '"></td><td><input type="text" name="feature_value_es[]" class="form-control" placeholder="Feature value" value="' + fval.val() + '"></td><td><button type="button" class="btn btn-pure btn-danger" data-provide="tooltip" title="Delete this feature"><i class="ti-trash"></i></button></td><td><i class="ti-move"></i></td></tr>');
+        var newtr = $('<tr class="bg-pale-success"><td>' + iconHtml + '</td><td><input type="text" name="feature_name_es[]" class="form-control" placeholder="Feature name" value="' + fname.val() + '"></td><td><input type="text" name="feature_value_es[]" class="form-control" placeholder="Feature value" value="' + fval.val() + '"></td><td><button type="button" class="btn btn-pure btn-danger delete-tr" data-provide="tooltip" title="Delete this feature"><i class="ti-trash"></i></button></td><td><i class="ti-move"></i></td></tr>');
 
         newtr.insertAfter('#add_new_feature_es');
+        
+        // Initialize selectpicker on the new dropdown
+        newtr.find('select[data-provide="selectpicker"]').selectpicker({
+            dropupAuto: false,
+            size: 8,
+            liveSearch: true,
+            noneSelectedText: 'Select Icon'
+        });
 
+        iconSelect.selectpicker('val', '');
         fname.val('');
         fval.val('');
 
@@ -183,12 +229,14 @@ app.ready(function () {
     });
 
     // Remove a feature from list
-    $('.delete-tr').on('click', function (e) {
+    $('body').on('click', '.delete-tr', function (e) {
         e.preventDefault();
         $(this).parents('tr').addClass('bg-pale-danger');
-        $(this).parents('tr').fadeOut('slow');
-        $(this).parents('tr').remove();
-
+        $(this).parents('tr').fadeOut('slow', function() {
+            // Properly destroy selectpicker before removing
+            $(this).find('select[data-provide="selectpicker"]').selectpicker('destroy');
+            $(this).remove();
+        });
     });
 
     // Delete pricing

@@ -506,7 +506,7 @@ class QuickList{
     public $PropCosts;
     public $PropCostsMXN;
 
-    public function __construct($prop_id=0,$vars=array(),$type='local'){
+    public function __construct($prop_id=0,$vars=null,$type='local'){
         global $lang;
         // Create elements to be added
         $this->PropLocation = new stdClass;
@@ -539,7 +539,7 @@ class QuickList{
 
         if($prop_id != 0){
             $this->PropId = $prop_id;
-            if(!empty($vars)){
+            if($vars !== null && !empty($vars)){
                 if($type == 'local'){
                     $this->MLS = $vars->mls_num;
                     $this->IsFeatured = $vars->is_featured;
@@ -1217,6 +1217,7 @@ class AdvSearch{
     public $SFeatures = array();
     public $MinMax = array();
     public $SidebarTowns = array();
+    public $SidebarAreas = array();
 
     public function __construct(){
 
