@@ -1,0 +1,169 @@
+// main: main.less
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+@import url('../fonts/stylesheet.css');
+@import url('lesshat.less');
+
+@mobile:      ~"only screen and (max-width: 767px)";
+@tablet:      ~"only screen and (min-width: 767px) and (max-width: 1024px) and (orientation: portrait)";
+@tablet-long: ~"only screen and (min-width: 767px) and (max-width: 1024px) and (orientation: landscape)";
+@desktop:     ~"only screen and (min-width: 1025px)";
+@desktop-xl:  ~"only screen and (min-width: 1600px)";
+
+// Colour definition
+@yellow: #42bff5;
+@yellowd: #42bff5;
+@lgrey: #DFDFDF;
+@green: #92C01F;
+@blue: #0abbcc;
+
+
+// typography
+.cond(){
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+.head(){
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: bold;
+}
+
+.txt(){
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.cursive(){
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.lato{
+  font-family: 'Inter', sans-serif;
+}
+
+body{
+  overflow-x: hidden;
+  .txt();
+}
+
+h2.featured{
+  font-size: 35px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: @lgrey;
+}
+
+h5.italic{
+  .cursive();
+}
+
+.order-xs-2{
+  @media @mobile{
+    order: 2 !important;
+  }
+}
+.order-xs-1{
+  @media @mobile{
+    order: 1 !important;
+  }
+}
+
+.navbar-toggler-icon{
+  width: auto;
+  height: auto;
+  svg{
+    fill: white;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.mobile-show{
+  display: none !important;
+  @media @mobile{
+    display: inline-block !important;
+    &.m-block{
+      display: block !important;
+    }
+    &.m-flex{
+      display: flex !important;
+    }
+  }
+}
+
+.yellow-li{
+  color: @yellow;
+  .cond();
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.select-mia{
+   background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMi4wMTEgNTEyLjAxMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+Cgk8Zz4KCQk8cGF0aCBkPSJNNTA1Ljc1NSwxMjMuNTkyYy04LjM0MS04LjM0MS0yMS44MjQtOC4zNDEtMzAuMTY1LDBMMjU2LjAwNSwzNDMuMTc2TDM2LjQyMSwxMjMuNTkyYy04LjM0MS04LjM0MS0yMS44MjQtOC4zNDEtMzAuMTY1LDAgICAgcy04LjM0MSwyMS44MjQsMCwzMC4xNjVsMjM0LjY2NywyMzQuNjY3YzQuMTYsNC4xNiw5LjYyMSw2LjI1MSwxNS4wODMsNi4yNTFjNS40NjIsMCwxMC45MjMtMi4wOTEsMTUuMDgzLTYuMjUxbDIzNC42NjctMjM0LjY2NyAgICBDNTE0LjA5NiwxNDUuNDE2LDUxNC4wOTYsMTMxLjkzMyw1MDUuNzU1LDEyMy41OTJ6IiBmaWxsPSIjMDAwMDAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIj48L3BhdGg+Cgk8L2c+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPC9nPjwvc3ZnPg==) no-repeat right !important;
+    appearance: none !important;
+    background-size: 12px 12px !important;
+    background-position: 99% 50% !important;
+}
+
+
+.checkbox {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.checkbox input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.checkbox label {
+  position: relative;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.checkbox label:before {
+  content:'';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.checkbox input:checked + label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 9px;
+  width: 6px;
+  height: 14px;
+  border: solid @yellow;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.mobile-hide{
+   @media @mobile{
+      display: none !important;
+   }
+}
+
+.desktop-show{
+  @media @desktop{
+    display: inline-block !important;
+  }
+}

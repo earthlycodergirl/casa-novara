@@ -1,0 +1,200 @@
+#basic_search {
+  max-width: 960px;
+  display: block;
+}
+#basic_search .form-control {
+  border-radius: 0;
+}
+.search-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 60px;
+  gap: 10px;
+}
+@media only screen and (max-width: 767px) {
+  .search-box {
+    grid-template-columns: 1fr;
+  }
+}
+.price-selection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.price-selection button {
+  height: 60px;
+  border-color: #fff;
+  border-radius: 0;
+  font-weight: 300;
+  font-size: 13px;
+  width: 100%;
+  background: white;
+}
+#basic_search select {
+  height: 60px;
+  background: white;
+  border-color: #fff;
+  border-radius: 0;
+  font-weight: 300;
+  font-size: 13px;
+  background: white url("data:image/svg+xml;utf8,<svg viewBox='0 0 140 140' width='13' height='13' xmlns='http://www.w3.org/2000/svg'><g><path d='m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z' fill='grey'/></g></svg>") no-repeat;
+  background-position: right 5px top 59%;
+}
+#location {
+  background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="grey" class="bi bi-geo-alt" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M12.166 8.94C12.696 7.867 13 6.862 13 6A5 5 0 0 0 3 6c0 .862.305 1.867.834 2.94.524 1.062 1.234 2.12 1.96 3.07A31.481 31.481 0 0 0 8 14.58l.208-.22a31.493 31.493 0 0 0 1.998-2.35c.726-.95 1.436-2.008 1.96-3.07zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/><path fill-rule="evenodd" d="M8 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>') no-repeat;
+  background-position: right 5px top 55%;
+}
+.search-btn.m-block {
+  margin-top: 10px;
+}
+.search_btn {
+  width: 100%;
+  height: 60.5px;
+  background: #42bff5;
+  color: white;
+  border: 1px solid #42bff5;
+}
+.dropdown-toggle span.min-val,
+.dropdown-toggle span.max-val {
+  display: block;
+  min-height: 0;
+}
+.dropdown-toggle::after {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+}
+.dropdown-menu {
+  padding: 10px;
+  border-radius: 0;
+  /*max-width: 12rem;*/
+}
+.dropdown-menu label {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.dropdown-menu label span {
+  font-size: 10.5px;
+  color: #888;
+}
+.dropdown-menu label span.max {
+  text-align: right;
+}
+.dropdown-menu output {
+  text-align: center;
+  display: block;
+  font-size: 12px;
+}
+.dropdown-menu .btn-reset,
+.dropdown-menu .btn-set {
+  padding: 3px 5px;
+  background-color: #ccc;
+  height: auto;
+  min-height: auto;
+  color: black;
+  border: 1px solid #bbb;
+  max-width: 80%;
+  border-radius: 3px;
+  margin: 8px auto;
+  display: block;
+  font-weight: 400;
+  font-size: 12px;
+}
+.dropdown-menu .btn-reset:hover,
+.dropdown-menu .btn-set:hover {
+  background: #eee;
+}
+.advanced-drop {
+  max-width: calc(100% - 70px);
+  display: none;
+}
+@media only screen and (max-width: 767px) {
+  .advanced-drop {
+    max-width: 100%;
+  }
+}
+.advanced-search .yes-open {
+  display: none;
+}
+.advanced-search.opened .yes-open {
+  display: block;
+}
+.advanced-search.opened .not-open {
+  display: none;
+}
+.advanced-search {
+  color: white;
+  text-align: right;
+  padding: 10px 0;
+  font-size: 15px;
+  cursor: pointer;
+  line-height: 2;
+  max-width: calc(100% - 70px);
+}
+.advanced-search:hover {
+  text-decoration: underline;
+}
+@media only screen and (max-width: 767px) {
+  .advanced-search {
+    max-width: 100%;
+  }
+}
+.hidden-boxes {
+  display: grid;
+  grid-template-columns: 1fr 35%;
+  gap: 10px;
+}
+@media only screen and (max-width: 767px) {
+  .hidden-boxes {
+    grid-template-columns: 1fr;
+  }
+}
+.res-div.hide {
+  display: none;
+}
+.residential-extra {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  align-items: end;
+  margin-top: 10px;
+}
+@media only screen and (max-width: 767px) {
+  .residential-extra {
+    margin-top: 0;
+  }
+}
+.adv-wrap {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+@media only screen and (max-width: 767px) {
+  .adv-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+.development__level {
+  background: white;
+  height: 60px;
+  padding: 5px 10px;
+  text-align: center;
+}
+.development__level .dev-label {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 11px;
+}
+.development__level .opt {
+  display: inline-block;
+  width: 48%;
+  background: #e8f8ff;
+  padding: 3px;
+  padding-top: 4px;
+}
+.development__level .opt label {
+  font-size: 12px;
+}
+.develop-sel {
+  display: none;
+}

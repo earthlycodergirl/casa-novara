@@ -1,0 +1,313 @@
+/* Overlay navigation that sits on top of the hero */
+.overlay-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  /* above hero overlay (hero::before z-index:1, hero content z-index:2) */
+  background: transparent;
+  /* Dropdown menu styling for desktop */
+  /* Show dropdown on hover for larger screens */
+  /* Mobile collapse styles */
+}
+.overlay-nav .navbar {
+  padding: 0.75rem 1rem;
+}
+.overlay-nav .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+.overlay-nav .navbar-brand img {
+  max-height: 116px;
+  width: auto;
+  display: block;
+}
+.overlay-nav .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.95);
+  transition: color 0.18s ease;
+  padding: 0.5rem 0.75rem;
+}
+.overlay-nav .navbar-nav .nav-link:hover,
+.overlay-nav .navbar-nav .nav-link:focus {
+  color: #ffffff;
+}
+.overlay-nav .dropdown-menu {
+  background: rgba(0, 0, 0, 0.85);
+  border: none;
+  min-width: 200px;
+}
+.overlay-nav .dropdown-menu .dropdown-item {
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+}
+.overlay-nav .dropdown-menu .dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+@media (min-width: 768px) {
+  .overlay-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+  .overlay-nav .dropdown-menu {
+    margin-top: 0.25rem;
+  }
+}
+@media (max-width: 768px) {
+  .overlay-nav {
+    /* When collapsed, the menu background should be solid black with white text */
+    /* When shown (Bootstrap adds .show), expand */
+  }
+  .overlay-nav .navbar {
+    padding: 0.5rem 0.75rem;
+  }
+  .overlay-nav .navbar-collapse {
+    background: #000;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1rem 1rem 1.25rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+  }
+  .overlay-nav .navbar-collapse.show {
+    max-height: 600px;
+    /* generous enough for menu items */
+    opacity: 1;
+  }
+  .overlay-nav .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .overlay-nav .nav-link {
+    color: #ffffff !important;
+  }
+  .overlay-nav .dropdown-menu {
+    position: static;
+    /* flow inside the collapsed area */
+    background: transparent;
+    box-shadow: none;
+    padding-left: 0.5rem;
+  }
+  .overlay-nav .dropdown-menu .dropdown-item {
+    color: #ffffff;
+  }
+}
+/* A small utility to ensure nav links are visible over dark backgrounds */
+.text-white-strong {
+  color: #ffffff !important;
+}
+/* Site footer and footer image */
+.site-footer {
+  background: #fff;
+  padding: 40px 0;
+}
+.site-footer .footer-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.site-footer .footer-col {
+  padding: 0 12px;
+}
+.site-footer .footer-col--about {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: 40px;
+}
+.site-footer .footer-col--menu,
+.site-footer .footer-col--legal {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+.site-footer .footer-small {
+  color: #333;
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+.site-footer .social {
+  display: flex;
+  gap: 8px;
+}
+.site-footer .social-btn {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  text-decoration: none;
+}
+.site-footer .footer-title {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+}
+.site-footer .footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.site-footer .footer-list li {
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+.site-footer .footer-list a {
+  color: #222;
+  text-decoration: none;
+}
+@media (max-width: 992px) {
+  .site-footer {
+    /* tablet: equal sized columns (40/40/40 approximate) */
+  }
+  .site-footer .footer-row {
+    flex-wrap: wrap;
+  }
+  .site-footer .footer-col {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
+}
+@media (max-width: 600px) {
+  .site-footer .footer-row {
+    flex-direction: column;
+  }
+  .site-footer .footer-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 8px 12px;
+  }
+}
+.footer-image {
+  width: 100%;
+  height: 20vh;
+  overflow: hidden;
+}
+.footer-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Styles specific to the listings map page (scoped so other pages are unaffected) */
+.listings-map-page {
+  /* CSS variables that will be set at runtime by JS to match measured heights */
+  /* Make the map fill its column and stay visible while the left list scrolls */
+  /* Popup card styles to resemble left-side results */
+}
+.listings-map-page :root {
+  --cng-nav-height: 72px;
+  --cng-filter-height: 64px;
+  --cng-extra-padding: 18px;
+  --cng-top-stack: calc(var(--cng-nav-height) + var(--cng-filter-height) + var(--cng-extra-padding));
+}
+.listings-map-page .split-wrap {
+  padding: 18px 12px;
+  left: 12px;
+  right: 12px;
+}
+.listings-map-page .list-column {
+  background: #fff;
+  padding: 12px;
+  border-radius: 6px;
+}
+.listings-map-page .properties-wrap .properties-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.listings-map-page .map-column {
+  padding: 12px;
+}
+.listings-map-page #mapid {
+  width: 100%;
+  height: 80vh;
+  border-radius: 6px;
+}
+.listings-map-page .view-toggle {
+  gap: 8px;
+}
+.listings-map-page .filter-view {
+  display: flex;
+  align-items: center;
+}
+.listings-map-page .leaflet-popup-content .map-popup-card {
+  font-family: inherit;
+  color: #000;
+  text-decoration: none;
+}
+.listings-map-page .leaflet-popup-content .map-popup-card .prop-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px 6px 0 0;
+}
+.listings-map-page .leaflet-popup-content .map-popup-card .prop-body {
+  padding: 8px 6px;
+}
+.listings-map-page .leaflet-popup-content .map-popup-card .prop-price {
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 6px;
+}
+.listings-map-page .leaflet-popup-content .map-popup-card a {
+  text-decoration: none;
+  color: inherit;
+}
+@media (min-width: 992px) {
+  .listings-map-page {
+    /* Fix navbar and filter to top as full-width stacked bars (only for this page) */
+    /* add top padding so content isn't hidden under fixed bars */
+    /* sticky keeps the map visible while left column scrolls; account for fixed nav+filter height */
+  }
+  .listings-map-page .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+  }
+  .listings-map-page .listings-filter {
+    position: fixed;
+    top: var(--cng-nav-height);
+    left: 0;
+    right: 0;
+    z-index: 1040;
+  }
+  .listings-map-page .split-wrap {
+    padding-top: calc(var(--cng-top-stack));
+  }
+  .listings-map-page .map-column {
+    position: -webkit-sticky;
+    position: sticky;
+    top: calc(var(--cng-top-stack));
+    align-self: start;
+    height: calc(100vh - (var(--cng-top-stack)));
+    z-index: 1030;
+  }
+  .listings-map-page #mapid {
+    height: 100%;
+  }
+}
+@media (max-width: 991px) {
+  .listings-map-page #mapid {
+    height: 50vh;
+  }
+  .listings-map-page .properties-wrap .properties-grid {
+    grid-template-columns: 1fr;
+  }
+  .listings-map-page .map-column {
+    position: static;
+    height: auto;
+  }
+}

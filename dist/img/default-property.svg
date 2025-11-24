@@ -1,0 +1,32 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#f8f9fa"/>
+  
+  <!-- House outline -->
+  <g stroke="#6c757d" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- House base -->
+    <rect x="100" y="140" width="200" height="120"/>
+    
+    <!-- Roof -->
+    <polygon points="80,140 200,80 320,140"/>
+    
+    <!-- Door -->
+    <rect x="160" y="200" width="40" height="60"/>
+    <circle cx="185" cy="230" r="2" fill="#6c757d"/>
+    
+    <!-- Windows -->
+    <rect x="120" y="160" width="30" height="30"/>
+    <rect x="250" y="160" width="30" height="30"/>
+    
+    <!-- Window crosses -->
+    <line x1="135" y1="160" x2="135" y2="190"/>
+    <line x1="120" y1="175" x2="150" y2="175"/>
+    <line x1="265" y1="160" x2="265" y2="190"/>
+    <line x1="250" y1="175" x2="280" y2="175"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="200" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#6c757d">
+    No Image Available
+  </text>
+</svg>

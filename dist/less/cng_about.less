@@ -1,0 +1,310 @@
+// out: ../css/cng_about.css
+
+// About Us Page - Minimal Style
+// Casa Novara Real Estate
+
+// Color Variables (matching cng_listing.less)
+@primary-color: #3d3026;
+@secondary-color: #8b7355;
+@accent-color: #d4a574;
+@success-color: #6b8e5a;
+@text-color: #3d3026;
+@text-muted: #8a7968;
+@light-bg: #faf9f7;
+@white: #ffffff;
+@border-color: #e8e4df;
+@shadow: 0 2px 12px rgba(61, 48, 38, 0.08);
+@border-radius: 12px;
+@transition: all 0.3s ease;
+
+// Main about page container
+#about_us {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: @text-color;
+}
+
+// Hero Section - Clean and Simple
+.about-hero {
+    background: linear-gradient(135deg, @light-bg 0%, lighten(@light-bg, 3%) 100%);
+    padding: 6rem 0 4rem;
+    text-align: center;
+    
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            color: @primary-color;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: @text-muted;
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+    }
+}
+
+// Main Content
+.about-content {
+    padding: 4rem 0;
+    
+    .container {
+        max-width: 1000px;
+    }
+    
+    .content-section {
+        margin-bottom: 4rem;
+        
+        &:last-child {
+            margin-bottom: 2rem;
+        }
+        
+        h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: @primary-color;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            position: relative;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -0.5rem;
+                left: 0;
+                width: 3rem;
+                height: 2px;
+                background: @accent-color;
+            }
+        }
+        
+        .content-text {
+            max-width: 700px;
+            
+            p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                margin-bottom: 1.5rem;
+                color: @text-color;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+// Story Section with Side Image - Simplified
+.story-section {
+    .story-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        
+        .story-text {
+            .content-text {
+                max-width: none;
+            }
+        }
+        
+        .story-image {
+            height: 350px;
+            border-radius: 12px;
+            overflow: hidden;
+            
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+            
+            &:hover img {
+                transform: scale(1.02);
+            }
+        }
+    }
+}
+
+// Values Grid
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    
+    .value-item {
+        background: @white;
+        padding: 2rem;
+        border-radius: 8px;
+        border: 1px solid @border-color;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(61, 48, 38, 0.1);
+        }
+        
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: @secondary-color;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: @text-muted;
+            margin-bottom: 0;
+        }
+    }
+}
+
+// Contact CTA
+.contact-cta {
+    background: linear-gradient(135deg, @primary-color 0%, darken(@primary-color, 5%) 100%);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    text-align: center;
+    color: @white;
+    margin-top: 3rem;
+    
+    h2 {
+        font-size: 2rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+        
+        &::after {
+            display: none; // Remove the underline for this section
+        }
+    }
+    
+    p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+    
+    .cta-button {
+        display: inline-block;
+        background: @white;
+        color: @primary-color;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            background: @light-bg;
+            color: @primary-color;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+        }
+    }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 4rem 0 3rem;
+        
+        .hero-content {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    }
+    
+    .story-section .story-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        
+        .story-image {
+            height: 300px;
+        }
+    }
+    
+    .about-content {
+        padding: 3rem 0;
+        
+        .content-section {
+            margin-bottom: 3rem;
+            
+            h2 {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .content-text p {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+        }
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        
+        .value-item {
+            padding: 1.5rem;
+        }
+    }
+    
+    .contact-cta {
+        padding: 2rem 1.5rem;
+        margin-top: 2rem;
+        
+        h2 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            font-size: 1rem;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero {
+        padding: 3rem 0 2rem;
+        
+        .hero-content h1 {
+            font-size: 2rem;
+        }
+    }
+    
+    .story-section .story-content .story-image {
+        height: 250px;
+    }
+    
+    .values-grid .value-item {
+        padding: 1.25rem;
+        
+        h3 {
+            font-size: 1rem;
+        }
+        
+        p {
+            font-size: 0.9rem;
+        }
+    }
+}

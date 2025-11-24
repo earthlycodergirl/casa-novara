@@ -1,0 +1,229 @@
+#about_us {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: #3d3026;
+}
+.about-hero {
+  background: linear-gradient(135deg, #faf9f7 0%, #ffffff 100%);
+  padding: 6rem 0 4rem;
+  text-align: center;
+}
+.about-hero .hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.about-hero .hero-content h1 {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #3d3026;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+.about-hero .hero-content .hero-subtitle {
+  font-size: 1.25rem;
+  color: #8a7968;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+.about-content {
+  padding: 4rem 0;
+}
+.about-content .container {
+  max-width: 1000px;
+}
+.about-content .content-section {
+  margin-bottom: 4rem;
+}
+.about-content .content-section:last-child {
+  margin-bottom: 2rem;
+}
+.about-content .content-section h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3d3026;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.about-content .content-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 3rem;
+  height: 2px;
+  background: #d4a574;
+}
+.about-content .content-section .content-text {
+  max-width: 700px;
+}
+.about-content .content-section .content-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #3d3026;
+}
+.about-content .content-section .content-text p:last-child {
+  margin-bottom: 0;
+}
+.story-section .story-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.story-section .story-content .story-text .content-text {
+  max-width: none;
+}
+.story-section .story-content .story-image {
+  height: 350px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.story-section .story-content .story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.story-section .story-content .story-image:hover img {
+  transform: scale(1.02);
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.values-grid .value-item {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #e8e4df;
+  transition: all 0.3s ease;
+}
+.values-grid .value-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(61, 48, 38, 0.1);
+}
+.values-grid .value-item h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #8b7355;
+  margin-bottom: 1rem;
+}
+.values-grid .value-item p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #8a7968;
+  margin-bottom: 0;
+}
+.contact-cta {
+  background: linear-gradient(135deg, #3d3026 0%, #2d241c 100%);
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 3rem;
+}
+.contact-cta h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.contact-cta h2::after {
+  display: none;
+}
+.contact-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+.contact-cta .cta-button {
+  display: inline-block;
+  background: #ffffff;
+  color: #3d3026;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.contact-cta .cta-button:hover {
+  background: #faf9f7;
+  color: #3d3026;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+}
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 4rem 0 3rem;
+  }
+  .about-hero .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .about-hero .hero-content .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  .story-section .story-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .story-section .story-content .story-image {
+    height: 300px;
+  }
+  .about-content {
+    padding: 3rem 0;
+  }
+  .about-content .content-section {
+    margin-bottom: 3rem;
+  }
+  .about-content .content-section h2 {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .about-content .content-section .content-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .values-grid .value-item {
+    padding: 1.5rem;
+  }
+  .contact-cta {
+    padding: 2rem 1.5rem;
+    margin-top: 2rem;
+  }
+  .contact-cta h2 {
+    font-size: 1.5rem;
+  }
+  .contact-cta p {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .about-hero {
+    padding: 3rem 0 2rem;
+  }
+  .about-hero .hero-content h1 {
+    font-size: 2rem;
+  }
+  .story-section .story-content .story-image {
+    height: 250px;
+  }
+  .values-grid .value-item {
+    padding: 1.25rem;
+  }
+  .values-grid .value-item h3 {
+    font-size: 1rem;
+  }
+  .values-grid .value-item p {
+    font-size: 0.9rem;
+  }
+}

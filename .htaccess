@@ -1,0 +1,108 @@
+RewriteEngine On
+Options -Indexes -MultiViews
+
+#RewriteCond %{HTTPS} !on
+#RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+#RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteBase /casa-novara/
+
+RewriteRule ^images/(.*)$   adm/uploads/$1 [NC,L]
+
+ErrorDocument 404 /404.php
+
+# Listings routes (must come first and be very specific)
+RewriteRule    ^listings$    cng_listings_map.php?location=0&dsearch=all    [L,QSA]
+RewriteRule    ^listings/$    cng_listings_map.php?location=0&dsearch=all    [L,QSA]
+RewriteRule    ^listings/all$    cng_listings_map.php?location=0&dsearch=all    [L,QSA]
+RewriteRule    ^listings/cities/([A-Za-z0-9-+]+)/([A-Za-z0-9-]+)$    cng_listings_map.php?location=$2&dsearch=all    [L,QSA]
+RewriteRule    ^listings/towns/([A-Za-z0-9-+]+)/([A-Za-z0-9-]+)$    cng_listings_map.php?location=0&adv_property_types[]=0&counties[]=$2&max_beds=0&max_baths=0&min_beds=0&min_baths=0&price_min=0&price_max=18000000&dsearch=all    [L,QSA]
+RewriteRule    ^listings/areas/([A-Za-z0-9-+]+)/([A-Za-z0-9-]+)$    cng_listings_map.php?location=0&adv_property_types[]=0&counties[]=0&areas[]=$2&search_type=advanced&search_by=areas&max_beds=0&max_baths=0&min_beds=0&min_baths=0&price_min=0&price_max=18000000&dsearch=all    [L,QSA]
+RewriteRule    ^listings/cancun/([A-Za-z0-9-]+)$    cng_listings_map.php?location=2448&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/cozumel/([A-Za-z0-9-]+)$    cng_listings_map.php?location=1809&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/playa-del-carmen/([A-Za-z0-9-]+)$    cng_listings_map.php?location=1810&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/tulum/([A-Za-z0-9-]+)$    cng_listings_map.php?location=1811&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/isla-mujeres/([A-Za-z0-9-]+)$    cng_listings_map.php?location=1807&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/puerto-morelos/([A-Za-z0-9-]+)$    cng_listings_map.php?location=2440&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/puerto-aventuras/([A-Za-z0-9-]+)$    cng_listings_map.php?location=1810&adv_property_types[]=0&counties[]=26&max_beds=0&max_baths=0&min_beds=0&min_baths=0&price_min=0&price_max=18000000&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/akumal/([A-Za-z0-9-]+)$    cng_listings_map.php?location=2444&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/bacalar/([A-Za-z0-9-]+)$    cng_listings_map.php?location=2449&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/lots-land/all$    cng_listings_map.php?search_type=basic&page=1&beds=0&baths=0&list_type=0&location=0&property_type=21&update_form=   [L,QSA]
+RewriteRule    ^listings/property_type/([A-Za-z0-9-]+)$  cng_listings_map.php?search_type=basic&page=1&beds=0&baths=0&list_type=0&location=0&property_type=$1&update_form=   [L,QSA]
+RewriteRule    ^listings/commercial$   cng_listings_map.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=3&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000  [L,QSA]
+RewriteRule    ^listings/residential$   cng_listings_map.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=20&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000  [L,QSA]
+RewriteRule    ^listings/lots-land$   cng_listings_map.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=21&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000  [L,QSA]
+RewriteRule    ^listings/cities/([A-Za-z0-9-+]+)/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=$2&dsearch=all    [L,QSA]
+RewriteRule    ^listings/towns/([A-Za-z0-9-+]+)/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=0&adv_property_types[]=0&counties[]=$2&max_beds=0&max_baths=0&min_beds=0&min_baths=0&price_min=0&price_max=18000000&dsearch=all    [L,QSA]
+RewriteRule    ^listings/areas/([A-Za-z0-9-+]+)/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=0&adv_property_types[]=0&counties[]=0&areas[]=$2&search_type=advanced&search_by=areas&max_beds=0&max_baths=0&min_beds=0&min_baths=0&price_min=0&price_max=18000000&dsearch=all    [L,QSA]
+RewriteRule    ^listings/cancun/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=2448&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/cozumel/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=1809&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/playa-del-carmen/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=1810&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/tulum/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=1811&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/isla-mujeres/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=1807&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/puerto-morelos/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=2440&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/puerto-aventuras/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=1810&adv_property_types[]=0&counties[]=26&max_beds=0&max_baths=0&min_beds=0&min_baths=0&price_min=0&price_max=18000000&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/akumal/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=2444&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/bacalar/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=2449&dsearch=$1    [L,QSA]
+RewriteRule    ^listings/lots-land/all?$    cng_listings_map.php?search_type=basic&page=1&beds=0&baths=0&list_type=0&location=0&property_type=21&update_form=   [L,QSA]
+RewriteRule    ^listings/property_type/([A-Za-z0-9-]+)?$  cng_listings_map.php?search_type=basic&page=1&beds=0&baths=0&list_type=0&location=0&property_type=$1&update_form=   [L,QSA]
+RewriteRule    ^listings/commercial$   cng_listings_map.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=3&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000  [L,QSA]
+RewriteRule    ^listings/residential$   cng_listings_map.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=20&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000  [L,QSA]
+RewriteRule    ^listings/lots-land$   cng_listings_map.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=21&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000  [L,QSA]
+
+# Individual listing routes
+RewriteRule    ^listing/([A-Za-z0-9-]+)/?$    cng_listing.php?prop_id=$1&type=budd    [QSA,L]
+RewriteRule    ^listing-map/([A-Za-z0-9-]+)/?$    cng_listing.php?prop_id=$1&type=budd    [QSA,L]
+RewriteRule    ^listingup/([A-Za-z0-9-]+)/?$    cng_listing.php?prop_id=$1&type=up    [NC,L]
+
+# Other routes
+RewriteRule    ^real-estate-news/([A-Za-z0-9-]+)/?$    cng_blog_post.php?bid=$1   [NC,L]
+RewriteRule    ^real-estate-news/?$    cng_blog.php   [NC,L]
+RewriteRule    ^contact-us?$    contact.php  [NC,L]
+RewriteRule    ^real-estate-faq?$    faq.php  [NC,L]
+RewriteRule    ^privacy-policy?$    secure-privacy.php  [NC,L]
+RewriteRule    ^terms-and-conditions?$    secure-terms.php  [NC,L]
+RewriteRule    ^about?$    cng_about.php  [NC,L]
+
+
+
+#SPANISH VERSION
+RewriteRule    ^es/?$    index.php?lang=es  [NC,L]
+RewriteRule    ^es/propiedad/([A-Za-z0-9-]+)/?$    cng_listing.php?prop_id=$1&type=budd&lang=es    [QSA,L]
+RewriteRule    ^es/mapa?$    listings-map.php?lang=es    [QSA,L]
+RewriteRule    ^es/propiedades?$    cng_listings_map.php?lang=es    [QSA,L]
+RewriteRule    ^es/blog/([A-Za-z0-9-]+)/?$    blog-single.php?blog_id=$1&lang=es   [NC,L]
+RewriteRule    ^es/bienes-raices-mexico/?$    blog.php?lang=es   [NC,L]
+RewriteRule    ^es/contacto?$    contact.php?lang=es  [NC,L]
+RewriteRule    ^es/vende-tu-propiedad?$    list-property.php?lang=es  [NC,L]
+RewriteRule    ^es/quienes-somos?$    about.php?lang=es  [NC,L]
+RewriteRule    ^es/privacidad?$    secure-privacy-es.php?lang=es  [NC,L]
+RewriteRule    ^es/terminos?$    secure-terms-es.php?lang=es  [NC,L]
+
+RewriteRule    ^es/propiedades/all?$    cng_listings_map.php?location=0&dsearch=all&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/cancun/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=2448&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/playa-del-carmen/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=1810&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/tulum/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=1811&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/isla-mujeres/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=1807&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/puerto-morelos/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=2440&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/puerto-aventuras/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=1810&adv_property_types[]=0&counties[]=26&max_beds=0&max_baths=0&min_beds=0&min_baths=0&price_min=0&price_max=18000000&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/akumal/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=2444&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/bacalar/([A-Za-z0-9-]+)?$    cng_listings_map.php?location=2449&dsearch=$1&lang=es    [L,QSA]
+RewriteRule    ^es/propiedades/lots-land/all?$    cng_listings_map.php?search_type=basic&page=1&beds=0&baths=0&list_type=0&location=0&property_type=21&update_form=1&lang=es   [L,QSA]
+RewriteRule    ^es/propiedades/property_type/([A-Za-z0-9-]+)?$  cng_listings_map.php?search_type=basic&page=1&beds=0&baths=0&list_type=0&location=0&property_type=$1&update_form=1&lang=es   [L,QSA]
+
+
+RewriteRule    ^es/propiedades/comercial?$   cng_listings_map.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=3&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000&lang=es [L,QSA]
+RewriteRule    ^es/propiedades/residencial?$   cng_listings_map.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=20&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000&lang=es [L,QSA]
+RewriteRule    ^es/propiedades/lotes?$   cng_listings_map.php?page=1&list_type=0&location=0&property_type=0&currency=usd&update_form=&order_by=&search_type=advanced&adv_property_types[]=21&min_beds=0&min_baths=0&price_min=%2470&price_max=1000000000&lang=es [L,QSA]
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/casa-novara/listing/
+RewriteCond %{REQUEST_URI} !^/casa-novara/listings/
+RewriteCond %{REQUEST_URI} !^/casa-novara/es/propiedad/
+RewriteCond %{REQUEST_URI} !^/casa-novara/es/propiedades/
+RewriteCond %{REQUEST_URI} !^/casa-novara/blog/
+RewriteRule ^([^\.]+)$ $1.php [NC,L]

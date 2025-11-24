@@ -1,0 +1,1157 @@
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+/* Testimonials carousel */
+.testimonials {
+  padding: 40px 0;
+  /* add quotation marks */
+}
+.testimonials .testimonials-header {
+  margin-bottom: 18px;
+}
+.testimonials .testimonials-heading h4 {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+.testimonials .testimonials-heading h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+.testimonials .testimonials-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+.testimonials .t-arrow {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #222;
+}
+.testimonials .testimonials-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  touch-action: pan-x;
+  /* make the track full-bleed (full viewport width) while header stays inside container */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 14px 48px;
+  /* leave space on left/right so slides don't touch the viewport edge */
+  /* hide native scrollbar but preserve touch scrolling */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
+}
+@media (min-width: 768px) {
+  .testimonials .testimonials-track {
+    padding: 14px 80px;
+  }
+}
+.testimonials .testimonials-track::-webkit-scrollbar {
+  display: none;
+  height: 0;
+}
+.testimonials .t-slide {
+  flex: 0 0 80%;
+  max-width: 80%;
+  scroll-snap-align: start;
+  margin: 10px;
+}
+.testimonials .testimonial-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px;
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+.testimonials .testimonial-text {
+  font-style: normal;
+  font-size: 1rem;
+  color: #222;
+  position: relative;
+  margin: 0 0 12px 0;
+}
+.testimonials .testimonial-text::before {
+  content: '"';
+  font-size: 2.4rem;
+  line-height: 0;
+  position: absolute;
+  left: -6px;
+  top: -6px;
+  color: #eee;
+}
+.testimonials .testimonial-footer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 10px;
+}
+.testimonials .reviewer-col {
+  display: block;
+}
+.testimonials .reviewer-col--img {
+  width: 15%;
+  min-width: 48px;
+  height: 48px;
+  background: linear-gradient(45deg, #ddd, #eee);
+  border-radius: 6px;
+}
+.testimonials .reviewer-col--info {
+  width: calc(85% - 12px);
+}
+.testimonials .reviewer-name {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.testimonials .stars {
+  color: #f6c200;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+@media (min-width: 768px) {
+  .testimonials .t-slide {
+    flex: 0 0 32%;
+    max-width: 32%;
+  }
+}
+/* Full-bleed split section (image left, dark content right) */
+.split-section {
+  width: 100%;
+  /* Tablet: left 30% / right 70% */
+  /* Mobile: stacked */
+}
+.split-section .split-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.split-section .split-left,
+.split-section .split-right {
+  flex: 1 1 50%;
+}
+.split-section .split-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.split-section .split-right {
+  background: #222;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+.split-section .split-right .split-content {
+  padding: 70px;
+  max-width: 600px;
+}
+.split-section .split-content {
+  padding: 40px 24px;
+}
+.split-section .split-header h4 {
+  color: #ddd;
+  margin: 0 0 6px 0;
+}
+.split-section .split-header h2 {
+  margin: 0 0 35px 0;
+}
+.split-section .features {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.split-section .feature-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+.split-section .feature-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  /* background: #fff; */
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border: 1px solid white;
+}
+.split-section .feature-body {
+  flex: 1;
+}
+.split-section .feature-body h3 {
+  margin: 0 0 6px 0;
+  color: #fff;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.split-section .feature-body .small {
+  color: #bbb;
+  font-size: 0.85rem;
+  margin: 0;
+}
+@media (max-width: 992px) {
+  .split-section .split-left {
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+  .split-section .split-right {
+    flex: 0 0 70%;
+    max-width: 70%;
+  }
+  .split-section .split-content {
+    padding: 28px;
+  }
+}
+@media (max-width: 600px) {
+  .split-section .split-left,
+  .split-section .split-right {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .split-section .split-content {
+    padding: 18px;
+  }
+}
+/* Site footer and footer image: moved to cng_base.less */
+/* Hero styles (kept as inlined version, converted to LESS) */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-align: center;
+  background-image: url("../img/hero.jpeg");
+  background-size: cover;
+  background-position: center center;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.45) 30%, rgba(0, 0, 0, 0.15) 60%, rgba(0, 0, 0, 0) 100%);
+  z-index: 1;
+}
+.hero .container,
+.hero .hero-inner {
+  position: relative;
+  z-index: 2;
+  /* above overlay */
+}
+.hero .hero-inner {
+  margin-top: -110px;
+}
+.hero .hero-title {
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 0;
+}
+.hero .hero-text {
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  margin-bottom: 40px;
+}
+.hero .hero-buttons .btn {
+  min-width: 140px;
+}
+.hero .hero-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 100%;
+  padding: 0.5rem 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0));
+}
+.hero .hero-bottom .container {
+  padding-left: 20px;
+  padding-right: 40px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 100%;
+}
+.hero .hero-bottom .col:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.hero .hero-bottom .col:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero .hero-bottom .col:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.hero .hero-bottom .big-text {
+  font-size: clamp(1.5rem, 2.8vw, 1.9rem);
+  font-weight: 300;
+  text-align: left;
+  max-width: 222px;
+}
+.hero .hero-bottom .body-text {
+  font-size: clamp(0.95rem, 1.5vw, 0.95rem);
+  font-weight: 300;
+  text-align: left;
+  max-width: 300px;
+  line-height: 1.5;
+}
+.hero .arrow {
+  width: 50px;
+  height: 50px;
+  opacity: 0.95;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.hero .bounce {
+  animation: bounce 1.6s infinite;
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+  .hero .hero-bottom {
+    padding: 1rem;
+  }
+  .hero .hero-bottom .big-text {
+    font-size: 1.4rem;
+  }
+}
+/* INTRO TEXT */
+.intro-text {
+  padding: 120px 0;
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  margin-right: 0;
+}
+.intro-text .info-sec {
+  padding: 50px;
+  padding-left: 80px;
+  display: block;
+  width: 85%;
+}
+.intro-text .info-sec h2 {
+  font-size: 34px;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+.intro-text .info-sec p {
+  color: #999;
+  font-size: 16px;
+  line-height: 28px;
+  margin-bottom: 30px;
+}
+.intro-text .img-sm {
+  width: 160px;
+  height: auto;
+  padding-left: 30px;
+  padding-top: 30px;
+}
+/* Properties slider
+	 - uses horizontal flex + scroll-snap for a simple slider without JS
+	 - responsive widths:
+		 * mobile: show ~1.5 slides (partial next) => slide width ~66.666%
+		 * tablet / small desktop: 4 slides => slide width = 25%
+		 * large desktop: 5 slides => slide width = 20%
+	 - hover on non-touch devices expands slide (scale) including image
+*/
+h4 {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #999;
+  margin-bottom: 20px;
+}
+.text-black {
+  color: black;
+}
+.properties-slider {
+  position: relative;
+  width: 100%;
+  padding: 50px 0;
+  padding-left: 50px;
+  /* allow visible overflow for hover expansion */
+  overflow: visible;
+  background: #f8f8f8;
+  /* Tablet / small desktop: 4 slides visible */
+  /* Large desktop: 5 slides visible */
+  /* Hover to expand on devices that support hover (non-touch) */
+  /* On small screens, reduce gaps and disable large shadows */
+  /* Accessibility: focus styles */
+}
+.properties-slider .slides {
+  display: flex;
+  gap: 22px;
+  padding: 30px 0 10px 0;
+  /* Allow native horizontal scrolling for touch devices */
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  /* allow horizontal pan gestures (improves touch swipe behavior) */
+  touch-action: pan-x;
+  scroll-snap-type: x mandatory;
+}
+.properties-slider .slide {
+  flex: 0 0 66.6667%;
+  /* default mobile: 1.5 slides visible */
+  max-width: 66.6667%;
+  scroll-snap-align: start;
+  transition: box-shadow 0.28s;
+  position: relative;
+  /* fixed image height */
+  /* location above title */
+}
+.properties-slider .slide a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.properties-slider .slide .card {
+  display: flex;
+  flex-direction: column;
+  /* allow image to determine height */
+  height: auto;
+  width: 100%;
+  position: relative;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+.properties-slider .slide .card-image {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center center;
+  transition: transform 0.32s cubic-bezier(0.2, 0.9, 0.2, 1);
+  transform-origin: center center;
+  will-change: transform;
+  display: block;
+  border-radius: 0;
+}
+.properties-slider .slide .card-body {
+  padding: 0.6rem 0.9rem 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: transparent;
+  margin-top: 0;
+  border-radius: 0 0 8px 8px;
+  box-shadow: none;
+}
+.properties-slider .slide .card-location {
+  order: 0;
+  font-size: 0.85rem;
+  color: #444;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+.properties-slider .slide .card-location::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 1px;
+  background: #111;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.properties-slider .slide .card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #111;
+}
+.properties-slider .slide .card-price {
+  margin-top: auto;
+  font-size: 0.75rem;
+}
+@media (min-width: 600px) {
+  .properties-slider .slide {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+@media (min-width: 1200px) {
+  .properties-slider .slide {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .properties-slider {
+    /* visually expand image (width a little, height more) without reflow */
+  }
+  .properties-slider .slides {
+    align-items: flex-start;
+  }
+  .properties-slider .slide {
+    transform-origin: center center;
+  }
+  .properties-slider .slide:hover {
+    z-index: 4;
+  }
+  .properties-slider .slide:hover .card-image {
+    transform: scale(1.04, 1.22);
+  }
+}
+@media (max-width: 480px) {
+  .properties-slider {
+    padding: 0.5rem 0.25rem;
+  }
+  .properties-slider .slides {
+    gap: 0.6rem;
+  }
+  .properties-slider .slide .card {
+    box-shadow: none;
+  }
+}
+.properties-slider .slide a:focus {
+  outline: 3px solid rgba(13, 110, 253, 0.15);
+  outline-offset: 4px;
+}
+/* Slider controls: arrows and pagination dots */
+.properties-slider {
+  /* pager removed - no dots */
+}
+.properties-slider .controls {
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  /* minimal touching side */
+  right: 6px;
+  z-index: 8;
+  pointer-events: none;
+  /* allow pointer only on buttons */
+}
+.properties-slider .controls .arrow-btn {
+  pointer-events: auto;
+  position: absolute;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.12s ease;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+.properties-slider .controls .arrow-btn:hover {
+  background: rgba(0, 0, 0, 0.72);
+  transform: translateY(-50%) scale(1.02);
+}
+.properties-slider .controls .arrow-prev {
+  left: 6px;
+}
+.properties-slider .controls .arrow-next {
+  right: 6px;
+}
+.slider-header {
+  padding: 0 50px;
+  margin-bottom: 20px;
+}
+.slider-header h2 {
+  font-size: 38px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+.slider-header h4 {
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 0;
+}
+.slider-header p {
+  color: #000;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+.slider-header .btn {
+  border-radius: 30px;
+  font-size: 1rem;
+  color: black;
+  border-width: 2px;
+  padding: 10px 20px;
+  margin-top: 15px;
+}
+.btn {
+  border-radius: 0;
+}
+.btn-dark {
+  background: black;
+}
+.hero-buttons .btn {
+  font-size: 1rem;
+  padding: 12px 30px;
+}
+.logo-footer img {
+  opacity: 0.2;
+}
+/* Listings filter ribbon */
+.listings-filter {
+  /* Search input grows to fill available space on desktop */
+  /* Filter dropdown button style */
+  /* Types grid */
+  /* checked visual using sibling selectors (input + .type-icon) and :has() for parent styling where supported */
+  /* If :has is supported, highlight the whole tile */
+  /* Pills panel for beds/baths */
+  /* Responsive: on small screens stack vertically and make full width */
+}
+.listings-filter .filter-ribbon {
+  background: #f6f7f8;
+  /* light grey */
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 12px 0;
+}
+.listings-filter .filter-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.listings-filter .filter-item {
+  flex: 0 0 auto;
+}
+.listings-filter .filter-search {
+  flex: 1 1 420px;
+  min-width: 180px;
+  position: relative;
+}
+.listings-filter .search-input-wrap {
+  position: relative;
+}
+.listings-filter .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  pointer-events: none;
+}
+.listings-filter .filter-search input.form-control {
+  padding-left: 40px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  height: 44px;
+  background: transparent;
+}
+.listings-filter .search-suggestions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
+  z-index: 60;
+  display: none;
+}
+.listings-filter .search-suggestions ul {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+.listings-filter .search-suggestions li {
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.listings-filter .search-suggestions li:hover {
+  background: #f3f4f6;
+}
+.listings-filter .btn-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  height: 44px;
+  border-radius: 6px;
+  background: #fff;
+  color: #111;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 13px;
+}
+.listings-filter .filter-dropdown {
+  position: relative;
+}
+.listings-filter .filter-dropdown .dropdown-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 60;
+  display: none;
+  font-size: 13px;
+}
+.listings-filter .filter-dropdown.open .dropdown-panel {
+  display: block;
+}
+.listings-filter .dropdown-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.listings-filter .dropdown-panel li {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.listings-filter .dropdown-panel li:hover {
+  background: #f6f7f8;
+}
+.listings-filter .types-panel {
+  width: 420px;
+}
+.listings-filter .types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.listings-filter .type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.listings-filter .type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.12s ease;
+}
+.listings-filter .type input {
+  display: none;
+}
+.listings-filter .type .type-icon {
+  font-size: 20px;
+  display: block;
+  color: #6b7280;
+}
+.listings-filter .type .type-label {
+  font-size: 13px;
+  color: #222;
+}
+.listings-filter .type input:checked + .type-icon,
+.listings-filter .type input:checked + .type-label {
+  color: #000000;
+  font-weight: 600;
+}
+.listings-filter .type:has(input:checked) {
+  background: transparent;
+  border-color: black;
+}
+.listings-filter .types-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.listings-filter .filter-dropdown .pills-panel {
+  min-width: 400px;
+}
+.listings-filter .pills-panel ul {
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+  padding: 6px;
+}
+.listings-filter .pills-panel ul li {
+  padding: 3px;
+}
+.listings-filter .pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+}
+.listings-filter .pill input {
+  margin-right: 8px;
+}
+@media (max-width: 767px) {
+  .listings-filter .filter-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .listings-filter .filter-item {
+    width: 100%;
+  }
+  .listings-filter .filter-search {
+    order: -1;
+  }
+  .listings-filter .filter-dropdown .dropdown-panel {
+    left: 0;
+    right: 0;
+    min-width: auto;
+  }
+  .listings-filter .types-panel {
+    width: 100%;
+  }
+}
+/* Properties grid */
+.properties-list {
+  padding: 28px 0;
+  /* Responsive columns: 4 on >=1400, 3 on 758-1399, stacked under 758 */
+  /* Ensure equal height when side-by-side by making the card take full height of the column */
+}
+.properties-list .properties-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(1, 1fr);
+}
+.properties-list .property-col {
+  display: flex;
+}
+.properties-list .property-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.18s ease, transform 0.12s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+.properties-list .property-card:hover {
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+.properties-list .prop-image {
+  position: relative;
+  width: 100%;
+  padding-top: 62%;
+  background-size: cover;
+  background-position: center;
+}
+.properties-list .prop-badge,
+.properties-list .prop-action {
+  position: absolute;
+  top: 10px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #fff;
+}
+.properties-list .prop-badge {
+  left: 10px;
+  background: rgba(0, 0, 0, 0.48);
+}
+.properties-list .prop-action {
+  right: 10px;
+  background: rgba(0, 0, 0, 0.28);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.properties-list .prop-body {
+  padding: 12px 14px 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 auto;
+}
+.properties-list .prop-price {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.properties-list .prop-meta {
+  color: #666;
+  font-size: 0.92rem;
+}
+.properties-list .prop-location {
+  color: #222;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.properties-list .prop-type {
+  color: #666;
+  font-size: 0.9rem;
+}
+@media (min-width: 1400px) {
+  .properties-list .properties-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 758px) and (max-width: 1399px) {
+  .properties-list .properties-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 757px) {
+  .properties-list .properties-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.properties-list .property-col {
+  align-items: stretch;
+}
+.properties-list .property-card {
+  height: 100%;
+}
+/* Ensure "List" display forces the grid breakpoints you requested */
+.list-mode .properties-list .properties-grid {
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 758px) {
+  .list-mode .properties-list .properties-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1400px) {
+  .list-mode .properties-list .properties-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+/* toolbar placement: results count + view toggles */
+.properties-controls {
+  width: 100%;
+  margin-bottom: 12px;
+}
+.properties-controls .results-left {
+  float: left;
+}
+.properties-controls .results-actions {
+  float: right;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.properties-controls .results-count {
+  font-size: 14px;
+  color: #222;
+}
+.properties-controls .view-toggle .btn {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #000;
+  padding: 6px 10px;
+  border-radius: 0;
+}
+.properties-controls .view-toggle .btn.active {
+  background: transparent;
+  color: #000;
+  border-color: #000;
+}
+/* popup styling for leaflet popups */
+.cng-map-popup .popup-card {
+  color: #000;
+}
+.cng-map-popup .popup-card .card-price,
+.cng-map-popup .popup-card .prop-price {
+  font-weight: 700;
+}
+.cng-map-popup .popup-card a.view-details {
+  color: #000;
+  text-decoration: none;
+  display: block;
+  margin-top: 8px;
+  font-weight: 600;
+}
+.map-popup-card {
+  font-family: 'Inter', sans-serif !important;
+}
+.map-popup-card .prop-badge {
+  background: rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  padding: 5px 10px;
+  color: white;
+}
+.map-popup-card .prop-action {
+  display: none;
+}
+.map-popup-card .map-popup-cta {
+  background: black;
+  color: white;
+  margin-top: 0;
+}
+/* hide underline for any links inside popup clones */
+.cng-map-popup a {
+  text-decoration: none;
+  color: #000;
+}
+/* ensure popup image sizing (in case clone doesn't inline style) */
+.cng-map-popup .card-image,
+.cng-map-popup .prop-image {
+  height: 200px !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+/* clear floats */
+.properties-controls::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* Dropdown panels: never exceed viewport and stay boxed */
+.filter-dropdown {
+  position: relative;
+}
+.filter-dropdown .dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1200;
+  min-width: 220px;
+  max-width: calc(100vw - 48px);
+  /* cap to viewport */
+  box-sizing: border-box;
+  overflow: auto;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  word-break: break-word;
+}
+/* Hide native radio inputs visually for beds/baths; keep them in DOM for accessibility */
+.filter-dropdown[data-filter="beds"] .pill input,
+.filter-dropdown[data-filter="baths"] .pill input {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+/* Beds / Baths labels as pill buttons (ensure selected state visible) */
+.filter-dropdown[data-filter="beds"] .dropdown-panel,
+.filter-dropdown[data-filter="baths"] .dropdown-panel {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.filter-dropdown[data-filter="beds"] .pill,
+.filter-dropdown[data-filter="baths"] .pill {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 0;
+  background: #f4f4f4;
+  color: #222;
+  font-size: 14px;
+  transition: background 0.12s, color 0.12s, transform 0.06s;
+  border: 1px solid transparent;
+  user-select: none;
+}
+.filter-dropdown[data-filter="beds"] .pill:hover,
+.filter-dropdown[data-filter="baths"] .pill:hover {
+  background: #6b7280;
+  transition: 0.1s ease-in-out;
+}
+.filter-dropdown[data-filter="beds"] .pill.selected,
+.filter-dropdown[data-filter="baths"] .pill.selected,
+.filter-dropdown[data-filter="beds"] .pill input:checked + *,
+.filter-dropdown[data-filter="baths"] .pill input:checked + * {
+  /* fallbacks */
+  background: #000;
+  /* dark */
+  color: #fff;
+  border-color: rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+/* Ensure types panel doesn't force horizontal overflow */
+.filter-dropdown[data-filter="types"] .dropdown-panel {
+  max-width: calc(100vw - 48px);
+  left: 0;
+  right: auto;
+  box-sizing: border-box;
+}
+/* Map all .btn-primary visuals to dark (override Bootstrap primary appearances) */
+.btn-primary {
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+  box-shadow: none !important;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background: #000000 !important;
+  border-color: #000000 !important;
+}
+@media screen and (max-width: 749px) {
+  .navbar > .container-fluid {
+    align-items: flex-start;
+  }
+  .navbar > .container-fluid .navbar-toggler {
+    margin-top: 20px;
+    font-size: 25px;
+  }
+  .navbar-light > .container-fluid {
+    align-items: flex-start;
+    --bs-gutter-x: 0;
+  }
+  .navbar-light > .container-fluid .navbar-toggler {
+    margin-top: 0;
+    margin-right: 10px;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .navbar-light > .container-fluid .navbar-nav {
+    text-align: center;
+  }
+  .navbar-light > .container-fluid .navbar-nav li.nav-item {
+    border-top: 1px solid #eee;
+  }
+}

@@ -1,0 +1,16 @@
+SQLSTATE[HY000] [1045] Access denied for user 'buddsellsrealest_gfadmin'@'173.205.124.27' (using password: YES)07/Jan/21 5:50 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'client_name' cannot be null 
+INSERT INTO property_requests (client_name,client_email,client_phone,client_notes,property_id,request_timestamp) VALUES (?,?,?,?,?,NOW())
+
+07/Jan/21 5:53 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'client_email' cannot be null 
+INSERT INTO property_requests (client_name,client_email,client_phone,client_notes,property_id,request_timestamp) VALUES (?,?,?,?,?,NOW())
+
+07/Jan/21 5:55 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'client_name' cannot be null 
+INSERT INTO property_requests (client_name,client_email,client_phone,client_notes,property_id,request_timestamp) VALUES (?,?,?,?,?,NOW())
+
+07/Jan/21 5:55 pm 
+ SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'client_name' cannot be null 
+INSERT INTO property_requests (client_name,client_email,client_phone,client_notes,property_id,request_timestamp) VALUES (?,?,?,?,?,NOW())
+
