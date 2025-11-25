@@ -38,8 +38,12 @@ $adv_search->getLocations();
 $adv_search->getMinMax();
 
 // Load property types from database
-$listings_helper = new SiteListings();
-$property_types = $listings_helper->getPropertyTypes();
+$listings_helper = new Listings();
+$listings_helper->getPropertyTypes();
+$property_types = $listings_helper->PropertyTypes;
+
+// Debug output (temporarily enabled to check property types)
+// echo "<!-- Debug: Property types loaded: " . print_r($property_types, true) . " -->\n";
 
 // Define property type icons mapping
 $property_type_icons = array(
@@ -203,6 +207,8 @@ if(isset($listings->SearchParams->Cities[0])){
 
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap Icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
         <link href="<?= $assets_prefix ?>/dist/css/cng_base.css" rel="stylesheet">
         <link href="<?= $assets_prefix ?>/dist/css/cng.css" rel="stylesheet">
@@ -310,6 +316,15 @@ if(isset($listings->SearchParams->Cities[0])){
                 margin-bottom: 0px;
             }
             
+            .prop-location i {
+                color: #dc3545;
+                margin-right: 4px;
+            }
+            
+            .filter-toggle .btn-filter i {
+                margin-right: 6px;
+            }
+            
             .prop-type {
                 font-size: 13px;
                 color: #777;
@@ -374,17 +389,94 @@ if(isset($listings->SearchParams->Cities[0])){
                 flex-direction: column;
             }
             
+            /* Mobile layout: map first, horizontal property slider */
+            @media (max-width: 767px) {
+                .split-wrap .row {
+                    flex-direction: column-reverse;
+                }
+                
+                .map-column {
+                    height: 50vh;
+                    min-height: 300px;
+                    order: 1;
+                }
+                
+                .list-column {
+                    order: 2;
+                    height: auto;
+                    overflow: visible;
+                    position: relative;
+                }
+                
+                .properties-list {
+                    position: relative;
+                }
+                
+                .properties-grid {
+                    display: flex;
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                    gap: 16px;
+                    padding: 16px;
+                    scroll-snap-type: x mandatory;
+                    -webkit-overflow-scrolling: touch;
+                }
+                
+                .property-col {
+                    flex: 0 0 280px;
+                    min-width: 280px;
+                    scroll-snap-align: start;
+                }
+                
+                .property-card {
+                    border: 2px solid transparent;
+                    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+                }
+                
+                .property-card.highlighted {
+                    border-color: #007bff;
+                    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+                }
+                
+                /* Hide scrollbar but keep functionality */
+                .properties-grid::-webkit-scrollbar {
+                    display: none;
+                }
+                
+                .properties-grid {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+                
+                /* Add scroll indicator */
+                .properties-list::after {
+                    content: '← Swipe to see more properties →';
+                    position: absolute;
+                    bottom: 8px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(0, 0, 0, 0.7);
+                    color: white;
+                    padding: 4px 12px;
+                    border-radius: 12px;
+                    font-size: 12px;
+                    pointer-events: none;
+                    opacity: 0.8;
+                    z-index: 10;
+                }
+            }
+            
             /* Current filters section styles */
             .current-filters {
                 transition: all 0.3s ease;
             }
             
             .filter-tag {
-                background: #1976d2;
+                background: #e46248;
                 color: white;
-                padding: 4px 8px 4px 12px;
-                border-radius: 20px;
-                font-size: 13px;
+                padding: 2px 8px 2px 12px;
+                border-radius: 3px;
+                font-size: 12px;
                 display: inline-flex;
                 align-items: center;
                 gap: 6px;
@@ -416,6 +508,127 @@ if(isset($listings->SearchParams->Cities[0])){
             .filter-tag .remove-filter:hover {
                 background: rgba(255, 255, 255, 0.5);
             }
+            
+            /* Property Types Dropdown List Styles */
+            .types-dropdown-panel {
+                min-width: 280px;
+                max-width: 350px;
+            }
+            
+            .types-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 16px;
+                border-bottom: 1px solid #eee;
+                background-color: #f8f9fa;
+            }
+            
+            .types-title {
+                font-weight: 600;
+                color: #333;
+                font-size: 14px;
+            }
+            
+            .btn-clear-types {
+                background: none;
+                border: none;
+                color: #1976d2;
+                font-size: 12px;
+                cursor: pointer;
+                padding: 2px 6px;
+                border-radius: 3px;
+                transition: background-color 0.2s ease;
+            }
+            
+            .btn-clear-types:hover {
+                background-color: #e3f2fd;
+            }
+            
+            .types-list {
+                max-height: 300px;
+                overflow-y: auto;
+                padding: 8px 0;
+            }
+            
+            .type-group {
+                margin-bottom: 4px;
+            }
+            
+            .type-item, .subtype-item {
+                display: flex;
+                align-items: center;
+                padding: 8px 16px;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+                border: none;
+                background: none;
+                width: 100%;
+                text-align: left;
+                position: relative;
+            }
+            
+            .type-item:hover, .subtype-item:hover {
+                background-color: #f8f9fa;
+            }
+            
+            .subtype-item {
+                padding-left: 32px;
+                font-size: 14px;
+                color: #666;
+            }
+            
+            .type-checkbox, .subtype-checkbox {
+                margin: 0;
+                margin-right: 12px;
+                width: 16px;
+                height: 16px;
+                cursor: pointer;
+            }
+            
+            .checkmark {
+                position: relative;
+                width: 16px;
+                height: 16px;
+                border: 2px solid #ddd;
+                border-radius: 3px;
+                margin-right: 12px;
+                transition: all 0.2s ease;
+            }
+            
+            .type-checkbox:checked + .checkmark,
+            .subtype-checkbox:checked + .checkmark {
+                background-color: #1976d2;
+                border-color: #1976d2;
+            }
+            
+            .type-checkbox:checked + .checkmark::after,
+            .subtype-checkbox:checked + .checkmark::after {
+                content: '✓';
+                position: absolute;
+                top: -2px;
+                left: 2px;
+                color: white;
+                font-size: 12px;
+                font-weight: bold;
+            }
+            
+            .type-label, .subtype-label {
+                font-size: 14px;
+                color: #333;
+                flex: 1;
+            }
+            
+            .subtype-label {
+                font-size: 13px;
+                color: #666;
+            }
+            
+            .type-checkbox, .subtype-checkbox {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
         </style>
 
         
@@ -443,11 +656,12 @@ if(isset($listings->SearchParams->Cities[0])){
 
                     <!-- For Sale / Rent -->
                     <div class="filter-item filter-dropdown" data-filter="sale">
-                        <button class="btn btn-outline-secondary btn-filter" type="button">For sale</button>
+                        <button class="btn btn-outline-secondary btn-filter" type="button" data-value="any">Search Type</button>
                         <div class="dropdown-panel">
                             <ul>
-                                <li data-value="sale">For sale</li>
-                                <li data-value="rent">For rent</li>
+                                <li data-value="any">All Types</li>
+                                <li data-value="sale">For Sale</li>
+                                <li data-value="rent">For Rent</li>
                             </ul>
                         </div>
                     </div>
@@ -466,37 +680,64 @@ if(isset($listings->SearchParams->Cities[0])){
                         </div>
                     </div>
 
-                    <!-- Property types -->
+                    <!-- Property types dropdown -->
                     <div class="filter-item filter-dropdown filter-types" data-filter="types">
                         <button class="btn btn-outline-secondary btn-filter" type="button">Property Types</button>
-                        <div class="dropdown-panel types-panel">
-                            <div class="types-grid">
+                        <div class="dropdown-panel types-dropdown-panel">
+                            <div class="types-header">
+                                <button class="btn-clear-types" type="button">Clear All</button>
+                            </div>
+                            <div class="types-list">
                                 <?php 
                                 if (isset($property_types) && is_array($property_types)) {
                                     foreach ($property_types as $type_id => $type_data) {
                                         $type_desc = $type_data['desc'] ?? 'Unknown';
-                                        $icon = getPropertyTypeIcon($type_desc, $property_type_icons);
                                         ?>
-                                        <label class="type" data-value="<?= htmlspecialchars($type_desc) ?>">
-                                            <input type="checkbox" value="<?= $type_id ?>">
-                                            <span class="type-icon"><?= $icon ?></span>
-                                            <span class="type-label"><?= htmlspecialchars($type_desc) ?></span>
-                                        </label>
+                                        <div class="type-group">
+                                            <label class="type-item" data-value="<?= htmlspecialchars($type_desc) ?>">
+                                                <input type="checkbox" name="property_type[]" value="<?= $type_id ?>" class="type-checkbox">
+                                                <span class="checkmark"></span>
+                                                <span class="type-label"><?= htmlspecialchars($type_desc) ?></span>
+                                            </label>
+                                            <?php 
+                                            // Display sub-types if they exist
+                                            if (isset($type_data['subs']) && !empty($type_data['subs'])) {
+                                                foreach ($type_data['subs'] as $sub_id => $sub_desc) {
+                                                    if (!empty($sub_desc)) {
+                                                        ?>
+                                                        <label class="subtype-item" data-value="<?= htmlspecialchars($sub_desc) ?>" data-parent="<?= $type_id ?>">
+                                                            <input type="checkbox" name="property_subtype[]" value="<?= $sub_id ?>" class="subtype-checkbox">
+                                                            <span class="checkmark"></span>
+                                                            <span class="subtype-label"><?= htmlspecialchars($sub_desc) ?></span>
+                                                        </label>
+                                                        <?php
+                                                    }
+                                                }
+                                            }
+                                            ?>
+                                        </div>
                                         <?php
                                     }
                                 } else {
                                     // Fallback if property types not loaded
                                     ?>
-                                    <label class="type" data-value="Residential"><input type="checkbox"><span class="type-icon">🏠</span><span class="type-label">Residential</span></label>
-                                    <label class="type" data-value="Commercial"><input type="checkbox"><span class="type-icon">🏢</span><span class="type-label">Commercial</span></label>
-                                    <label class="type" data-value="Land"><input type="checkbox"><span class="type-icon">🌾</span><span class="type-label">Land</span></label>
+                                    <div class="type-group">
+                                        <label class="type-item" data-value="Single Home">
+                                            <input type="checkbox" name="property_type[]" value="1" class="type-checkbox">
+                                            <span class="checkmark"></span>
+                                            <span class="type-label">Single Home</span>
+                                        </label>
+                                    </div>
+                                    <div class="type-group">
+                                        <label class="type-item" data-value="Apartment">
+                                            <input type="checkbox" name="property_type[]" value="2" class="type-checkbox">
+                                            <span class="checkmark"></span>
+                                            <span class="type-label">Apartment</span>
+                                        </label>
+                                    </div>
                                     <?php
                                 }
                                 ?>
-                            </div>
-                            <div class="types-actions">
-                                <button class="btn btn-sm btn-primary btn-apply">Apply</button>
-                                <button class="btn btn-sm btn-link btn-clear">Clear</button>
                             </div>
                         </div>
                     </div>
@@ -533,7 +774,7 @@ if(isset($listings->SearchParams->Cities[0])){
 
                     <!-- Mobile toggle -->
                     <div class="filter-item filter-toggle d-md-none">
-                        <button class="btn btn-outline-secondary btn-filter" type="button" data-action="toggle-filters">Filters</button>
+                        <button class="btn btn-outline-secondary btn-filter" type="button" data-action="toggle-filters"><i class="bi bi-funnel"></i> Filters</button>
                     </div>
 
                     
@@ -542,20 +783,7 @@ if(isset($listings->SearchParams->Cities[0])){
         </div>
     </section>
 
-    <!-- Current Filters Section -->
-    <section class="current-filters" style="background-color: #e3f2fd; border-bottom: 1px solid #bbdefb; padding: 12px 0; display: none;">
-        <div class="container-fluid">
-            <div class="d-flex align-items-center flex-wrap gap-2">
-                <span class="me-2 text-muted fw-medium" style="font-size: 14px;">Active Filters:</span>
-                <div class="filter-tags d-flex flex-wrap gap-2" id="current-filter-tags">
-                    <!-- Filter tags will be dynamically inserted here -->
-                </div>
-                <button class="btn btn-link btn-sm p-0 ms-auto text-decoration-none" id="clear-all-filters" style="font-size: 14px; color: #1976d2;">
-                    Clear All
-                </button>
-            </div>
-        </div>
-    </section>
+   
 
     <div class="container-fluid split-wrap">
         <div class="row gx-3">
@@ -582,6 +810,21 @@ if(isset($listings->SearchParams->Cities[0])){
                         <br><br>
                         <a href="<?= $base_href ?>listings" type="button" class="btn btn-primary" onclick="showAllProperties()">Show All Properties</a>
                     </div>
+
+                    <!-- Current Filters Section -->
+                        <div class="current-filters" style="background-color: rgb(239 245 250); padding: 12px 0; display: none;">
+                            <div class="container-fluid">
+                                <div class="d-flex align-items-center flex-wrap gap-2">
+                                    <span class="me-2 text-muted fw-medium" style="font-size: 14px;">Active Filters:</span>
+                                    <div class="filter-tags d-flex flex-wrap gap-2" id="current-filter-tags">
+                                        <!-- Filter tags will be dynamically inserted here -->
+                                    </div>
+                                    <button class="btn btn-link btn-sm p-0 ms-auto text-decoration-none" id="clear-all-filters" style="font-size: 14px; color: #1976d2;">
+                                        Clear All
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                 </div>
 
                 <!-- Properties list -->
@@ -622,8 +865,22 @@ if(isset($listings->SearchParams->Cities[0])){
                                     
                                     // Map property types to the filter format
                                     $prop_type_name = 'Other';
+                                    $prop_subtype_name = '';
+                                    $all_type_names = array();
+                                    $all_type_ids = array();
+                                    
                                     if(isset($ff->PropType) && isset($property_types[$ff->PropType])){
                                         $prop_type_name = $property_types[$ff->PropType]['desc'];
+                                        $all_type_names[] = $prop_type_name;
+                                        $all_type_ids[] = $ff->PropType; // Add the main type ID
+                                        
+                                        // Check for subtype
+                                        if(isset($ff->PropertySubTypeId) && $ff->PropertySubTypeId && 
+                                           isset($property_types[$ff->PropType]['subs'][$ff->PropertySubTypeId])){
+                                            $prop_subtype_name = $property_types[$ff->PropType]['subs'][$ff->PropertySubTypeId];
+                                            $all_type_names[] = $prop_subtype_name;
+                                            $all_type_ids[] = $ff->PropertySubTypeId; // Add the subtype ID
+                                        }
                                     }
                                     
                                     // Determine price range
@@ -638,12 +895,13 @@ if(isset($listings->SearchParams->Cities[0])){
                                     $map_property = array(
                                         'id' => isset($ff->PropId) ? $ff->PropId : 0,
                                         'title' => isset($ff->PropTitle) ? $ff->PropTitle : 'Property',
-                                        'image' => isset($ff->PropThumb) ? $prop_img_url.$ff->PropThumb : 'dist/img/default-property.svg',
+                                        'image' => isset($ff->PropThumb) ? $prop_img_url.$ff->PropThumb : $assets_prefix.'/dist/img/default-property.svg',
                                         'status' => $prop_status,
                                         'listing' => $listing_type,
                                         'price' => isset($ff->PropCosts) ? $ff->PropCosts : 0,
                                         'price_range' => $price_range,
-                                        'types' => array($prop_type_name),
+                                        'types' => $all_type_names,
+                                        'type_ids' => $all_type_ids,
                                         'beds' => isset($ff->PropSize->Bedrooms) ? $ff->PropSize->Bedrooms : 0,
                                         'baths' => isset($ff->PropSize->TotalBaths) ? $ff->PropSize->TotalBaths : 0,
                                         'sqft' => isset($ff->PropSize->SqFt) ? $ff->PropSize->SqFt : 0,
@@ -670,9 +928,10 @@ if(isset($listings->SearchParams->Cities[0])){
                             
                             foreach($properties_for_map as $p):
                                 $types_attr = implode(',', $p['types']);
+                                $type_ids_attr = implode(',', $p['type_ids'] ?? array());
                             ?>
                             <div class="property-col">
-                                <div class="property-card" href="<?= $p['url'] ?>" data-id="<?= $p['id'] ?>" data-lat="<?= $p['lat'] ?>" data-lng="<?= $p['lng'] ?>" data-listing="<?= $p['listing'] ?>" data-price="<?= $p['price'] ?>" data-price-range="<?= $p['price_range'] ?>" data-types="<?= htmlspecialchars($types_attr) ?>" data-beds="<?= $p['beds'] ?>" data-baths="<?= $p['baths'] ?>" data-sqft="<?= $p['sqft'] ?>" data-location="<?= htmlspecialchars($p['location']) ?>" data-area="<?= $p['area'] ?>" data-status="<?= $p['status'] ?>">
+                                <div class="property-card" href="<?= $p['url'] ?>" data-id="<?= $p['id'] ?>" data-lat="<?= $p['lat'] ?>" data-lng="<?= $p['lng'] ?>" data-listing="<?= $p['listing'] ?>" data-price="<?= $p['price'] ?>" data-price-range="<?= $p['price_range'] ?>" data-types="<?= htmlspecialchars($types_attr) ?>" data-type-ids="<?= htmlspecialchars($type_ids_attr) ?>" data-beds="<?= $p['beds'] ?>" data-baths="<?= $p['baths'] ?>" data-sqft="<?= $p['sqft'] ?>" data-location="<?= htmlspecialchars($p['location']) ?>" data-area="<?= $p['area'] ?>" data-status="<?= $p['status'] ?>">
                                     <div class="prop-image" style="background-image:url('<?= $p['image'] ?>');">
                                         <div class="prop-badge"><?= htmlspecialchars($p['status']) ?></div>
                                         <?php if($p['is_featured'] == 1){ ?>
@@ -684,7 +943,7 @@ if(isset($listings->SearchParams->Cities[0])){
                                     <div class="prop-body">
                                         <div class="prop-price"><?= $p['listing'] === 'rent' ? '$'.number_format($p['price']).' /mo' : '$'.number_format($p['price']) ?> <small><?= $curr_desc ?></small></div>
                                         <div class="prop-meta"><?= $p['beds'] ?> bd <span class="sep">&middot;</span> <?= $p['baths'] ?> ba <span class="sep">&middot;</span> <?= number_format($p['sqft']) ?> sqft</div>
-                                        <div class="prop-location"><?= htmlspecialchars($p['location']) ?></div>
+                                        <div class="prop-location"><i class="bi bi-geo-alt-fill"></i> <?= htmlspecialchars($p['location']) ?></div>
                                         <div class="prop-type"><?= htmlspecialchars(implode(', ', $p['types'])) ?> — <?= htmlspecialchars($p['area']) ?></div>
                                         <?php if(!empty($p['mls'])){ ?>
                                         <div class="prop-mls">MLS #: <?= htmlspecialchars($p['mls']) ?></div>
@@ -720,6 +979,38 @@ if(isset($listings->SearchParams->Cities[0])){
             // Clear all filters and reload page to show all properties
             window.location.href = window.location.pathname;
         }
+        
+        // Mobile map marker to property card highlighting
+        function highlightPropertyCard(propertyId) {
+            if (window.innerWidth <= 767) {
+                // Remove previous highlights
+                document.querySelectorAll('.property-card.highlighted').forEach(card => {
+                    card.classList.remove('highlighted');
+                });
+                
+                // Find and highlight the corresponding property card
+                const targetCard = document.querySelector(`[data-id="${propertyId}"]`);
+                if (targetCard) {
+                    targetCard.classList.add('highlighted');
+                    
+                    // Scroll the property into view in the horizontal slider
+                    const propertiesGrid = document.querySelector('.properties-grid');
+                    const cardRect = targetCard.getBoundingClientRect();
+                    const gridRect = propertiesGrid.getBoundingClientRect();
+                    
+                    if (cardRect.left < gridRect.left || cardRect.right > gridRect.right) {
+                        targetCard.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest',
+                            inline: 'center'
+                        });
+                    }
+                }
+            }
+        }
+        
+        // Listen for map marker clicks (this will be called from the map JavaScript)
+        window.onMarkerClick = highlightPropertyCard;
     </script>
 
     </body>

@@ -732,6 +732,10 @@ h4 {
 .listings-filter .filter-dropdown.open .dropdown-panel {
   display: block;
 }
+.listings-filter .filter-dropdown.align-right .dropdown-panel {
+  left: auto;
+  right: 0;
+}
 .listings-filter .dropdown-panel ul {
   list-style: none;
   margin: 0;
@@ -825,16 +829,70 @@ h4 {
   margin-right: 8px;
 }
 @media (max-width: 767px) {
+  .listings-filter {
+    /* Hide filter dropdowns by default on mobile */
+    /* Show filters when expanded */
+    /* Toggle button styling */
+    /* When expanded, show "Hide Filters" text */
+  }
   .listings-filter .filter-row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: stretch;
+    gap: 3px;
+    position: relative;
+  }
+  .listings-filter .btn-filter {
+    width: 100%;
+    border-color: #ccc;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+  }
+  .listings-filter .filter-search {
+    margin-bottom: 0;
   }
   .listings-filter .filter-item {
     width: 100%;
   }
   .listings-filter .filter-search {
     order: -1;
+    width: 100%;
+    margin-bottom: 0px;
+  }
+  .listings-filter .filter-search input {
+    width: 100%;
+    font-size: 16px;
+    /* Prevent zoom on iOS */
+  }
+  .listings-filter .filter-dropdown {
+    display: none;
+  }
+  .listings-filter.expanded .filter-dropdown {
+    display: block;
+    margin-bottom: 2px;
+  }
+  .listings-filter .filter-toggle {
+    order: 99;
+    margin-top: 10px;
+  }
+  .listings-filter .filter-toggle .btn-filter {
+    width: 100%;
+    padding: 12px;
+    font-weight: 600;
+    background: #001c45;
+    color: white;
+    border: none;
+  }
+  .listings-filter .filter-toggle .btn-filter:hover {
+    background: #41600c;
+  }
+  .listings-filter.expanded .filter-toggle .btn-filter::after {
+    content: " (Hide)";
+    font-weight: normal;
+    opacity: 0.8;
   }
   .listings-filter .filter-dropdown .dropdown-panel {
     left: 0;
@@ -848,6 +906,7 @@ h4 {
 /* Properties grid */
 .properties-list {
   padding: 28px 0;
+  padding-top: 10px;
   /* Responsive columns: 4 on >=1400, 3 on 758-1399, stacked under 758 */
   /* Ensure equal height when side-by-side by making the card take full height of the column */
 }
@@ -858,6 +917,9 @@ h4 {
 }
 .properties-list .property-col {
   display: flex;
+}
+.properties-list .property-col.hidden {
+  display: none !important;
 }
 .properties-list .property-card {
   display: flex;
@@ -909,7 +971,6 @@ h4 {
   padding: 12px 14px 18px 14px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
   flex: 1 1 auto;
 }
 .properties-list .prop-price {
@@ -1136,7 +1197,10 @@ h4 {
   }
   .navbar > .container-fluid .navbar-toggler {
     margin-top: 20px;
-    font-size: 25px;
+    font-size: 22px;
+  }
+  .navbar > .container-fluid .navbar-brand img {
+    max-width: 280px;
   }
   .navbar-light > .container-fluid {
     align-items: flex-start;

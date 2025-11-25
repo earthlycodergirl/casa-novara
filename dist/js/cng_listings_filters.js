@@ -98,7 +98,18 @@
 
             const filter = d.dataset.filter;
             if(filter === 'sale'){
-                panel.addEventListener('click', function(e){ const li = e.target.closest('li'); if(!li) return; const val = li.dataset.value || li.textContent.trim(); btn.textContent = li.textContent; btn.dataset.value = val; d.classList.remove('open'); document.dispatchEvent(new Event('filtersChanged')); });
+                panel.addEventListener('click', function(e){ 
+                    const li = e.target.closest('li'); 
+                    if(!li) return; 
+                    const val = li.dataset.value || li.textContent.trim(); 
+                    btn.textContent = li.textContent; 
+                    btn.dataset.value = val; 
+                    d.classList.remove('open'); 
+                    // Make sure to trigger the filter update
+                    setTimeout(() => {
+                        document.dispatchEvent(new Event('filtersChanged')); 
+                    }, 10);
+                });
             }
             if(filter === 'price'){
                 panel.addEventListener('click', function(e){
@@ -108,7 +119,9 @@
                     btn.textContent = li.textContent;
                     btn.dataset.range = li.dataset.value || li.textContent.trim();
                     d.classList.remove('open');
-                    document.dispatchEvent(new Event('filtersChanged'));
+                    setTimeout(() => {
+                        document.dispatchEvent(new Event('filtersChanged'));
+                    }, 10);
                 });
             }
 
@@ -128,11 +141,58 @@
             }
 
             if(filter === 'types'){
-                const apply = d.querySelector('.btn-apply');
-                const clear = d.querySelector('.btn-clear');
-                const checkboxes = Array.from(d.querySelectorAll('.types-grid input[type="checkbox"]'));
-                apply.addEventListener('click', function(){ const selected = checkboxes.filter(i=>i.checked).map(i=> i.closest('.type').dataset.value); btn.textContent = selected.length ? `${selected.length} types` : 'Property Types'; d.classList.remove('open'); document.dispatchEvent(new Event('filtersChanged')); });
-                clear.addEventListener('click', function(){ checkboxes.forEach(c=> c.checked=false); btn.textContent = 'Property Types'; document.dispatchEvent(new Event('filtersChanged')); });
+                const typeCheckboxes = Array.from(d.querySelectorAll('.type-checkbox'));
+                const subtypeCheckboxes = Array.from(d.querySelectorAll('.subtype-checkbox'));
+                const allCheckboxes = [...typeCheckboxes, ...subtypeCheckboxes];
+                const clearButton = d.querySelector('.btn-clear-types');
+                
+                // Function to update button text and trigger filtering
+                function updateTypesFilter() {
+                    const selectedTypes = typeCheckboxes.filter(i=>i.checked).map(i=> i.closest('.type-item').dataset.value);
+                    const selectedSubtypes = subtypeCheckboxes.filter(i=>i.checked).map(i=> i.closest('.subtype-item').dataset.value);
+                    const allSelected = [...selectedTypes, ...selectedSubtypes];
+                    const totalSelected = allSelected.length;
+                    
+                    if (totalSelected === 0) {
+                        btn.textContent = 'Property Types';
+                    } else if (totalSelected <= 2) {
+                        btn.textContent = allSelected.join(', ');
+                    } else {
+                        btn.textContent = `${totalSelected} selected`;
+                    }
+                    
+                    // Use timeout to ensure checkbox state is updated before filtering
+                    setTimeout(() => {
+                        document.dispatchEvent(new Event('filtersChanged'));
+                    }, 10);
+                }
+                
+                // Add click listeners to all checkboxes for automatic filtering
+                allCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        updateTypesFilter();
+                    });
+                });
+                
+                // Add clear all functionality
+                if(clearButton) {
+                    clearButton.addEventListener('click', function() {
+                        allCheckboxes.forEach(c=> c.checked=false);
+                        btn.textContent = 'Property Types';
+                        setTimeout(() => {
+                            document.dispatchEvent(new Event('filtersChanged'));
+                        }, 10);
+                    });
+                }
+                
+                // Add double-click to clear all for the button
+                btn.addEventListener('dblclick', function() {
+                    allCheckboxes.forEach(c=> c.checked=false);
+                    btn.textContent = 'Property Types';
+                    setTimeout(() => {
+                        document.dispatchEvent(new Event('filtersChanged'));
+                    }, 10);
+                });
             }
             if(filter === 'beds' || filter === 'baths'){
                 // helper to refresh visual selected state on labels
@@ -158,7 +218,10 @@
                         btn.textContent = (filter==='beds' ? (val==='any' ? 'All Beds' : val+' bed'+(val==='1'?'':'s')) : (val==='any' ? 'All Baths' : val+' bath'+(val==='1'?'':'s')));
                         d.classList.remove('open');
                         refreshLabelSelected();
-                        document.dispatchEvent(new Event('filtersChanged'));
+                        // Use additional timeout to ensure state is set before filtering
+                        setTimeout(() => {
+                            document.dispatchEvent(new Event('filtersChanged'));
+                        }, 10);
                     },20);
                 });
             }
@@ -171,6 +234,24 @@
         // When search changes via suggestions or typing, notify filters changed
         if(searchInput) searchInput.addEventListener('input', function(){ updateSuggestions(searchInput.value); document.dispatchEvent(new Event('filtersChanged')); });
 
+        // Add a global click handler to catch filter changes that might be missed
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.filter-dropdown')) {
+                setTimeout(() => {
+                    document.dispatchEvent(new Event('filtersChanged'));
+                }, 50);
+            }
+        });
+
+        // Add change event listeners to all inputs in filter dropdowns
+        root.addEventListener('change', function(e) {
+            if (e.target.matches('input[type="checkbox"], input[type="radio"]')) {
+                setTimeout(() => {
+                    document.dispatchEvent(new Event('filtersChanged'));
+                }, 10);
+            }
+        });
+
         // Apply filters: reads UI state and shows/hides .property-card elements
         function applyFilters(){
             // Use the column wrappers so the grid cells collapse/expand correctly
@@ -178,26 +259,56 @@
             const searchVal = (searchInput && searchInput.value || '').trim().toLowerCase();
 
             const saleBtn = root.querySelector('[data-filter="sale"] .btn-filter');
-            const saleVal = saleBtn ? (saleBtn.dataset.value || saleBtn.textContent.trim().toLowerCase()) : '';
-
+            let saleVal = '';
+            if (saleBtn) {
+                // Prioritize dataset.value, fallback to parsing button text
+                if (saleBtn.dataset.value) {
+                    saleVal = saleBtn.dataset.value;
+                } else {
+                    // Parse button text to determine filter value
+                    const btnText = saleBtn.textContent.trim().toLowerCase();
+                    if (btnText.includes('all')) saleVal = 'any';
+                    else if (btnText.includes('sale')) saleVal = 'sale';
+                    else if (btnText.includes('rent')) saleVal = 'rent';
+                    else saleVal = 'any';
+                }
+            }
+            
             const priceBtn = root.querySelector('[data-filter="price"] .btn-filter');
-            const priceRange = priceBtn ? (priceBtn.dataset.range || priceBtn.textContent.trim()) : '';
+            let priceRange = '';
+            if (priceBtn) {
+                // Prioritize dataset.range, fallback to parsing button text
+                if (priceBtn.dataset.range) {
+                    priceRange = priceBtn.dataset.range;
+                } else {
+                    const btnText = priceBtn.textContent.trim().toLowerCase();
+                    if (btnText.includes('any')) priceRange = '';
+                    else priceRange = btnText; // Let the price parser handle it
+                }
+            }
 
             const locationBtn = root.querySelector('[data-filter="location"] .btn-filter');
             const locationVal = locationBtn ? (locationBtn.dataset.value || locationBtn.textContent.trim()).toLowerCase() : '';
 
-            const typesChecked = Array.from(root.querySelectorAll('[data-filter="types"] .types-grid input[type="checkbox"]:checked'))
-                                      .map(i=> i.closest('.type').dataset.value);
+            const typesTypeChecked = Array.from(root.querySelectorAll('[data-filter="types"] .type-checkbox:checked'))
+                                          .map(i=> i.value); // Get the ID value instead of data-value
+            const typesSubtypeChecked = Array.from(root.querySelectorAll('[data-filter="types"] .subtype-checkbox:checked'))
+                                              .map(i=> i.value); // Get the ID value instead of data-value
+            const typesChecked = [...typesTypeChecked, ...typesSubtypeChecked];
 
             const bedsChecked = root.querySelector('[data-filter="beds"] input:checked');
             const bedsVal = bedsChecked ? bedsChecked.value : 'any';
+            
             const bathsChecked = root.querySelector('[data-filter="baths"] input:checked');
             const bathsVal = bathsChecked ? bathsChecked.value : 'any';
 
             let visible = 0;
             cols.forEach(col => {
                 const card = col.querySelector('.property-card');
-                if(!card){ col.style.display = 'none'; return; }
+                if(!card){ 
+                    col.classList.add('hidden');
+                    return; 
+                }
 
                 let ok = true;
 
@@ -211,43 +322,59 @@
                 }
 
                 // sale / rent
-                if(saleVal && !/any/i.test(saleVal)){
-                    const norm = saleVal.replace(/\s+/g,'').replace(/^for/i,'').trim();
-                    if(card.dataset.listing && !card.dataset.listing.toLowerCase().includes(norm)) ok = false;
+                if(saleVal && saleVal !== 'any' && !/all/i.test(saleVal)){
+                    if(card.dataset.listing && card.dataset.listing.toLowerCase() !== saleVal.toLowerCase()) {
+                        ok = false;
+                    }
                 }
 
                 // price
-                if(!cardMatchesPrice(card, priceRange)) ok = false;
+                if(!cardMatchesPrice(card, priceRange)) {
+                    ok = false;
+                }
 
                 // types (OR match)
                 if(typesChecked.length){
-                    const cardTypes = (card.dataset.types||'').split(',').map(s=>s.trim());
-                    if(!typesChecked.some(t => cardTypes.includes(t))) ok = false;
+                    const cardTypeIds = (card.dataset.typeIds||'').split(',').map(s=>s.trim()).filter(s=>s);
+                    // Convert both arrays to strings for proper comparison
+                    const typesCheckedStr = typesChecked.map(t => String(t));
+                    const cardTypeIdsStr = cardTypeIds.map(t => String(t));
+                    if(!typesCheckedStr.some(t => cardTypeIdsStr.includes(t))) {
+                        ok = false;
+                    }
                 }
 
                 // beds
                 if(bedsVal && bedsVal !== 'any'){
                     if(bedsVal === '5+'){
-                        if(!(parseInt(card.dataset.beds||0) >= 5)) ok = false;
+                        if(!(parseInt(card.dataset.beds||0) >= 5)) {
+                            ok = false;
+                        }
                     } else {
-                        if(parseInt(card.dataset.beds||0) !== parseInt(bedsVal)) ok = false;
+                        if(parseInt(card.dataset.beds||0) !== parseInt(bedsVal)) {
+                            ok = false;
+                        }
                     }
                 }
 
                 // baths
                 if(bathsVal && bathsVal !== 'any'){
                     if(bathsVal === '5+'){
-                        if(!(parseInt(card.dataset.baths||0) >= 5)) ok = false;
+                        if(!(parseInt(card.dataset.baths||0) >= 5)) {
+                            ok = false;
+                        }
                     } else {
-                        if(parseInt(card.dataset.baths||0) !== parseInt(bathsVal)) ok = false;
+                        if(parseInt(card.dataset.baths||0) !== parseInt(bathsVal)) {
+                            ok = false;
+                        }
                     }
                 }
 
                 if(ok){
-                    col.style.display = '';
+                    col.classList.remove('hidden');
                     visible++;
                 } else {
-                    col.style.display = 'none';
+                    col.classList.add('hidden');
                 }
             });
 
@@ -268,8 +395,22 @@
             window.filterTimeout = setTimeout(applyFilters, 10);
         });
         
-        // Also run once on load to set initial state
-        setTimeout(applyFilters, 50);
+        // Initialize filters with multiple attempts to ensure DOM is fully ready
+        setTimeout(() => {
+            // Set initial data attributes for buttons that don't have them
+            const saleBtn = root.querySelector('[data-filter="sale"] .btn-filter');
+            if (saleBtn && !saleBtn.dataset.value) {
+                saleBtn.dataset.value = 'any'; // Default to show all
+            }
+            
+            const priceBtn = root.querySelector('[data-filter="price"] .btn-filter');
+            if (priceBtn && !priceBtn.dataset.range) {
+                priceBtn.dataset.range = ''; // Default to any price
+            }
+            
+            applyFilters();
+        }, 50);
+        setTimeout(applyFilters, 200);
         
         // Initialize current filters functionality
         initCurrentFilters();
@@ -300,7 +441,7 @@ function initCurrentFilters() {
         
         // Check sale/rent filter
         const saleBtn = root.querySelector('[data-filter="sale"] .btn-filter');
-        if (saleBtn && saleBtn.textContent.trim() !== 'For sale') {
+        if (saleBtn && saleBtn.textContent.trim() !== 'All Types') {
             activeFilters.push({
                 type: 'sale',
                 label: saleBtn.textContent.trim(),
@@ -319,9 +460,14 @@ function initCurrentFilters() {
         }
         
         // Check property types
-        const typesChecked = Array.from(root.querySelectorAll('[data-filter="types"] .types-grid input[type="checkbox"]:checked'));
-        if (typesChecked.length > 0) {
-            const typeNames = typesChecked.map(cb => cb.closest('.type').dataset.value);
+        const typesTypeChecked = Array.from(root.querySelectorAll('[data-filter="types"] .type-checkbox:checked'));
+        const typesSubtypeChecked = Array.from(root.querySelectorAll('[data-filter="types"] .subtype-checkbox:checked'));
+        const allTypesChecked = [...typesTypeChecked, ...typesSubtypeChecked];
+        if (allTypesChecked.length > 0) {
+            const typeNames = allTypesChecked.map(cb => {
+                const item = cb.closest('.type-item') || cb.closest('.subtype-item');
+                return item ? item.dataset.value : '';
+            }).filter(Boolean);
             activeFilters.push({
                 type: 'types',
                 label: `Types: ${typeNames.join(', ')}`,
@@ -382,8 +528,8 @@ function initCurrentFilters() {
             case 'sale':
                 const saleBtn = root.querySelector('[data-filter="sale"] .btn-filter');
                 if (saleBtn) {
-                    saleBtn.textContent = 'For sale';
-                    saleBtn.dataset.value = 'sale';
+                    saleBtn.textContent = 'All Types';
+                    saleBtn.dataset.value = 'any';
                 }
                 break;
                 
@@ -396,7 +542,7 @@ function initCurrentFilters() {
                 break;
                 
             case 'types':
-                const typeCheckboxes = root.querySelectorAll('[data-filter="types"] .types-grid input[type="checkbox"]');
+                const typeCheckboxes = root.querySelectorAll('[data-filter="types"] .type-checkbox, [data-filter="types"] .subtype-checkbox');
                 typeCheckboxes.forEach(cb => cb.checked = false);
                 const typesBtn = root.querySelector('[data-filter="types"] .btn-filter');
                 if (typesBtn) typesBtn.textContent = 'Property Types';
@@ -447,8 +593,8 @@ function initCurrentFilters() {
         // Reset sale filter
         const saleBtn = root.querySelector('[data-filter="sale"] .btn-filter');
         if (saleBtn) {
-            saleBtn.textContent = 'For sale';
-            saleBtn.dataset.value = 'sale';
+            saleBtn.textContent = 'All Types';
+            saleBtn.dataset.value = 'any';
         }
         
         // Reset price filter
@@ -459,7 +605,7 @@ function initCurrentFilters() {
         }
         
         // Clear property types
-        const typeCheckboxes = root.querySelectorAll('[data-filter="types"] .types-grid input[type="checkbox"]');
+        const typeCheckboxes = root.querySelectorAll('[data-filter="types"] .type-checkbox, [data-filter="types"] .subtype-checkbox');
         typeCheckboxes.forEach(cb => cb.checked = false);
         const typesBtn = root.querySelector('[data-filter="types"] .btn-filter');
         if (typesBtn) typesBtn.textContent = 'Property Types';
@@ -527,6 +673,13 @@ function initCurrentFilters() {
 function parsePriceValue(val) {
   if (val == null || val === '') return NaN;
   if (typeof val === 'number') return val;
+  
+  // Handle raw numeric strings (like "350000")
+  const rawNumber = parseFloat(String(val));
+  if (!isNaN(rawNumber) && /^\d+(\.\d+)?$/.test(String(val))) {
+    return rawNumber;
+  }
+  
   // strip currency and commas, lowercase
   let s = String(val).replace(/\$/g,'').replace(/,/g,'').trim().toLowerCase();
   // support k / m suffix
@@ -600,8 +753,9 @@ function cardMatchesPrice(card, selectedRangeLabelOrValue) {
   // prefer numeric data attribute data-price (in full numeric form). fallback to data-price-range text parse.
   let cardPrice = NaN;
 
-  if (card.dataset.price) cardPrice = parsePriceValue(card.dataset.price);
-  else if (card.dataset.priceRange) {
+  if (card.dataset.price) {
+    cardPrice = parsePriceValue(card.dataset.price);
+  } else if (card.dataset.priceRange) {
     const pr = card.dataset.priceRange;
     const hy = pr.match(/([\d.,km]+)\s*-\s*([\d.,km]+)/);
     if (hy) {
@@ -617,7 +771,9 @@ function cardMatchesPrice(card, selectedRangeLabelOrValue) {
     // if no numeric info, consider it match
     return true;
   }
+  
+  // Add some tolerance for edge cases
   if (cardPrice < range.min) return false;
-  if (cardPrice > range.max) return false;
+  if (range.max !== Infinity && cardPrice > range.max) return false;
   return true;
 }
