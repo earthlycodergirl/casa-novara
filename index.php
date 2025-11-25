@@ -1,4 +1,17 @@
-<?php require_once('base.php'); ?>
+<?php 
+require_once('base.php'); 
+
+// Get featured properties for the slider
+require_once('dist/classes/publist.class.php');
+$featured_listings = new SiteListings();
+$featured_listings->getFeatured(10); // Get up to 10 featured properties
+
+// If no featured properties, get latest properties
+if(empty($featured_listings->Featured)) {
+    $latest_listings = new SiteListings(0, 1); // Get latest listings
+    $featured_listings->Featured = array_slice($latest_listings->List[0], 0, 10); // Use first 10 latest
+}
+?>
 <!doctype html>
 <html lang="en">
 	<head>
@@ -107,21 +120,53 @@
         </div>   
         <div class="slides">
 
-        <?php for($i=1; $i<=10; $i++):?>
+        <?php if(!empty($featured_listings->Featured)): ?>
+            <?php foreach($featured_listings->Featured as $property): ?>
             <div class="slide">
-            <a href="<?= $link_prefix ?>/property/123">
-                <div class="card">
-                <div class="card-image" style="background-image:url('dist/img/side-3.jpeg');"></div>
-                <div class="card-body">
-                    <p class="card-location">Playa del Carmen, MX</p>
-                    <h3 class="card-title">Cozy Apartment</h3>
-
-                    <div class="card-price">2 bed, 2 bath</div>
-                </div>
-                </div>
-            </a>
+                <a href="<?= $base_href ?>listing/<?= $property->PropertyId ?>">
+                    <div class="card">
+                        <div class="card-image" style="background-image:url('<?= !empty($property->PropThumb) ? $prop_img_url . $property->PropThumb : 'dist/img/side-3.jpeg' ?>');"></div>
+                        <div class="card-body">
+                            <p class="card-location"><?= htmlspecialchars($property->PropLocation->City ?? 'Puerto Vallarta') ?>, MX</p>
+                            <h3 class="card-title"><?= htmlspecialchars($property->PropTitle ?? 'Beautiful Property') ?></h3>
+                            <div class="card-price">
+                                <?php if(isset($property->PropSize->Bedrooms) && $property->PropSize->Bedrooms > 0): ?>
+                                    <?= $property->PropSize->Bedrooms ?> bed<?= $property->PropSize->Bedrooms > 1 ? 's' : '' ?>
+                                <?php endif; ?>
+                                <?php if(isset($property->PropSize->Bathrooms) && $property->PropSize->Bathrooms > 0): ?>
+                                    <?php if(isset($property->PropSize->Bedrooms) && $property->PropSize->Bedrooms > 0): ?>, <?php endif; ?>
+                                    <?= $property->PropSize->Bathrooms ?> bath<?= $property->PropSize->Bathrooms > 1 ? 's' : '' ?>
+                                <?php endif; ?>
+                                <?php if(!isset($property->PropSize->Bedrooms) || $property->PropSize->Bedrooms == 0): ?>
+                                    <?php if(isset($property->PropCosts) && $property->PropCosts > 0): ?>
+                                        $<?= number_format($property->PropCosts) ?> USD
+                                    <?php else: ?>
+                                        Contact for Price
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <?php endfor;?>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <!-- Fallback properties if no database properties found -->
+            <?php for($i=1; $i<=6; $i++):?>
+            <div class="slide">
+                <a href="<?= $link_prefix ?>/property/demo">
+                    <div class="card">
+                        <div class="card-image" style="background-image:url('dist/img/side-3.jpeg');"></div>
+                        <div class="card-body">
+                            <p class="card-location">Playa del Carmen, MX</p>
+                            <h3 class="card-title">Sample Property <?= $i ?></h3>
+                            <div class="card-price">Contact for Details</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <?php endfor; ?>
+        <?php endif; ?>
 
             
 
@@ -274,38 +319,81 @@
 		  let slideWidth = 0;
 		  let visibleCount = 1;
 
+		  // Ensure track has proper styling for horizontal scrolling
+		  track.style.display = 'flex';
+		  track.style.overflowX = 'auto';
+		  track.style.scrollBehavior = 'smooth';
+		  track.style.scrollbarWidth = 'none'; // Firefox
+		  track.style.msOverflowStyle = 'none'; // IE/Edge
+		  // Hide scrollbar for Webkit browsers
+		  track.style.setProperty('scrollbar-width', 'none');
+		  const style = document.createElement('style');
+		  style.textContent = '.slides::-webkit-scrollbar { display: none; }';
+		  document.head.appendChild(style);
+
 		  // compute responsive slide size & visible count
 		  function recalc(){
 		    const containerW = slider.clientWidth;
 		    if(window.matchMedia('(min-width:1200px)').matches){ visibleCount = 5; }
-		    else if(window.matchMedia('(min-width:600px)').matches){ visibleCount = 4; }
+		    else if(window.matchMedia('(min-width:900px)').matches){ visibleCount = 4; }
+		    else if(window.matchMedia('(min-width:600px)').matches){ visibleCount = 3; }
 		    else { visibleCount = 1.5; }
 		    slideWidth = Math.floor(containerW / visibleCount);
-		    slides.forEach(s=>{ s.style.minWidth = slideWidth + 'px'; });
+		    slides.forEach(s=>{ 
+		      s.style.minWidth = slideWidth + 'px'; 
+		      s.style.flexShrink = '0';
+		    });
 		  }
 
 		  // scroll to slide index (uses native smooth scroll)
 		  function scrollToIndex(index){
-		    index = Math.max(0, Math.min(index, slides.length - Math.ceil(visibleCount)));
+		    const maxIndex = Math.max(0, slides.length - Math.ceil(visibleCount));
+		    index = Math.max(0, Math.min(index, maxIndex));
 		    currentIndex = index;
 		    const left = index * slideWidth;
 		    track.scrollTo({ left: left, behavior: 'smooth' });
 		  }
 
-		  function next(){ scrollToIndex(Math.min(currentIndex + 1, slides.length - Math.ceil(visibleCount))); }
-		  function prev(){ scrollToIndex(Math.max(currentIndex - 1, 0)); }
+		  function next(){ 
+		    const maxIndex = Math.max(0, slides.length - Math.ceil(visibleCount));
+		    if(currentIndex >= maxIndex) {
+		      // Loop back to start
+		      scrollToIndex(0);
+		    } else {
+		      scrollToIndex(currentIndex + 1);
+		    }
+		  }
+		  
+		  function prev(){ 
+		    if(currentIndex <= 0) {
+		      // Loop to end
+		      const maxIndex = Math.max(0, slides.length - Math.ceil(visibleCount));
+		      scrollToIndex(maxIndex);
+		    } else {
+		      scrollToIndex(currentIndex - 1);
+		    }
+		  }
 
-		  if(nextBtn) nextBtn.addEventListener('click', ()=>{ stopAutoplay(); next(); });
-		  if(prevBtn) prevBtn.addEventListener('click', ()=>{ stopAutoplay(); prev(); });
+		  if(nextBtn) nextBtn.addEventListener('click', ()=>{ stopAutoplay(); next(); startAutoplay(); });
+		  if(prevBtn) prevBtn.addEventListener('click', ()=>{ stopAutoplay(); prev(); startAutoplay(); });
 
 		  // pause on pointer interactions
 		  ['pointerenter','pointerdown','touchstart'].forEach(evt=> slider.addEventListener(evt, stopAutoplay, {passive:true}));
+		  ['pointerleave','pointerup','touchend'].forEach(evt=> slider.addEventListener(evt, startAutoplay, {passive:true}));
 
-		  function startAutoplay(){ stopAutoplay(); autoplayId = setInterval(()=>{ next(); }, autoplayDelay); }
+		  function startAutoplay(){ 
+		    stopAutoplay(); 
+		    if(slides.length > visibleCount) {
+		      autoplayId = setInterval(()=>{ next(); }, autoplayDelay); 
+		    }
+		  }
 		  function stopAutoplay(){ if(autoplayId){ clearInterval(autoplayId); autoplayId = null; } }
 
 		  // keyboard nav
-		  slider.addEventListener('keydown', function(e){ if(e.key === 'ArrowLeft') prev(); if(e.key === 'ArrowRight') next(); });
+		  slider.addEventListener('keydown', function(e){ 
+		    if(e.key === 'ArrowLeft') { stopAutoplay(); prev(); startAutoplay(); }
+		    if(e.key === 'ArrowRight') { stopAutoplay(); next(); startAutoplay(); }
+		  });
 
 		  // make anchors focusable for accessibility
 		  slides.forEach(s=>{ const a = s.querySelector('a'); if(a) a.setAttribute('tabindex','0'); });
@@ -318,16 +406,24 @@
 		      const left = track.scrollLeft;
 		      const idx = Math.round(left / slideWidth);
 		      currentIndex = Math.max(0, Math.min(idx, slides.length - 1));
-		    }, 80);
+		    }, 100);
 		  }, { passive: true });
 
 		  // recompute on resize
 		  let resizeTimer = null;
-		  window.addEventListener('resize', function(){ clearTimeout(resizeTimer); resizeTimer = setTimeout(recalc, 120); });
+		  window.addEventListener('resize', function(){ 
+		    clearTimeout(resizeTimer); 
+		    resizeTimer = setTimeout(() => {
+		      recalc();
+		      scrollToIndex(0); // Reset to start on resize
+		    }, 250); 
+		  });
 
-		  // initial layout
+		  // initial layout and start autoplay
 		  recalc();
-		  startAutoplay();
+		  if(slides.length > 0) {
+		    startAutoplay();
+		  }
 		})();
 		</script>
 

@@ -11,18 +11,17 @@ $(function () {
    var lon = $('body').data('lon');
 
    if(lat > 0 && lon < 0){
-      mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JmcmVlZG9tMTEiLCJhIjoiY2tqM2VxeTR4MWhoMzMwdGR1OXNjb2xkZCJ9.9qdQeLe2YBkQwGiWCJ7wZg';
-      var map = new mapboxgl.Map({
-        container: 'map', // container id
-        style: 'mapbox://styles/mapbox/light-v10', // style URL
-        center: [lon,lat], // starting position [lng, lat]
-        zoom: 8 // starting zoom
-      });
-
-       var marker = new mapboxgl.Marker({
-         color: '#FFCB63',
-         scale: 0.6
-       }).setLngLat([lon,lat]).addTo(map);
+      // Initialize Leaflet map
+      var map = L.map('map').setView([lat, lon], 8);
+      
+      // Add OpenStreetMap tile layer
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+      
+      // Add marker
+      var marker = L.marker([lat, lon]).addTo(map);
    }
 });
 
@@ -91,13 +90,14 @@ $(document).ready(function(){
     pagination: false,
     afterAction: syncPosition,
     responsiveRefreshRate: 200,
+    autoHeight: true
   });
   sync2.owlCarousel({
-    items: 8,
-    itemsDesktop: [1199, 10],
-    itemsDesktopSmall: [979, 10],
-    itemsTablet: [768, 8],
-    itemsMobile: [479, 6],
+    items: 6,
+    itemsDesktop: [1199, 8],
+    itemsDesktopSmall: [979, 8],
+    itemsTablet: [768, 6],
+    itemsMobile: [479, 4],
     pagination: false,
     responsiveRefreshRate: 100,
     afterInit: function(el) {

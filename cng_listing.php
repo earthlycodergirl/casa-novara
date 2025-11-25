@@ -243,7 +243,7 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
     <link href="<?= $assets_prefix ?>/dist/plugins/owl/owl.carousel.css" rel="stylesheet" type="text/css"/>
     <link href="<?= $assets_prefix ?>/dist/plugins/owl/owl.transitions.css" rel="stylesheet" type="text/css"/>
     <?php if(isset($prop->Location->Latitude) && $prop->Location->Latitude != ''){ ?>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <?php } ?>
 
     <!-- Custom CSS -->
@@ -383,6 +383,124 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
         function goBack() {
             window.history.back();
         }
+        
+        function scrollToContactForm() {
+            const contactForm = document.getElementById('info_form');
+            if (contactForm) {
+                contactForm.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+                // Add a subtle animation to highlight the form
+                contactForm.style.transition = 'all 0.5s ease';
+                contactForm.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    contactForm.style.transform = 'scale(1)';
+                }, 500);
+            }
+        }
+        
+        // Add hover effects to CTA button
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaBtn = document.querySelector('.cta-scroll-btn');
+            if (ctaBtn) {
+                ctaBtn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 8px 25px rgba(0, 123, 255, 0.4)';
+                });
+                ctaBtn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 15px rgba(0, 123, 255, 0.3)';
+                });
+            }
+            
+            // Handle contact form submission
+            const contactForm = document.getElementById('info_form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    // Show loading state
+                    submitBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Sending...';
+                    submitBtn.disabled = true;
+                    
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    
+                    // Submit via AJAX
+                    fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Show success message
+                            showMessage('Success! ' + data.message, 'success');
+                            contactForm.reset();
+                        } else {
+                            // Show error message
+                            showMessage('Error: ' + data.message, 'error');
+                        }
+                    })
+                    .catch(error => {
+                        showMessage('An error occurred. Please try again.', 'error');
+                    })
+                    .finally(() => {
+                        // Reset button
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    });
+                });
+            }
+            
+            // Check for URL parameters for form status
+            const urlParams = new URLSearchParams(window.location.search);
+            const contactStatus = urlParams.get('contact_status');
+            const contactMessage = urlParams.get('contact_message');
+            
+            if (contactStatus && contactMessage) {
+                showMessage(decodeURIComponent(contactMessage), contactStatus);
+            }
+        });
+        
+        function showMessage(message, type) {
+            // Remove any existing messages
+            const existingMessages = document.querySelectorAll('.alert-message');
+            existingMessages.forEach(msg => msg.remove());
+            
+            // Create message element
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type === 'success' ? 'success' : 'danger'} alert-message`;
+            alertDiv.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 1050; max-width: 400px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
+            alertDiv.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-${type === 'success' ? 'check-circle' : 'exclamation-triangle'} me-2"></i>
+                    <span>${message}</span>
+                    <button type="button" class="btn-close ms-auto" aria-label="Close"></button>
+                </div>
+            `;
+            
+            // Add to page
+            document.body.appendChild(alertDiv);
+            
+            // Add close functionality
+            const closeBtn = alertDiv.querySelector('.btn-close');
+            closeBtn.addEventListener('click', () => alertDiv.remove());
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.remove();
+                }
+            }, 5000);
+        }
     </script>
 </head>
 <body class="cng-listing-page" data-lat="<?= $prop->Location->Latitude ?? '20.6534' ?>" data-lon="<?= $prop->Location->Longitude ?? '-105.2253' ?>">
@@ -486,6 +604,14 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
                                         <span class="currency-type"><?= $curr_desc ?></span>
                                     </div>
                                     <div class="price-label"><?= $pname ?: 'Sale Price' ?></div>
+                                     <!-- Call to Action Button -->
+                                    <div class="cta-button-section" style="margin-top: 2rem; text-align: center;">
+                                        <button type="button" class="btn btn-primary btn-lg cta-scroll-btn" onclick="scrollToContactForm()">
+                                            <i class="bi bi-calendar-check me-2"></i>
+                                            Schedule Your Tour
+                                        </button>
+                                        <p style="margin-top: 1rem; color: #6c757d; font-size: 0.9rem;"><i class="bi bi-check-lg"></i> Quick response guaranteed <i class="bi bi-check-lg"></i> Personalized viewing</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -560,6 +686,8 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
                                             <p>Please contact our team at <strong>+52 322 123-4567</strong> or <strong>info@casanovaragroup.com</strong> for assistance in finding this property or exploring similar available options.</p>
                                         <?php } ?>
                                     </div>
+                                    
+                                   
                                 </div>
 
                                 <!-- Property Features -->
@@ -610,38 +738,39 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
                                                 <span class="label">Property ID:</span>
                                                 <span class="value"><?= htmlspecialchars($prop->prop_id ?? $prop->PropertyId ?? 'Contact for Details') ?></span>
                                             </div>
-                                            <div class="detail-row">
-                                                <span class="label">Interior Size:</span>
-                                                <span class="value">
-                                                    <?php if(isset($prop->construction_area_sqmts) && $prop->construction_area_sqmts > 0) {
-                                                        echo number_format($prop->construction_area_sqmts * 10.764, 0) . ' ft² / ' . number_format($prop->construction_area_sqmts) . ' mt²';
-                                                    } else {
-                                                        echo 'Not Available';
-                                                    } ?>
-                                                </span>
-                                            </div>
+                                           
+                                            <?php if(isset($prop->YearBuilt) && $prop->YearBuilt > 0){ ?>
+                                                <div class="detail-row">
+                                                <span class="label">Year Built:</span>
+                                                <span class="value"><?= $prop->YearBuilt ?></span>
+                                                </div>
+                                            <?php } ?>
+                                             <?php if(isset($prop->ZoneDisplay) && $prop->ZoneDisplay != ''){ ?>
+                                                <div class="detail-row">
+                                                <span class="label">Zoning Type:</span>
+                                                <span class="value"><?= $prop->ZoneDisplay ?></span>
+                                                </div>
+                                            <?php } ?>
+                                             <?php if(isset($prop->Size->Lot) && $prop->Size->Lot > 0){ ?>
+                                                
                                             <div class="detail-row">
                                                 <span class="label">Lot Size:</span>
                                                 <span class="value">
-                                                    <?php if(isset($prop->lot_size_sqmts) && $prop->lot_size_sqmts > 0) {
-                                                        echo number_format($prop->lot_size_sqmts * 10.764, 0) . ' ft² / ' . number_format($prop->lot_size_sqmts) . ' mt²';
-                                                    } else {
-                                                        echo 'Not Available';
-                                                    } ?>
+                                                    <?php
+                                                        echo number_format($prop->Size->Lot) . ' ft² / ' . number_format($prop->Size->Lot / 10.764, 0) . ' mt²';
+                                                    ?>
                                                 </span>
                                             </div>
+                                            <?php } ?>
                                             <div class="detail-row">
-                                                <span class="label">Development:</span>
-                                                <span class="value"><?= htmlspecialchars($prop->development ?? 'Not Available') ?></span>
+                                                <span class="label">Under Construction:</span>
+                                                <span class="value"><?php if($prop->Construction){ echo 'Yes'; }else{ echo 'No'; } ?></span>
                                             </div>
                                             <div class="detail-row">
-                                                <span class="label">Furnished:</span>
-                                                <span class="value"><?= htmlspecialchars($prop->furnished ?? 'Not Available') ?></span>
+                                                <span class="label">Foreclosure:</span>
+                                                <span class="value"><?php if($prop->Foreclosure){ echo 'Yes'; }else{ echo 'No'; } ?></span>
                                             </div>
-                                            <div class="detail-row">
-                                                <span class="label">Pets Allowed:</span>
-                                                <span class="value"><?= isset($prop->pets_allowed) && $prop->pets_allowed == 1 ? 'Yes' : 'No' ?></span>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     
@@ -673,8 +802,8 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
                 <div class="container-fluid">
                     <!-- CTA Header -->
                     <div class="cta-header">
-                        <h2>Ready to Make This Your Dream Home?</h2>
-                        <p class="cta-subtitle">Don't let this exceptional property slip away. Contact our experienced agents today for an exclusive viewing and personalized consultation.</p>
+                        <h2>Ready for a tour or need more info?</h2>
+                        <p class="cta-subtitle">Contact our experienced agents today for an exclusive viewing and personalized consultation.</p>
                     </div>
                     
                     <div class="row">
@@ -682,14 +811,13 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
                         <div class="col-lg-6 col-md-12">
                             <div class="contact-card">
                                 <h4>Schedule Your Private Tour</h4>
-                                <p class="contact-subtitle">Our luxury property specialists are standing by to provide you with detailed information and arrange a personalized viewing at your convenience.</p>
                                 
                                 <div class="urgency-text">
                                     <i class="bi bi-clock"></i>
                                     <strong>Limited Time:</strong> This exclusive property is generating high interest. Secure your viewing today!
                                 </div>
                                 
-                                <form method="post" action="#" id="info_form" class="contact-form">
+                                <form method="post" action="dist/inc/process/contact_submit.php" id="info_form" class="contact-form">
                                     <input type="hidden" name="prop_id" value="<?= htmlspecialchars($prop->prop_id ?? $prop->PropertyId ?? 'general-inquiry') ?>">
                                     
                                     <div class="row">
@@ -715,7 +843,7 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
                                     
                                     <button type="submit" class="btn btn-primary btn-contact">
                                         <i class="bi bi-calendar-check"></i>
-                                        Schedule My Exclusive Tour
+                                        Send Request
                                     </button>
                                 </form>
                             </div>
@@ -787,7 +915,9 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
                                         $contact_displayed = false;
                                         if(isset($site_contact->ContactInfo['office_info']) && !empty($site_contact->ContactInfo['office_info'])) {
                                             foreach($site_contact->ContactInfo['office_info'] as $contact) {
+                                                
                                                 if($contact['type'] == 'phone') {
+                                                    echo '<div class="contact-in">';
                                                     $contact_displayed = true;
                                                     if(!empty($contact['title'])) {
                                                         echo '<strong>' . htmlspecialchars($contact['title']) . '</strong><br>';
@@ -797,7 +927,9 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
                                                     }
                                                     $phone_clean = preg_replace('/[^0-9+]/', '', $contact['val']);
                                                     echo '<a href="tel:' . htmlspecialchars($phone_clean) . '">' . htmlspecialchars($contact['val']) . '</a><br>';
+                                                    echo '</div>';
                                                 }
+                                                
                                             }
                                             // Display emails if available
                                             foreach($site_contact->ContactInfo['office_info'] as $contact) {
@@ -849,33 +981,33 @@ if(isset($prop->Prices) && !empty($prop->Prices)){
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
     <script src="<?= $assets_prefix ?>/dist/plugins/owl/owl.carousel.min.js"></script>
     <script src="<?= $assets_prefix ?>/dist/js/listing.js"></script>
     
     <script>
-        // Initialize Mapbox Map with dynamic coordinates
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZG5hdmFycm8iLCJhIjoiY2p6bjQyZGZjMGFhZDNpcnl5OWt3cmczZyJ9.Gx3BfLBFnfLfNLGDnxHFGQ';
-        
+        // Initialize Leaflet Map with dynamic coordinates
         const mapContainer = document.getElementById('map');
         if (mapContainer) {
             const lat = parseFloat(mapContainer.dataset.lat) || 20.6598;
             const lng = parseFloat(mapContainer.dataset.lng) || -105.2257;
             
-            const map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v11',
-                center: [lng, lat],
-                zoom: 15
-            });
+            // Create map
+            const map = L.map('map').setView([lat, lng], 15);
+            
+            // Add OpenStreetMap tile layer
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
             
             // Add marker
-            new mapboxgl.Marker({
-                color: '#dc3545'
-            })
-            .setLngLat([lng, lat])
-            .addTo(map);
+            const marker = L.marker([lat, lng]).addTo(map);
+            
+            // Optional: Add popup with property address
+            const address = '<?= htmlspecialchars($prop->zone ?? "Marina Vallarta") ?>, <?= htmlspecialchars($prop->city ?? "Puerto Vallarta") ?>';
+            marker.bindPopup(address).openPopup();
         }
     </script>
 

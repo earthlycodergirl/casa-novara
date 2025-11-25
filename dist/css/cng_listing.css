@@ -4,6 +4,26 @@
   line-height: 1.6;
   background: #ffffff;
 }
+.contact-in {
+  display: inline-block;
+  max-width: 300px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin: 0 5px;
+  min-width: 40%;
+}
+.cta-scroll-btn {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 15px;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
 #image_holder .owl-controls {
   position: absolute;
   z-index: 10;
@@ -89,7 +109,7 @@
   text-align: right;
   font-size: 1.2rem;
   font-weight: 700;
-  color: #d4a574;
+  color: #a77745;
 }
 .cng-listing-content .mobile-price .mobile-price-txt .pname {
   display: block;
@@ -147,7 +167,7 @@
   gap: 0.5rem;
 }
 .property-header-section .property-info-left .location-detail i {
-  color: #d4a574;
+  color: #a77745;
 }
 .property-header-section .property-info-left .property-features-grid {
   display: flex;
@@ -169,7 +189,7 @@
   gap: 1rem;
   background: #ffffff;
   padding: 0.8rem 1.2rem;
-  border-radius: 12px;
+  border-radius: 6px;
   border: 1px solid #e8e4df;
   transition: all 0.3s ease;
 }
@@ -187,6 +207,7 @@
 .property-header-section .property-info-left .property-features-grid .feature-item.status-item span {
   color: #6b8e5a;
   font-weight: 600;
+  font-size: 13px;
 }
 .property-header-section .property-info-left .property-features-grid .feature-item i {
   color: #8b7355;
@@ -205,14 +226,14 @@
   color: #3d3026;
   padding: 1rem 0;
   border-radius: 0;
-  text-align: left;
-  border-top: 2px solid #d4a574;
+  text-align: center;
+  border-top: 2px solid #a77745;
 }
 .property-header-section .property-info-left .price-display .price-amount {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
-  color: #d4a574;
+  color: #a77745;
 }
 .property-header-section .property-info-left .price-display .price-amount .currency {
   font-size: 0.7em;
@@ -446,7 +467,7 @@
   background: #faf9f7;
   border: 1px solid #e8e4df;
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: 6px;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -463,8 +484,8 @@
 }
 .content-sections .features-section .features-grid .feature-card span {
   color: #3d3026;
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: 400;
+  font-size: 13px;
 }
 .content-sections .details-location-section {
   display: grid;
@@ -474,7 +495,7 @@
 }
 .content-sections .details-location-section .details-section .details-grid {
   background: #faf9f7;
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 2rem;
   border: 1px solid #e8e4df;
 }
@@ -499,9 +520,9 @@
 .content-sections .details-location-section .location-section .location-card {
   background: #faf9f7;
   border: 1px solid #e8e4df;
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 2rem;
-  height: 100%;
+  height: auto;
 }
 .content-sections .details-location-section .location-section .location-card .address {
   display: flex;
@@ -510,7 +531,7 @@
   margin-bottom: 1.5rem;
 }
 .content-sections .details-location-section .location-section .location-card .address i {
-  color: #d4a574;
+  color: #a77745;
   font-size: 1.1rem;
   margin-top: 0.2rem;
 }
@@ -523,7 +544,7 @@
 }
 .content-sections .details-location-section .location-section .location-card .map-container {
   height: 250px;
-  border-radius: 12px;
+  border-radius: 6px;
   overflow: hidden;
   background: #ffffff;
   border: 1px solid #e8e4df;
@@ -577,7 +598,7 @@
 .bottom-sidebar-section .pricing-card {
   background: #ffffff;
   border: none;
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 2rem;
   margin-bottom: 2rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
@@ -592,7 +613,7 @@
 .bottom-sidebar-section .contact-card {
   background: #ffffff;
   border: none;
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 3rem;
   margin-bottom: 2rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
@@ -606,7 +627,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #d4a574 0%, #8b7355 100%);
+  background: linear-gradient(90deg, #a77745 0%, #8b7355 100%);
 }
 .bottom-sidebar-section .contact-card h4 {
   color: #3d3026;
@@ -621,19 +642,19 @@
   line-height: 1.6;
 }
 .bottom-sidebar-section .contact-card .urgency-text {
-  background: #ffffff;
-  color: #ad7235;
+  background: #f2e9e0;
+  color: #5f4427;
   padding: 0.75rem 1rem;
   border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 2rem;
   text-align: center;
-  border-left: 4px solid #d4a574;
+  border-left: 4px solid #a77745;
 }
 .bottom-sidebar-section .contact-card .urgency-text i {
   margin-right: 0.5rem;
-  color: #d4a574;
+  color: #a77745;
 }
 .bottom-sidebar-section .contact-card .contact-form .form-group {
   margin-bottom: 1.5rem;
@@ -641,7 +662,7 @@
 }
 .bottom-sidebar-section .contact-card .contact-form .form-control {
   border: 2px solid #e8e4df;
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 1rem 1.25rem;
   font-size: 1rem;
   transition: all 0.3s ease;
@@ -658,11 +679,11 @@
   font-weight: 400;
 }
 .bottom-sidebar-section .contact-card .contact-form .btn-contact {
-  background: linear-gradient(135deg, #d4a574 0%, #c88c4d 100%);
+  background: linear-gradient(135deg, #a77745 0%, #835d36 100%);
   border: none;
   color: #ffffff;
   padding: 1rem 2rem;
-  border-radius: 12px;
+  border-radius: 6px;
   font-weight: 600;
   font-size: 1.1rem;
   width: 100%;
@@ -676,7 +697,7 @@
   box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
 }
 .bottom-sidebar-section .contact-card .contact-form .btn-contact:hover {
-  background: linear-gradient(135deg, #ce9861 0%, #c07f3b 100%);
+  background: linear-gradient(135deg, #956a3e 0%, #71502f 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 25px rgba(212, 165, 116, 0.4);
 }
@@ -689,7 +710,7 @@
 .bottom-sidebar-section .pricing-card {
   background: #ffffff;
   border: none;
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 2rem;
   margin-bottom: 2rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
@@ -726,7 +747,7 @@
 .bottom-sidebar-section .pricing-card .agent-contact {
   background: #fefefd;
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: 6px;
   text-align: center;
 }
 .bottom-sidebar-section .pricing-card .agent-contact h5 {
@@ -927,7 +948,7 @@
 }
 .was-validated .form-control:invalid,
 .form-control.is-invalid {
-  border-color: #d4a574;
+  border-color: #a77745;
 }
 .was-validated .form-control:invalid:focus,
 .form-control.is-invalid:focus {
@@ -945,7 +966,7 @@
   width: 100%;
   margin-top: 0.25rem;
   font-size: 0.875rem;
-  color: #d4a574;
+  color: #a77745;
 }
 .owl-controls.clickable {
   position: absolute;
